@@ -1,5 +1,5 @@
 <h3>Note:</h3>
-<div>Name: <%= "#{note.name}.#{note.file_type}" %></div>
+<div>Name: <%= note.note_with_type %></div>
 <div>Author: <%= note.user_id %></div>
-<div>Category: <%= note.category_id %></div>
+<div>Category: <%= note.category.name %></div>
 <div>Body: <%= note.body %></div>

@@ -22,7 +22,7 @@
 
     <div>
       <label for="file_type">File Extension: </label>
-      <%= f.text_area :file_type, placeholder: ".txt", class: 'form-field' %>
+      <%= f.select :file_type, options_from_collection_for_select(["txt", "md"], :file_type) %>
     </div>
 
     <div>

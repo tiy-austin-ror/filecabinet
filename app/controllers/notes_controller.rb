@@ -5,8 +5,8 @@ class NotesController < ApplicationController
   end
 
   def show
-    if Note.exists?(params[:id])
-      note = Note.find(params[:id])
+    note = Note.find(params[:id])
+    if note
       render locals: { note: note }
     else
       render html: 'Note not found', status: 404
@@ -31,8 +31,8 @@ class NotesController < ApplicationController
   end
 
   def update
-    if Note.exists?(params[:id])
-      note = Note.find(params[:id])
+    note = Note.find(params[:id])
+    if note
       if note.update(note_params)
         redirect_to note
       else
@@ -44,12 +44,13 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    if Note.exists?(params[:id])
-      Note.destroy(params[:id])
+    note = Note.find(params[:id])
+    if note
+      note.destroy
       flash[:notice] = "Note deleted"
       redirect_to notes
     else
-      flash[:alert] = "There was an error - please try again"
+      flash[:alert] = note.errors
     end
   end
 
