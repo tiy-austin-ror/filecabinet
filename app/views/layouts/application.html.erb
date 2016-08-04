@@ -9,6 +9,31 @@
   </head>
 
   <body>
+    <header class="main-header">
+      <nav>
+        <div class="row">
+          <div class="col 3">
+            <p class="header-title"><h5>(App Name)</h5></p>
+          </div>
+          <div class="col s2 offset-s1">
+            <a href="/">Home</a>
+          </div>
+            <div class="col s2 offset-s1">
+              <a href="http://localhost:3000/categories">Categories</a>
+            </div>
+              <div class="col s2 offset-s1">
+                <a href="http://localhost:3000/users">Users</a>
+              </div>
+            </div>
+          </nav>
+        </header>
+    <% if signed_in? %>
+      Welcome <%= current_user.name %>!
+      <%= button_to "Sign out", sign_out_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign in", sign_in_path %>
+
+    <% end %>
     <div class="container">
       <div id="flash">
         <% flash.each do |key, value| %>

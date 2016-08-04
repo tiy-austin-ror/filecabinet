@@ -17,3 +17,9 @@
  $primary-color: #40798C;
  $secondary-color: #1F363D;
  @import "materialize";
+
+ .main-header {
+   header-title {
+     margin-top: 10px;
+   }
+ }
