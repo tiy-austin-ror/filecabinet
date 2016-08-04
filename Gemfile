@@ -51,7 +51,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'materialize-sass'
 gem 'faker'
 gem 'kaminari'
-gem 'bcrypt'
+gem "clearance"
 group :production do
   gem 'rails_12factor'
 end
