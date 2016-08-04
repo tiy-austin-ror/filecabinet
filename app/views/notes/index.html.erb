@@ -1,0 +1,7 @@
+<% notes.each_with_index do |note, i| %>
+  <h3>Note <%= i+1 %>:</h3>
+  <div>Name: <%= "#{note.name}.#{note.file_type}" %></div>
+  <div>Author: <%= note.user_id %></div>
+  <div>Category: <%= note.category_id %></div>
+  <div>Body: <%= note.body %></div>
+<% end %>

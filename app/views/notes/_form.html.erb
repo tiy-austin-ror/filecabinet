@@ -1,0 +1,42 @@
+<div><h3><%= form_title %></h3></div>
+
+<div>
+  <% if note.errors.any? %>
+    <% note.errors.full_messages.each do |msg| %>
+      <p> <%= msg %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_for(note) do |f| %>
+    <div>
+      <label for="name">Name: </label>
+      <%= f.text_area :name, placeholder: "meeting_notes_2016-08-04", class: 'form-field' %>
+    </div>
+
+    <div>
+      <label for="body">Body: </label>
+      <%= f.text_area :body, placeholder: "Today we started planning...", class: 'form-field' %>
+    </div>
+
+    <div>
+      <label for="file_type">File Extension: </label>
+      <%= f.text_area :file_type, placeholder: ".txt", class: 'form-field' %>
+    </div>
+
+    <div>
+      <label for="category_id">Category: </label>
+      <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
+    </div>
+
+    <div>
+      <label for="user_id">Author: </label>
+      <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
+    </div>
+
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
