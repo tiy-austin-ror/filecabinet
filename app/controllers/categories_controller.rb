@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
     if category.save
       redirect_to actions: "index"
     else
-      flash[:alert] = "Category could not be saved."
+      flash[:alert] = category.errors
       render template: 'category/new.html.erb', locals: {
         category: category
       }
@@ -27,8 +27,7 @@ class CategoriesController < ApplicationController
 
   def update
     category = Category.find(params[:id])
-    category.name = params[:category][:name] if params[:category][:name].present?
-    if category.saved
+    if category.update(category_params)
       redirect_to user_path(path)
     else
       render templatee: '/category/new.html.erb', locals: {
