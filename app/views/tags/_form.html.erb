@@ -1,0 +1,22 @@
+<div><h3><%= form_title %></h3></div>
+
+<div>
+  <% if tag.errors.any? %>
+    <% tag.errors.full_messages.each do |msg| %>
+      <p> <%= msg %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_for(tag) do |f| %>
+    <div>
+      <label for="name">Name: </label>
+      <%= f.text_area :name, placeholder: "Nametag", class: 'form-field' %>
+    </div>
+
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>

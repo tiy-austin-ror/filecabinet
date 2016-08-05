@@ -9,6 +9,52 @@
   </head>
 
   <body>
+    <header class="main-header">
+      <nav>
+        <div class="row">
+          <div class="col 3">
+            <p class="header-title"><h5>(App Name)</h5></p>
+          </div>
+          <div class="col s2">
+            <a href="/">Home</a>
+          </div>
+            <div class="col s2">
+              <a href="http://localhost:3000/categories">Categories</a>
+            </div>
+
+              <div class="col s1 offset-s1">
+                <a href="http://localhost:3000/users">Users</a>
+              </div>
+              <div class="col s3 right">
+
+                <div class="nav-wrapper">
+                  <div class="search-form">
+                  <form>
+
+                  <div class="input-field">
+                    <div class="search-box">
+                    <input id="search" type="search" required>
+
+                    <label for="search"><i class="material-icons">search</i></label>
+
+
+                    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </nav>
+    </header>
+    <% if signed_in? %>
+      Welcome <%= current_user.name %>!
+      <%= button_to "Sign out", sign_out_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign in", sign_in_path %>
+
+    <% end %>
     <div class="container">
       <div id="flash">
         <% flash.each do |key, value| %>
