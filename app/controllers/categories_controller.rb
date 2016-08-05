@@ -6,11 +6,9 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    category = Category.new
-    category.name = params[:category][:name]
-
+    category = Category.new(category_params)
     if category.save
-      redirect_to actions: "index"
+      redirect_to category
     else
       flash[:alert] = category.errors
       render template: 'category/new.html.erb', locals: {
@@ -28,7 +26,7 @@ class CategoriesController < ApplicationController
   def update
     category = Category.find(params[:id])
     if category.update(category_params)
-      redirect_to category_path(path)
+      redirect_to category
     else
       render templatee: '/category/new.html.erb', locals: {
         category: category
@@ -44,6 +42,9 @@ class CategoriesController < ApplicationController
       render message: "Category not found."
     end
   end
+
+  private
+
   def category_params
     params.require(:category).permit(:name)
   end
