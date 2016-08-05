@@ -6,19 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#
+# name = ["Unflattening",
+#   "One-Dimension",
+#   "Final Flavor",
+#   "Gainsachu",
+#   "Ogenetics",
+#   "Flava Flave",
+#   "Sonic the Rodent",
+#   "Trolls",
+#   "Tuber",
+#   "One-Sided"
+#   ]
 
-name = ["Unflattening",
-  "One-Dimension",
-  "Final Flavor",
-  "Gainsachu",
-  "Ogenetics",
-  "Flava Flave",
-  "Sonic the Rodent",
-  "Trolls",
-  "Tuber",
-  "One-Sided"
-  ]
+  # name.each do |n|
+  #   Category.create!(name: name)
+  # end
 
-  name.each do |n|
-    Category.create!(name: name)
+  10.times do
+    Category.create!(name: Faker::Company.buzzword)
   end

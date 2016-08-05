@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
   def update
     category = Category.find(params[:id])
     if category.update(category_params)
-      redirect_to user_path(path)
+      redirect_to category_path(path)
     else
       render templatee: '/category/new.html.erb', locals: {
         category: category
@@ -37,8 +37,8 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    if Category.exists?(params[:id])
-      Category.destroy(params[:id])
+    category = Category.find(id :params[id])
+    if category.destroy
       render message: "Category deleted."
     else
       render message: "Category not found."
