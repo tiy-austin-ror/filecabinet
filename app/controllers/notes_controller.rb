@@ -1,4 +1,8 @@
 class NotesController < ApplicationController
+  before_action do
+      restrict_non_auth(root_path)
+  end
+
   def index
     notes = Note.all
     render locals: { notes: notes }

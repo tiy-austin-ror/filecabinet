@@ -1,4 +1,8 @@
 class PhotosController < ApplicationController
+  before_action do
+      restrict_non_auth(root_path)
+  end
+
   def index
     photos = Photo.all
     render locals: { photos: photos }
