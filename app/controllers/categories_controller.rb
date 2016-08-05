@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
         category: category
       }
     else
-      render message: "Category not found."
+      redirect_to notes_path
     end
   end
 
@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
       redirect_to category
     else
       flash[:alert] = category.errors
-      render template: 'category/new.html.erb', locals: {
+      render template: 'categories/new.html.erb', locals: {
         category: category
       }
     end

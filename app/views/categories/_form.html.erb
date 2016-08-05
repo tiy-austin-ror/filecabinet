@@ -1,13 +1,15 @@
 <%= form_for(category) do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
 
-        <% end %>
+  <div>
+    <label for="category_id">Category: </label>
+    <%= f.select :parent_category_id, options_from_collection_for_select(Category.all, :id, :name) %>
+  </div>
 
-        <div>
-          <%= f.label :name %>
-          <%= f.text_field :name %>
-        </div>
-
-        <div>
-          <%= f.submit %>
-        </div>
-        <% end %>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
