@@ -1,0 +1,34 @@
+<div><h3><%= form_title %></h3></div>
+
+<div>
+  <%= form_for(photo) do |f| %>
+    <div>
+      <label for="name">Name: </label>
+      <%= f.text_area :name, placeholder: "white-board_2016-08-04", class: 'form-field' %>
+    </div>
+
+    <div>
+      <label for="body">Body: </label>
+      <%= f.text_area :body, placeholder: "picture from last meeting's white board", class: 'form-field' %>
+    </div>
+
+    <div>
+      <label for="file_type">File Extension: </label>
+      <%= f.select :file_type, options_from_collection_for_select(["gif", "jpg", "png"], :file_type) %>
+    </div>
+
+    <div>
+      <label for="category_id">Category: </label>
+      <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
+    </div>
+
+    <div>
+      <label for="user_id">Author: </label>
+      <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
+    </div>
+
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
