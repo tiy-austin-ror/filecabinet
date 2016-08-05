@@ -18,13 +18,8 @@
     </div>
 
     <div>
-      <label for="user_id">Author: </label>
-      <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
-    </div>
-
-    <div>
       <label for="upload">Upload: </label>
-      <%= form.file_field :upload %>
+      <%= f.file_field :upload %>
     </div>
 
     <div>
