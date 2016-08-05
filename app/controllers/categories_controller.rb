@@ -45,4 +45,7 @@ class CategoriesController < ApplicationController
       render message: "Category not found."
     end
   end
+  def category_params
+    params.require(:category).permit(:name)
+  end
 end
