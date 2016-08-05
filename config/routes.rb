@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   resources :notes
   resources :categories
 
-  root 'dashboard#index'
+  root 'dashboard#index', as: 'root'
 end

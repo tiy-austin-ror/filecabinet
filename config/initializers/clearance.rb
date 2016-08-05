@@ -1,4 +1,4 @@
 Clearance.configure do |config|
   config.mailer_sender = "reply@example.com"
-  config.routes = true
+  config.routes = false
 end
