@@ -1,7 +1,11 @@
-<h3 class="card blue-grey darken-1">Note:</h3>
-<div class="card-content white-text">
-  <div>Name: <%= note.note_with_type %></div>
-  <div>Author: <%= note.user_id %></div>
-  <div>Category: <%= note.category.name %></div>
-  <div>Body: <%= note.body %></div>
+<div class="row">
+  <div class="card file-card col m8 offset-m2">
+      <div class="card-content white-text">
+        <h3 class="card-title">Note:</h3>
+      <div>Name: <%= note.note_with_type %></div>
+      <div>Author: <%= note.user_id %></div>
+      <div>Category: <%= note.category.name %></div>
+      <div>Body: <%= note.body %></div>
+    </div>
+  </div>
 </div>
