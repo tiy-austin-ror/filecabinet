@@ -1,0 +1,14 @@
+<div><h3><%= form_title %></h3></div>
+
+<div>
+  <%= form_for(tag) do |f| %>
+    <div>
+      <label for="name">Name: </label>
+      <%= f.text_area :name, placeholder: "Nametag", class: 'form-field' %>
+    </div>
+
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>

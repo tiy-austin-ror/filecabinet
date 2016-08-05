@@ -13,5 +13,20 @@
  *= require_tree .
  *= require_self
  */
-
+ @import "materialize/components/color";
+ $primary-color: #40798C;
+ $secondary-color: #1F363D;
  @import "materialize";
+
+ .main-header {
+   header-title {
+     margin-top: 10px;
+   }
+   .search-box{
+     margin: 20px;
+   }
+   .search-icon {
+     margin: auto;
+    width: 50%;
+   }
+ }
