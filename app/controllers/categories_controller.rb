@@ -1,4 +1,10 @@
 class CategoriesController < ApplicationController
+  def index
+    render locals: {
+      categories: Category.all
+    }
+  end
+  
   def new
     render locals: {
       category: Category.new

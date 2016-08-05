@@ -19,5 +19,5 @@ PHOTO_TYPES = ["jpg", "gif", "png"]
 
 NOTE_NAMES.each_with_index do |name, i|
   Note.create!(name: name, body: NOTE_BODIES[i], file_type: NOTE_TYPES.sample, category_id: 1, user_id: 1)
-  Photo.create!(name: PHOTO_NAMES[i], body: PHOTO_BODIES[i], file_type: PHOTO_TYPES.sample, category_id: 1, user_id: 1)
+  Photo.create!(name: PHOTO_NAMES[i], category_id: 1, user_id: 1)
 end

@@ -9,6 +9,6 @@ class Note < ApplicationRecord
   validates :file_type, presence: true
 
   def note_with_type
-    "#{note.name}.#{note.file_type}"
+    "#{self.name}.#{self.file_type}"
   end
 end
