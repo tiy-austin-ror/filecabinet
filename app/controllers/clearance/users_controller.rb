@@ -23,15 +23,19 @@ class Clearance::UsersController < Clearance::BaseController
   end
 
   def new
-    @user = user_from_params
-    render template: "users/new.html.erb"
+    if signed_in?
+      redirect_to "/users"
+    else
+      @user = user_from_params
+      render template: "users/new.html.erb"
+    end
   end
 
   def create
     @user = user_from_params
     if @user.save
       sign_in @user
-      redirect_back_or url_after_create
+      redirect_to "/users"
     else
       render template: "users/new.html.erb"
     end
@@ -40,12 +44,12 @@ class Clearance::UsersController < Clearance::BaseController
   private
   def redirect_signed_in_users
     if signed_in?
-      redirect_to root_path
+      redirect_to Clearance.configuration.redirect_url
     end
   end
 
   def url_after_create
-    root_path
+    Clearance.configuration.redirect_url
   end
 
   def user_from_params

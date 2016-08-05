@@ -20,7 +20,7 @@
         <%= button_to "Sign Out", sign_out_path, method: :delete, class: "waves-effect waves-light btn sign-out" %>
       <% else %>
         <%= link_to "Sign In", sign_in_path, class: "waves-effect waves-light btn sign-in" %>
-        <%= link_to "Sign Up", sign_up_path, method: :post, class: "waves-effect waves-light btn sign-up" 
+        <%= link_to "Sign Up", sign_up_path, class: "waves-effect waves-light btn sign-up" %>
       <% end %>
       <%= yield %>
     </div>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :passwords, controller: 'clearance/passwords', only: [:create, :new]
   resource  :session,   controller: 'clearance/sessions',  only: [:create]
-  resources :users,     controller: 'clearance/users'      do
+  resources :users,     controller: 'clearance/users' do
     resource  :password,  controller: 'clearance/passwords', only: [:create, :edit, :update]
   end
 
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
 
 
-  root 'users#index'
+  get '/' => 'users#index', as: 'root'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
