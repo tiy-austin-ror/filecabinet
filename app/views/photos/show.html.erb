@@ -3,3 +3,4 @@
 <div>Author: <%= photo.user_id %></div>
 <div>Category: <%= photo.category.name %></div>
 <div>Body: <%= photo.body %></div>
+<div><%= image_tag photo.avatar.url(:medium) %></div>

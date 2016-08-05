@@ -13,11 +13,10 @@ NOTE_BODIES = ["We need to shut down the company - immediately", "Everyone is bl
 NOTE_TYPES = ["txt", "md"]
 
 PHOTO_NAMES = ["White_Board_2016-08-04", "Meeting_Notes_2016-08-04", "Sprint_Review_Board_2016-08-04", "Scrum_Notes_2016-08-04"]
-PHOTO_BODIES = ["White board photo from the meeting", "Photo-notes from the board meeting", "Photo of white board from sprint review", "Photo-notes from daily scrum"]
-PHOTO_TYPES = ["jpg", "gif", "png"]
+PHOTO_DESCS = ["White board photo from the meeting", "Photo-notes from the board meeting", "Photo of white board from sprint review", "Photo-notes from daily scrum"]
 
 
 NOTE_NAMES.each_with_index do |name, i|
   Note.create!(name: name, body: NOTE_BODIES[i], file_type: NOTE_TYPES.sample, category_id: 1, user_id: 1)
-  Photo.create!(name: PHOTO_NAMES[i], category_id: 1, user_id: 1)
+  Photo.create!(name: PHOTO_NAMES[i], desc: PHOTO_DESCS[i], category_id: 1, user_id: 1, upload: "https://themadisonmisnomer.files.wordpress.com/2015/03/twerk-zone.jpg")
 end
