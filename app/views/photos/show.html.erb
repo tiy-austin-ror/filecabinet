@@ -1,5 +1,9 @@
 <h3>Note:</h3>
-<div>Name: <%= photo.photo_with_type %></div>
-<div>Author: <%= photo.user_id %></div>
-<div>Category: <%= photo.category.name %></div>
-<div>Body: <%= photo.body %></div>
+<% if authorized?(photo) %>
+  <div>Name: <%= photo.photo_with_type %></div>
+  <div>Author: <%= photo.user_id %></div>
+  <div>Category: <%= photo.category.name %></div>
+  <div>Body: <%= photo.body %></div>
+<% else %>
+  <span></span>
+<% end %>
