@@ -1,0 +1,12 @@
+<div id="clearance" class="sign-up">
+  <h2><%= t(".title") %></h2>
+
+  <%= form_for @user do |form| %>
+    <%= render partial: '/users/form.html.erb', object: form %>
+
+    <div class="submit-field">
+      <%= form.submit "Sign Up", class: 'btn'%>
+    </div>
+
+  <% end %>
+</div>
