@@ -1,0 +1,9 @@
+<% photos.each_with_index do |photo, i| %>
+  <h3>
+    Photo <%= i+1 %>
+  </h3>
+  <div>Name: <%= photo.photo_with_type %></div>
+  <div>Author: <%= note.user_id %></div>
+  <div>Category: <%= note.category.name %></div>
+  <div>Body: <%= note.body %></div>
+<% end %>
