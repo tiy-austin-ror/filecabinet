@@ -8,13 +8,8 @@
     </div>
 
     <div>
-      <label for="body">Body: </label>
-      <%= f.text_area :body, placeholder: "picture from last meeting's white board", class: 'form-field' %>
-    </div>
-
-    <div>
-      <label for="file_type">File Extension: </label>
-      <%= f.select :file_type, options_from_collection_for_select(["gif", "jpg", "png"], :file_type) %>
+      <label for="desc">Description: </label>
+      <%= f.text_area :desc, placeholder: "picture from last meeting's white board", class: 'form-field' %>
     </div>
 
     <div>

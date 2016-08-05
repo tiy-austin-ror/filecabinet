@@ -10,9 +10,4 @@ class Photo < ApplicationRecord
   validates :name, presence: true
   validates :desc, presence: true
   validates :upload, attachment_presence: true
-
-
-  def photo_with_type
-    "#{self.name}.#{self.file_type}"
-  end
 end
