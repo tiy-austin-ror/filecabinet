@@ -1,10 +1,21 @@
 class CategoriesController < ApplicationController
   def index
     render locals: {
-      categories: Category.all
+      categories: Category.all.where(parent_category_id: nil)
     }
   end
-  
+
+  def show
+    category = Category.find_by(parent_category_id: params.fetch(:id))
+    if category
+      render locals: {
+        category: category
+      }
+    else
+      render message: "Category not found."
+    end
+  end
+
   def new
     render locals: {
       category: Category.new
