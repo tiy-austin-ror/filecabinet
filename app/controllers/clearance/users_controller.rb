@@ -11,7 +11,7 @@ class Clearance::UsersController < Clearance::BaseController
 
   def index
     render template: 'users/index.html.erb', locals: {
-      users: User.all
+      users: User.all.order(:name)
     }
   end
 
@@ -35,7 +35,7 @@ class Clearance::UsersController < Clearance::BaseController
     @user = user_from_params
     if @user.save
       sign_in @user
-      redirect_to "/users"
+      url_after_create
     else
       render template: "users/new.html.erb"
     end
@@ -44,12 +44,12 @@ class Clearance::UsersController < Clearance::BaseController
   private
   def redirect_signed_in_users
     if signed_in?
-      redirect_to Clearance.configuration.redirect_url
+      redirect_to "/users"
     end
   end
 
   def url_after_create
-    Clearance.configuration.redirect_url
+    redirect_to "/users"
   end
 
   def user_from_params
