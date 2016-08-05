@@ -1,8 +1,8 @@
-<% notes.each_with_index do |note, i| %>
+<% photos.each_with_index do |photo, i| %>
   <h3>
-    Note <%= i + 1 %>
+    Photo <%= i + 1 %>
   </h3>
-  <div>Name: <%= note.note_with_type %></div>
+  <div>Name: <%= photo.photo_with_type %></div>
   <div>Author: <%= note.user_id %></div>
   <div>Category: <%= note.category.name %></div>
   <div>Body: <%= note.body %></div>
