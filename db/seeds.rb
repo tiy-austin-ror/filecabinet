@@ -1,3 +1,6 @@
+10.times do
+  Tag.create(name: Faker::Commerce.color)
+end
 
 
 10.times do
@@ -9,4 +12,5 @@ NOTE_TYPES = ["txt", "md"]
 
 NOTE_NAMES.each_with_index do |name, i|
   Note.create!(name: name, body: NOTE_BODIES[i], file_type: NOTE_TYPES.sample, category_id: 1, user_id: 1)
+
 end
