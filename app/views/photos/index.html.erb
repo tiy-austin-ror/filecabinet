@@ -3,7 +3,7 @@
     Photo <%= i + 1 %>
   </h3>
   <div>Name: <%= photo.name %></div>
-  <div>Author: <%= photo.user_id %></div>
+  <div>Author: <%= photo.user.name %></div>
   <div>Category: <%= photo.category.name %></div>
   <div>Description: <%= photo.desc %></div>
   <div><%= image_tag photo.upload.url(:medium) %></div>
