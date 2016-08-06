@@ -18,10 +18,11 @@ class PhotosController < ApplicationController
   end
 
   def create
-    photo = Photo.new(photo_params)
+    photo = current_user.photos.build(photo_params)
     if photo.save
       redirect_to photo
     else
+       flash[:alert] = photo.errors.full_messages[0]
       render :new, locals: { photo: photo }
     end
   end
@@ -36,6 +37,7 @@ class PhotosController < ApplicationController
       if photo.update(photo_params)
         redirect_to photo
       else
+        flash[:alert] = photo.errors.full_messages[0]
         render :edit
       end
     else
@@ -56,6 +58,6 @@ class PhotosController < ApplicationController
 
   private
   def photo_params
-    params.require(:photo).permit(:user_id, :category_id, :name, :body, :file_type)
+    params.require(:photo).permit(:user_id, :category_id, :name, :desc, :upload)
   end
 end

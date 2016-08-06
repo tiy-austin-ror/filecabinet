@@ -4,9 +4,10 @@ class Photo < ApplicationRecord
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
 
-  validates :name, presence: true
+  has_attached_file :upload, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :upload, content_type: /\Aimage\/.*\Z/
 
-  def note_with_type
-    "#{photo.name}.#{photo.file_type}"
-  end
+  validates :name, presence: true
+  validates :desc, presence: true
+  validates :upload, attachment_presence: true
 end

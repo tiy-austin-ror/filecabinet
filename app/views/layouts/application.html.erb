@@ -41,18 +41,20 @@
       </nav>
     </header>
     <div class="container">
+      <div>
+        <% if signed_in? %>
+          Welcome <%= current_user.name %>!
+          <%= button_to "Sign Out", sign_out_path, method: :delete, class: "waves-effect waves-light btn sign-out" %>
+        <% else %>
+          <%= link_to "Sign In", sign_in_path, class: "waves-effect waves-light btn sign-in" %>
+          <%= link_to "Sign Up", sign_up_path, class: "waves-effect waves-light btn sign-up" %>
+        <% end %>
+      </div>
       <div id="flash">
         <% flash.each do |key, value| %>
           <div class="flash <%= key %>"><%= value %></div>
         <% end %>
       </div>
-      <% if signed_in? %>
-        Welcome <%= current_user.name %>!
-        <%= button_to "Sign Out", sign_out_path, method: :delete, class: "waves-effect waves-light btn sign-out" %>
-      <% else %>
-        <%= link_to "Sign In", sign_in_path, class: "waves-effect waves-light btn sign-in" %>
-        <%= link_to "Sign Up", sign_up_path, class: "waves-effect waves-light btn sign-up" %>
-      <% end %>
       <%= yield %>
     </div>
   </body>

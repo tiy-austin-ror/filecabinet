@@ -1,5 +1,6 @@
 <h3>Note:</h3>
-<div>Name: <%= photo.photo_with_type %></div>
-<div>Author: <%= photo.user_id %></div>
+<div>Name: <%= photo.name %></div>
+<div>Author: <%= photo.user.name %></div>
 <div>Category: <%= photo.category.name %></div>
-<div>Body: <%= photo.body %></div>
+<div>Description: <%= photo.desc %></div>
+<div><%= image_tag photo.upload.url(:medium) %></div>
