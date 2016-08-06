@@ -22,6 +22,7 @@ class PhotosController < ApplicationController
     if photo.save
       redirect_to photo
     else
+       flash[:alert] = photo.errors.full_messages[0]
       render :new, locals: { photo: photo }
     end
   end
@@ -36,6 +37,7 @@ class PhotosController < ApplicationController
       if photo.update(photo_params)
         redirect_to photo
       else
+        flash[:alert] = photo.errors.full_messages[0]
         render :edit
       end
     else
