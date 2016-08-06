@@ -45,9 +45,14 @@ ActiveRecord::Schema.define(version: 20160805211930) do
   create_table "photos", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "category_id"
-    t.string   "name",        null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "name",                null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "desc"
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
     t.index ["category_id"], name: "index_photos_on_category_id", using: :btree
     t.index ["user_id"], name: "index_photos_on_user_id", using: :btree
   end

@@ -52,6 +52,7 @@ gem 'materialize-sass'
 gem 'faker'
 gem 'kaminari'
 gem "clearance"
+gem "paperclip", "~> 5.0.0"
 group :production do
   gem 'rails_12factor'
 end

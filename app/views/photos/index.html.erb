@@ -3,6 +3,7 @@
   <h3>
     Photo <%= i + 1 %>
   </h3>
+<<<<<<< HEAD
   <div>Name: <%= photo.photo_with_type %></div>
   <div>Author: <%= note.user_id %></div>
   <div>Category: <%= note.category.name %></div>
@@ -10,4 +11,11 @@
   <% else %>
     <span></span>
   <% end %>
+=======
+  <div>Name: <%= photo.name %></div>
+  <div>Author: <%= photo.user.name %></div>
+  <div>Category: <%= photo.category.name %></div>
+  <div>Description: <%= photo.desc %></div>
+  <div><%= image_tag photo.upload.url(:medium) %></div>
+>>>>>>> 37b158f1b5b24b2e167afdea8265283e2ba37eed
 <% end %>
