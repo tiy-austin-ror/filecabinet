@@ -7,10 +7,11 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    #displays children categories
+    #displays children categories, notes, and photos
     categories = Category.where(parent_category_id: params.fetch(:id))
     notes = Note.where(category_id: params.fetch(:id))
-    render locals: { categories: categories, notes: notes }
+    photos = Photo.where(category_id: params.fetch(:id))
+    render locals: { categories: categories, notes: notes, photos: photos }
   end
 
   def new
