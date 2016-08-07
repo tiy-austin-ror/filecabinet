@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
 
   def show
     category = Category.find_by(parent_category_id: params.fetch(:id))
+
     notes = Note.where(category_id: params.fetch(:id))
     render locals: { category: category, notes: notes }
   end

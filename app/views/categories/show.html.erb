@@ -1,11 +1,14 @@
-<p class="back">
-  <%= link_to "Back", :back, class: "waves-effect waves-light btn" %>
-</p>
+
 
 <p>
   <% if category %>
-    <%= link_to category.name, category %>
+    <p><%= link_to "Back", categories_path, class: "waves-effect waves-light btn" %></p>
+    <div><%= link_to category.name, category %></div>
+
+  <% else %>
+    <p><%= link_to "Back", :back, class: "waves-effect waves-light btn" %></p>
   <% end %>
+
   <% if notes %>
     <% notes.each_with_index do |note, i| %>
       <h3>
