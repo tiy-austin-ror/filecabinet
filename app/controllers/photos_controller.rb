@@ -6,10 +6,15 @@ class PhotosController < ApplicationController
 
   def show
     photo = Photo.find(params[:id])
-    if photo
-      render locals: { photo: photo }
+    if has_permission?(photo)
+      if photo
+        render locals: { photo: photo }
+      else
+        render html: 'Photo not found', status: 404
+      end
     else
-      render html: 'Photo not found', status: 404
+      flash[:alert] = "You do not have permission to view this page."
+      redirect_to root_path
     end
   end
 
@@ -33,31 +38,45 @@ class PhotosController < ApplicationController
 
   def update
     photo = Photo.find(params[:id])
-    if photo
-      if photo.update(photo_params)
-        redirect_to photo
+    if has_permission?(photo)
+      if photo
+        if photo.update(photo_params)
+          redirect_to photo
+        else
+          flash[:alert] = photo.errors.full_messages[0]
+          render :edit
+        end
       else
-        flash[:alert] = photo.errors.full_messages[0]
-        render :edit
+        render html: 'Photo not found', status: 404
       end
     else
-      render html: 'Photo not found', status: 404
+      flash[:alert] = "You do not have permission to view this page."
+      redirect_to root_path
     end
   end
 
   def destroy
     photo = Photo.find(params[:id])
-    if photo
-      photo.destroy
-      flash[:notice] = "Photo deleted"
-      redirect_to photos
+    if has_permission?(photo)
+      if photo
+        photo.destroy
+        flash[:notice] = "Photo deleted"
+        redirect_to photos
+      else
+        flash[:alert] = photo.errors
+      end
     else
-      flash[:alert] = photo.errors
+      flash[:alert] = "You do not have permission to delete this note."
+      redirect_to root_path
     end
   end
 
   private
   def photo_params
     params.require(:photo).permit(:user_id, :category_id, :name, :desc, :upload)
+  end
+
+  def has_permission?(photo)
+    photo.user_id == current_user.id || current_user.admin?
   end
 end

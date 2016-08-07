@@ -1,9 +1,14 @@
 <% notes.each_with_index do |note, i| %>
-  <h3>
-    Note <%= i + 1 %>
-  </h3>
-  <div>Name: <%= note.note_with_type %></div>
-  <div>Author: <%= note.user_id %></div>
-  <div>Category: <%= note.category.name %></div>
-  <div>Body: <%= note.body %></div>
+  <% if note.user_id == current_user.id || current_user.admin?(note) %>
+    <h3>
+      Note <%= i + 1 %>
+    </h3>
+    <div>Name: <%= note.note_with_type %></div>
+    <div>Author: <%= note.user_id %></div>
+    <div>Category: <%= note.category.name %></div>
+    <div>Body: <%= note.body %></div>
+  <% else %>
+    <span><%= flash[:alert] = "You do not have permission to view this page."%></span>
+    <% redirect_to root_path %>
+  <% end %>
 <% end %>
