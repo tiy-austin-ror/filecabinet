@@ -1,12 +1,7 @@
 class NotesController < ApplicationController
   def index
     notes = Note.all
-    if has_permission?(notes)
-      render locals: { notes: notes }
-    else
-      flash[:alert] = "You do not have permission to view this page."
-      redirect_to root_path
-    end
+    render locals: { notes: notes }
   end
 
   def show
@@ -59,8 +54,8 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    if has_permission?
     note = Note.find(params[:id])
+    if has_permission?
       if note
         note.destroy
         flash[:notice] = "Note deleted"
@@ -79,7 +74,7 @@ class NotesController < ApplicationController
     params.require(:note).permit(:user_id, :category_id, :name, :body, :file_type)
   end
 
-  def has_permission?(notes)
-    Note.user_id == current_user.id || current_user.admin?
+  def has_permission?(note)
+    note.user_id == current_user.id || current_user.admin?
   end
 end

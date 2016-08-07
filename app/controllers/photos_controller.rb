@@ -1,12 +1,7 @@
 class PhotosController < ApplicationController
   def index
     photos = Photo.all
-    if has_permission?(photos)
-      render locals: { photos: photos }
-    else
-      flash[:alert] = "You do not have permission to view this page."
-      redirect_to root_path
-    end
+    render locals: { photos: photos }
   end
 
   def show
@@ -76,7 +71,7 @@ class PhotosController < ApplicationController
     params.require(:photo).permit(:user_id, :category_id, :name, :desc, :upload)
   end
 
-  def has_permission?(photos)
-    Photo.user_id == current_user.id || current_user.admin?
+  def has_permission?(photo)
+    photo.user_id == current_user.id || current_user.admin?
   end
 end

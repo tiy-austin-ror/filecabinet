@@ -1,5 +1,5 @@
 <% notes.each_with_index do |note, i| %>
-  <% if authorized?(note) %>
+  <% if note.user_id == current_user.id || current_user.admin?(note) %>
     <h3>
       Note <%= i + 1 %>
     </h3>
@@ -8,6 +8,7 @@
     <div>Category: <%= note.category.name %></div>
     <div>Body: <%= note.body %></div>
   <% else %>
-    <span></span>
+    <span><%= flash[:alert] = "You do not have permission to view this page."%></span>
+    <% redirect_to root_path %>
   <% end %>
 <% end %>
