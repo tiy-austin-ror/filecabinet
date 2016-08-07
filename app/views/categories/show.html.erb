@@ -1,12 +1,13 @@
 <div>
 
   <% ### Back Button when no child category exists ### %>
-  <% if categories.count < 1 %>
+  <% if categories.empty? %>
     <p><%= link_to "Back", :back, class: "waves-effect waves-light btn" %></p>
   <% end %>
 
   <% ### When either a child category or note is present %>
-  <% if (categories.count >= 1) || (notes.count >= 1) || (photos.count >= 1)%>
+  <% unless categories.empty? && notes.empty? && photos.empty? %>
+    <% ### n is necessary to prevent button duplicates for each category that populates %>
     <% n = 0 %>
     <% categories.each do |category| %>
 
