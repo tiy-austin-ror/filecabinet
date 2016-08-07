@@ -57,12 +57,17 @@ class PhotosController < ApplicationController
 
   def destroy
     photo = Photo.find(params[:id])
-    if photo
-      photo.destroy
-      flash[:notice] = "Photo deleted"
-      redirect_to photos
+    if has_permission?(photo)
+      if photo
+        photo.destroy
+        flash[:notice] = "Photo deleted"
+        redirect_to photos
+      else
+        flash[:alert] = photo.errors
+      end
     else
-      flash[:alert] = photo.errors
+      flash[:alert] = "You do not have permission to delete this note."
+      redirect_to root_path
     end
   end
 
