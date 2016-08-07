@@ -1,18 +1,20 @@
 <div>
-  <% if %>
-    <% if category %>
-      <% if category.parent_category.parent_category %>
-        <p><%= link_to "Back", category_path(category.parent_category.parent_category), class: "waves-effect waves-light btn" %></p>
-      <% else %>
-        <p><%= link_to "Back", categories_path, class: "waves-effect waves-light btn" %></p>
+  <% if (categories.count >= 1) && (notes.count >= 1) %>
+    <% if categories.count >= 1 %>
+      <% categories.each do |category| %>
+        <% if category.parent_category.parent_category %>
+          <p><%= link_to "Back", category_path(category.parent_category.parent_category), class: "waves-effect waves-light btn" %></p>
+        <% else %>
+          <p><%= link_to "Back", categories_path, class: "waves-effect waves-light btn" %></p>
+        <% end %>
+        <div><%= link_to category.name, category %></div>
       <% end %>
 
-      <div><%= link_to category.name, category %></div>
     <% else %>
       <p><%= link_to "Back", :back, class: "waves-effect waves-light btn" %></p>
     <% end %>
 
-    <% if notes %>
+    <% if notes.count >= 1%>
       <% notes.each_with_index do |note, i| %>
         <h3>
           Note <%= i + 1 %>
@@ -23,6 +25,10 @@
         <div>Body: <%= note.body %></div>
       <% end %>
     <% end %>
-    <%= "This folder is empty" %>
+
+  <% else %>
+    <p><%= link_to "Back", :back, class: "waves-effect waves-light btn" %></p>
+    <p> "This folder is empty! </p>
   <% end %>
+
 </div>
