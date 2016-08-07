@@ -1,11 +1,16 @@
 <div>
   <% if (categories.count >= 1) || (notes.count >= 1) %>
     <% if categories.count >= 1 %>
+      <% n = 0 %>
       <% categories.each do |category| %>
-        <% if category.parent_category.parent_category %>
-          <p><%= link_to "Back", category_path(category.parent_category.parent_category), class: "waves-effect waves-light btn" %></p>
-        <% else %>
-          <p><%= link_to "Back", categories_path, class: "waves-effect waves-light btn" %></p>
+        <% if (n < 1) %>
+          <% if category.parent_category.parent_category %>
+            <p><%= link_to "Back", category_path(category.parent_category.parent_category), class: "waves-effect waves-light btn" %></p>
+            <% n += 1 %>
+          <% else %>
+            <p><%= link_to "Back", categories_path, class: "waves-effect waves-light btn" %></p>
+            <% n += 1 %>
+          <% end %>
         <% end %>
         <div><%= link_to category.name, category %></div>
       <% end %>
