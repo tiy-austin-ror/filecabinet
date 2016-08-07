@@ -1,5 +1,5 @@
 <div>
-  <% if (categories.count >= 1) && (notes.count >= 1) %>
+  <% if (categories.count >= 1) || (notes.count >= 1) %>
     <% if categories.count >= 1 %>
       <% categories.each do |category| %>
         <% if category.parent_category.parent_category %>
