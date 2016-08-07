@@ -1,6 +1,6 @@
 <div>
 
-  <% ### Button when no child category exists ### %>
+  <% ### Back Button when no child category exists ### %>
   <% if categories.count < 1 %>
     <p><%= link_to "Back", :back, class: "waves-effect waves-light btn" %></p>
   <% end %>
@@ -10,7 +10,7 @@
     <% n = 0 %>
     <% categories.each do |category| %>
 
-      <% ### This is all for buttons ### %>
+      <% ### Back buttons when categories have a parent or no parent ### %>
       <% if (n < 1) %>
         <% if category.parent_category.parent_category %>
           <p><%= link_to "Back", category_path(category.parent_category.parent_category), class: "waves-effect waves-light btn" %></p>
