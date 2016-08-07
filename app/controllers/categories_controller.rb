@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
         category: category
       }
     else
-      redirect_to notes_path
+      redirect_to categories_path
     end
   end
 
@@ -61,8 +61,7 @@ class CategoriesController < ApplicationController
   end
 
   private
-
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, params[:parent_category_id])
   end
 end
