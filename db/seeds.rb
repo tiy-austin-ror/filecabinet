@@ -23,5 +23,5 @@ PHOTO_DESCS = ["White board photo from the meeting", "Photo-notes from the board
 
 NOTE_NAMES.each_with_index do |name, i|
   Note.create!(name: name, body: NOTE_BODIES[i], file_type: NOTE_TYPES.sample, category_id: 1, user_id: 1)
-  # Photo.create!(name: PHOTO_NAMES[i], desc: PHOTO_DESCS[i], category_id: 1, user_id: 1, upload: "http://imgs.xkcd.com/comics/tags.png")
+  Photo.create!(name: PHOTO_NAMES[i], desc: PHOTO_DESCS[i], category_id: 1, user_id: 1, upload: "http://imgs.xkcd.com/comics/tags.png")
 end
