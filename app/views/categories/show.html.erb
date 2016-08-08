@@ -28,7 +28,7 @@
 <% else %>
   <% category.children.each do |child| %>
     <div class="category-name">
-      <% if child.children.empty? %>
+      <% if child.children.empty? && category.notes.empty? && category.photos.empty? %>
         <%= link_to child.name + " (No items)", child %>
       <% else %>
         <%= link_to child.name + " (#{pluralize(child.children.count + child.notes.count + child.photos.count, 'item')})", child %>
