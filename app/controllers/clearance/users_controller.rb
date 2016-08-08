@@ -10,14 +10,12 @@ class Clearance::UsersController < Clearance::BaseController
   end
 
   def index
-    render template: 'users/index.html.erb', locals: {
-      users: User.all.order(:name)
-    }
+    render locals: { users: User.all.order(:name) }
   end
 
   def show
     user = User.find(params.fetch(:id))
-    render template: 'users/show.html.erb', locals: { user: user }
+    render locals: { user: user }
   end
 
   def new
@@ -25,7 +23,6 @@ class Clearance::UsersController < Clearance::BaseController
       redirect_to root_path
     else
       @user = user_from_params
-      render template: "users/new.html.erb"
     end
   end
 
