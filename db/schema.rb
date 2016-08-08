@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805195727) do
+ActiveRecord::Schema.define(version: 20160805211930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",               null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "parent_category_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -31,6 +32,15 @@ ActiveRecord::Schema.define(version: 20160805195727) do
     t.datetime "updated_at",  null: false
     t.index ["category_id"], name: "index_notes_on_category_id", using: :btree
     t.index ["user_id"], name: "index_notes_on_user_id", using: :btree
+  end
+
+  create_table "permissions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "permission_type"
+    t.integer  "permission_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["user_id"], name: "index_permissions_on_user_id", using: :btree
   end
 
   create_table "photos", force: :cascade do |t|
@@ -78,6 +88,7 @@ ActiveRecord::Schema.define(version: 20160805195727) do
 
   add_foreign_key "notes", "categories"
   add_foreign_key "notes", "users"
+  add_foreign_key "permissions", "users"
   add_foreign_key "photos", "categories"
   add_foreign_key "photos", "users"
   add_foreign_key "taggings", "tags"

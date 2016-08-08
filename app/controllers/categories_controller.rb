@@ -1,10 +1,21 @@
 class CategoriesController < ApplicationController
   def index
     render locals: {
-      categories: Category.all
+      categories: Category.all.where(parent_category_id: nil)
     }
   end
-  
+
+  def show
+    category = Category.find_by(parent_category_id: params.fetch(:id))
+    if category
+      render locals: {
+        category: category
+      }
+    else
+      redirect_to categories_path
+    end
+  end
+
   def new
     render locals: {
       category: Category.new
@@ -17,7 +28,7 @@ class CategoriesController < ApplicationController
       redirect_to category
     else
       flash[:alert] = category.errors
-      render template: 'category/new.html.erb', locals: {
+      render template: 'categories/new.html.erb', locals: {
         category: category
       }
     end
@@ -50,8 +61,7 @@ class CategoriesController < ApplicationController
   end
 
   private
-
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, params[:parent_category_id])
   end
 end
