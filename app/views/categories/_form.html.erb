@@ -4,7 +4,8 @@
     <%= f.text_field :name %>
   </div>
 
-
+  <%= f.hidden_field :parent_category_id, value: params[:parent_category_id] %>
+  
   <div>
     <%= f.submit %>
   </div>
