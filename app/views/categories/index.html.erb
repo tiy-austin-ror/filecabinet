@@ -1,5 +1,5 @@
 <div> <%= link_to "Create Category", new_category_path, class: "btn" %> </div>
 
 <% categories.each do |category| %>
-  <p><%= link_to category.name, category %></p>
+  <p><%= link_to category.name + " (#{pluralize(category.children.count + category.notes.count + category.photos.count, 'item')})", category %></p>
 <% end %>
