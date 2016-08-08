@@ -1,8 +1,12 @@
-<!-- Client would like to view there information in descending order from most
-recent note to last -->
 
-<!-- When logged into as admin it should visually look different
-different -->
 
-<!-- link to creating new links and photos  -->
+<!-- link to creating new notes and photos  -->
 <!-- display all of the notes and photos the user made in a list -->
+<div class="row">
+  <div class="col s6">
+    <%= link_to "Create a Photo", new_photo_path, class: "btn" %>
+  </div>
+  <div class="col s6">
+    <%= link_to "Create a Note", new_note_path, class: "btn" %>
+  </div>
+</div>
