@@ -23,13 +23,10 @@
     </div>
 
     <div>
-      <label for="user_id">Additional Authorized Users: </label>
-      <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
-    </div>
-
-    <div>
-      <label for="permission_type">Permission Type: </label>
-      <%= f.select :permission_id, options_from_collection_for_select(Permission.all, :permission_id, :permission_type) %>
+      <label for="tags">Tags (comma-separated): </label>
+      <%= fields_for :tags do |tag_fields| %>
+        <%= tag_fields.text_field :name %>
+      <% end %>
     </div>
 
     <div>
