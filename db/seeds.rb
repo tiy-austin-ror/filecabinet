@@ -1,4 +1,5 @@
 User.create!(name: "admin", email: "admin@example.com", password: "password", admin: true)
+User.create!(name: "user", email: "user@example.com", password: "password", admin: false)
 
 10.times do
   Tag.create(name: Faker::Commerce.color)

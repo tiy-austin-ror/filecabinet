@@ -34,8 +34,8 @@
     </div>
 
     <div>
-      <label for="permission_type">Permission Type: </label>
-      <%= f.select :permission_id, options_from_collection_for_select(Permission.all, :permission_id, :permission_type) %>
+      <label for="full_access">Allow Edit/Delete Access? </label>
+      <%= check_box_tag(:full_access) %>
     </div>
 
     <div>
