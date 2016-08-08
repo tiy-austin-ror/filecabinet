@@ -16,9 +16,10 @@ ActiveRecord::Schema.define(version: 20160805211930) do
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",               null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "parent_category_id"
   end
 
   create_table "notes", force: :cascade do |t|
