@@ -7,17 +7,12 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    category = Category.find_by(parent_category_id: params.fetch(:id))
-    categories = Category.where(parent_category_id: params.fetch(:id))
-    notes = Note.where(category_id: params.fetch(:id))
-    photos = Photo.where(category_id: params.fetch(:id))
+    category = Category.find(params.fetch(:id))
 
     if category
       render locals: {
-        category: category,
-        categories: categories,
-        notes: notes,
-        photos: photos }
+        category: category
+        }
     else
       redirect_to categories_path
     end

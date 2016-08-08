@@ -2,35 +2,25 @@
   <%= link_to "Create Category", new_category_path(id: category.parent_category_id), class: "btn" %>
 </div>
 
-<div>
-  <% ### Back Button when no child category exists ### %>
-  <% if categories.empty? %>
-    <p><%= link_to "Back", :back, class: "waves-effect waves-light btn" %></p>
+<div class="category-path">
+  <% if category.parent %>
+    <%= link_to "Categories", categories_path %>
+    <small><%= " >> " %></small>
+    <%= link_to category.parent.name.capitalize, category.parent %>
+  <% else %>
+    <%= link_to "Categories", categories_path %>
   <% end %>
+</div>
 
-  <% ### When either a child category or note is present %>
-  <% unless categories.empty? && notes.empty? && photos.empty? %>
-    <% ### n is necessary to prevent button duplicates for each category that populates %>
-    <% n = 0 %>
-    <% categories.each do |category| %>
+  <% if category.children.empty? && category.notes.empty? && category.photos.empty? %>
+    <p> This folder is empty! </p>
 
-      <% ### Back buttons when categories have a parent or no parent ### %>
-      <% if (n < 1) %>
-        <% if category.parent_category.parent_category %>
-          <p><%= link_to "Back", category_path(category.parent_category.parent_category), class: "waves-effect waves-light btn" %></p>
-          <% n += 1 %>
-        <% else %>
-          <p><%= link_to "Back", categories_path, class: "waves-effect waves-light btn" %></p>
-          <% n += 1 %>
-        <% end %>
-      <% end %>
-
-    <% ### Displays children categories (if any) ### %>
-      <div><%= link_to category.name, category %></div>
+  <% else %>
+    <% category.children.each do |child| %>
+    <div class="category-name"><%= link_to child.name, child %></div>
     <% end %>
 
-    <% ### Displays notes (if any) ### %>
-    <% notes.each_with_index do |note, i| %>
+    <% category.notes.each_with_index do |note, i| %>
       <h3>
         Note <%= i + 1 %>
       </h3>
@@ -40,8 +30,7 @@
       <div>Body: <%= note.body %></div>
     <% end %>
 
-    <% ### Displays photos (if any) ### %>
-    <% photos.each_with_index do |photo, i| %>
+    <% category.photos.each_with_index do |photo, i| %>
       <h3>
         Photo <%= i + 1 %>
       </h3>
@@ -51,9 +40,4 @@
       <div>Description: <%= photo.desc %></div>
       <div><%= image_tag photo.upload.url(:medium) %></div>
     <% end %>
-
-  <% ### Message when no child category or note exists %>
-  <% else %>
-    <p> "This folder is empty! </p>
   <% end %>
-</div>
