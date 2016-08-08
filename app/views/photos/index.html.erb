@@ -9,8 +9,7 @@
   <div>Category: <%= note.category.name %></div>
   <div>Body: <%= note.body %></div>
   <% else %>
-    <span><%= flash[:alert] = "You do not have permission to view this page."%></span>
-    <% redirect_to root_path %>
+    <span></span>
   <% end %>
 =======
   <div>Name: <%= photo.name %></div>

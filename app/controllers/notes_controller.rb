@@ -55,7 +55,7 @@ class NotesController < ApplicationController
 
   def destroy
     note = Note.find(params[:id])
-    if has_permission?
+    if has_permission?(note)
       if note
         note.destroy
         flash[:notice] = "Note deleted"
