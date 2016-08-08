@@ -4,8 +4,8 @@
     Photo <%= i + 1 %>
   </h3>
   <div>Name: <%= photo.name %></div>
-  <div>Author: <%= photo.user.name %></div>
-  <div>Category: <%= photo.category.name %></div>
+  <div>Author: <%= link_to photo.user.name, photo.user %></div>
+  <div>Category: <%= link_to photo.category.name, photo.category %></div>
   <div>Description: <%= photo.desc %></div>
   <div><%= image_tag photo.upload.url(:medium) %></div>
   <% else %>

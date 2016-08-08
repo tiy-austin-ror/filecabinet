@@ -1,16 +1,18 @@
 class CategoriesController < ApplicationController
   def index
     render locals: {
+      #the following prevents nested categories from appearing on the index page
       categories: Category.all.where(parent_category_id: nil)
     }
   end
 
   def show
-    category = Category.find_by(parent_category_id: params.fetch(:id))
+    category = Category.find(params.fetch(:id))
+
     if category
       render locals: {
         category: category
-      }
+        }
     else
       redirect_to categories_path
     end

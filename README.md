@@ -1,4 +1,6 @@
 # README
+[![Build Status](https://semaphoreci.com/api/v1/tiy-austin/filecabinet/branches/master/badge.svg)](https://semaphoreci.com/tiy-austin/filecabinet)
+[![Code Climate](https://codeclimate.com/github/tiy-austin-ror/filecabinet/badges/gpa.svg)](https://codeclimate.com/github/tiy-austin-ror/filecabinet)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
