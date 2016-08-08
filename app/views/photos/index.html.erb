@@ -1,4 +1,5 @@
 <% photos.each_with_index do |photo, i| %>
+<% if authorized?(photo) %>
   <h3>
     Photo <%= i + 1 %>
   </h3>
@@ -7,4 +8,7 @@
   <div>Category: <%= photo.category.name %></div>
   <div>Description: <%= photo.desc %></div>
   <div><%= image_tag photo.upload.url(:medium) %></div>
+  <% else %>
+    <span></span>
+  <% end %>
 <% end %>

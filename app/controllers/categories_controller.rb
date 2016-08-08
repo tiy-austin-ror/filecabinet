@@ -7,11 +7,18 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    #displays children categories, notes, and photos
+    category = Category.find_by(parent_category_id: params.fetch(:id))
     categories = Category.where(parent_category_id: params.fetch(:id))
     notes = Note.where(category_id: params.fetch(:id))
     photos = Photo.where(category_id: params.fetch(:id))
     render locals: { categories: categories, notes: notes, photos: photos }
+    if category
+      render locals: {
+        category: category
+      }
+    else
+      redirect_to categories_path
+    end
   end
 
   def new
@@ -59,8 +66,7 @@ class CategoriesController < ApplicationController
   end
 
   private
-
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, params[:parent_category_id])
   end
 end
