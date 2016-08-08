@@ -24,4 +24,5 @@ class Category < ApplicationRecord
   #   return cats.drop(1).reverse if parent.nil?
   #   parent.ancestors(cats)
   # end
+
 end

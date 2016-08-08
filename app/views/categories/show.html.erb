@@ -28,7 +28,7 @@
 <% else %>
   <% category.children.each do |child| %>
     <div class="category-name">
-      <%= link_to child.name, child %>
+      <%= link_to child.name + " (#{child.children.count + child.notes.count + child.photos.count} items)", child %>
     </div>
   <% end %>
 
