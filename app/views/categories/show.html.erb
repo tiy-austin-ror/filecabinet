@@ -1,6 +1,8 @@
-<<<<<<< HEAD
 <div>
+  <%= link_to "Create Category", new_category_path(id: category.parent_category_id), class: "btn" %>
+</div>
 
+<div>
   <% ### Back Button when no child category exists ### %>
   <% if categories.empty? %>
     <p><%= link_to "Back", :back, class: "waves-effect waves-light btn" %></p>
@@ -54,12 +56,4 @@
   <% else %>
     <p> "This folder is empty! </p>
   <% end %>
-
 </div>
-=======
-<div> <%= link_to "Create Category", new_category_path(id: category.parent_category_id), class: "btn" %> </div>
-
-  <p>
-      <%= link_to category.name, category %>
-  </p>
->>>>>>> b3a9bf3e110ed3d2f75ea628112fc61dbbdc98a8
