@@ -1,9 +1,8 @@
-<<<<<<< HEAD
+
 <%= render 'shared/category', category: category %>
-=======
-<div> <%= link_to "Create Category", new_category_path(id: category.parent_category_id), class: "btn" %> </div>
+
+<div> <%= link_to "Create Category", new_category_path(path), class: "btn" %> </div>
 
   <p>
       <%= link_to category.name, category %>
   </p>
->>>>>>> b3a9bf3e110ed3d2f75ea628112fc61dbbdc98a8
