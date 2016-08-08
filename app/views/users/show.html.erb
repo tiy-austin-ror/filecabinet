@@ -1,7 +1,7 @@
 <h3>Uploaded by <%= user.name %>:</h3>
 
 <% user.photos.each do |photo| %>
-  <% if user.authorized? %>
+  <% if user.authorized?(photo) %>
     <h5><%= link_to photo.name, photo %></h5>
     <p>Category: <%= photo.category.name %></p>
     <p>Last Updated: <%= photo.updated_at %></p>
@@ -11,7 +11,7 @@
 <% end %>
 
 <% user.notes.each do |note| %>
-  <% if user.authorized? %>
+  <% if user.authorized?(note) %>
     <h5><%= link_to note.name, note %></h5>
     <p>Category: <%= note.category.name %></p>
     <p>Last Updated:<%= note.updated_at %></p>
