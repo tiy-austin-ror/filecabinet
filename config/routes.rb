@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :photos
   resources :notes
   resources :categories
+  resources :permissions
 
   root 'dashboard#index', as: 'root'
 end

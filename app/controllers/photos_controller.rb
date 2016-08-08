@@ -77,6 +77,6 @@ class PhotosController < ApplicationController
   end
 
   def has_permission?(photo)
-    photo.user_id == current_user.id || current_user.admin?
+    note.permission.photo.user_id == current_user.id || current_user.admin?
   end
 end

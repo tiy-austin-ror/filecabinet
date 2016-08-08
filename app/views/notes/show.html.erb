@@ -11,3 +11,21 @@
 <% else %>
   <span></span>
 <% end %>
+
+<%= form_for(permission) do |f| %>
+  <label for="user_id">Users with Additional Access: </label>
+  <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
+
+  <%= f.check_box(:full_access, {}, true, false) %>
+  <label for="permission_full_access">Full Access? </label>
+
+  <%= f.hidden_field :permission_id, value: note.id %>
+  <%= f.hidden_field :permission_type, value: note.class %>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<p>Users with Permission: </p>
+<%= permission.user_id %> <%#may need to see how to do user.name, was getting nil class error

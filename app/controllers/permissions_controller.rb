@@ -1,4 +1,17 @@
 class PermissionsController < ApplicationController
+  def new
+    render locals: { permission: Permission.new }
+  end
+
+  def create
+    permission = Permission.new(permission_params)
+    if permission.save
+    else
+      flash[:alert] = permission.errors.full_messages[0]
+    end
+    redirect_to :back
+  end
+
   def destroy
     if permission.user_id.include? current_user.id
         permission.destroy #delete permission given by someone else
@@ -9,4 +22,9 @@ class PermissionsController < ApplicationController
       redirect_to root_path
     end
   end
+end
+
+private
+def permission_params
+  params.require(:permission).permit(:permission_id, :permission_type, :full_access, :user_id)
 end

@@ -8,7 +8,7 @@ class NotesController < ApplicationController
     note = Note.find(params[:id])
     if has_permission?(note)
       if note
-        render locals: { note: note }
+        render locals: { note: note, permission: Permission.new }
       else
         render html: 'Note not found', status: 404
       end
