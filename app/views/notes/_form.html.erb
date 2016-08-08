@@ -14,7 +14,7 @@
 
     <div>
       <label for="file_type">File Extension: </label>
-      <%= f.select :file_type, options_from_collection_for_select(["txt", "md"], :file_type) %>
+      <%= f.select :file_type, options_for_select(["txt", "md"]) %>
     </div>
 
     <div>
