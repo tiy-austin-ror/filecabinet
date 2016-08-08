@@ -9,16 +9,16 @@
   <% if category.parent %>
     <%= link_to "Categories", categories_path %>
       <% category.ancestors.each do |lynx| %>
-      <span><%= " >> " %></span>
+      <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
       <%= link_to lynx.name, category_path(lynx) %>
     <% end %>
-
-    <span><%= " >> " %></span>
+    
+    <span class="waves-effect"><i class="material-icons">chevron_right</i></span
     <strong><%= link_to category.name, category_path(category) %></strong>
 
   <% else %>
     <%= link_to "Categories", categories_path %>
-    <span><%= " >> " %></span>
+    <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
     <big><%= link_to category.name, category %></big>
   <% end %>
 </h6>
@@ -28,7 +28,11 @@
 <% else %>
   <% category.children.each do |child| %>
     <div class="category-name">
-      <%= link_to child.name + " (#{child.children.count + child.notes.count + child.photos.count} items)", child %>
+      <% if child.children.empty? %>
+        <%= link_to child.name + " (No items)", child %>
+      <% else %>
+        <%= link_to child.name + " (#{pluralize(child.children.count + child.notes.count + child.photos.count, 'item')})", child %>
+      <% end %>
     </div>
   <% end %>
 
