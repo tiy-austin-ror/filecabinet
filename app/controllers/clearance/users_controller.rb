@@ -16,10 +16,13 @@ class Clearance::UsersController < Clearance::BaseController
   end
 
   def show
-    User.find(params.fetch(:id))
-    render template: 'users/show.html.erb', locals: {
-      user: User.find(params.fetch(:id))
-    }
+    user = User.find(params.fetch(:id))
+    if has_permission?(user)
+      render template: 'users/show.html.erb', locals: { user: user }
+    else
+      flash[:alert] = "You do not have permission to view this user's uploads."
+      redirect_to root_path
+    end
   end
 
   def new
@@ -66,5 +69,9 @@ class Clearance::UsersController < Clearance::BaseController
 
   def user_params
     params[Clearance.configuration.user_parameter] || Hash.new
+  end
+
+  def has_permission?(user)
+    user.id == current_user.id || current_user.admin?
   end
 end
