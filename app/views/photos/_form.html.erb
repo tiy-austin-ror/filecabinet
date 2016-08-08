@@ -7,6 +7,7 @@
       <%= f.text_area :name, placeholder: "white-board_2016-08-04", class: 'form-field' %>
     </div>
 
+<<<<<<< HEAD
     <div class="field">
       <label for="body">Body: </label>
       <%= f.text_area :body, placeholder: "picture from last meeting's white board", class: 'form-field' %>
@@ -28,6 +29,34 @@
     </div>
 
     <div class="actions">
+=======
+    <div>
+      <label for="desc">Description: </label>
+      <%= f.text_area :desc, placeholder: "picture from last meeting's white board", class: 'form-field' %>
+    </div>
+
+    <div>
+      <label for="category_id">Category: </label>
+      <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
+    </div>
+
+    <div>
+      <label for="upload">Upload: </label>
+      <%= f.file_field :upload %>
+    </div>
+
+    <div>
+      <label for="user_id">Additional Authorized Users: </label>
+      <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
+    </div>
+
+    <div>
+      <label for="permission_type">Permission Type: </label>
+      <%= f.select :permission_id, options_from_collection_for_select(Permission.all, :permission_id, :permission_type) %>
+    </div>
+
+    <div>
+>>>>>>> b3a9bf3e110ed3d2f75ea628112fc61dbbdc98a8
       <%= f.submit %>
     </div>
   <% end %>

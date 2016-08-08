@@ -14,7 +14,7 @@ class Clearance::SessionsController < Clearance::BaseController
 
     sign_in(@user) do |status|
       if status.success?
-        redirect_to "/users"
+        redirect_to root_path
       else
         flash.now.notice = status.failure_message
         render template: "sessions/new.html.erb", status: :unauthorized
@@ -35,7 +35,7 @@ class Clearance::SessionsController < Clearance::BaseController
 
   def redirect_signed_in_users
     if signed_in?
-      redirect_to "/users"
+      redirect_to root_path
     end
   end
 

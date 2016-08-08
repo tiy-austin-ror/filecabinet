@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="row">
   <div class="card file-card col m8 offset-m2">
       <div class="card-content white-text">
@@ -9,3 +10,14 @@
     </div>
   </div>
 </div>
+=======
+<h3>Note:</h3>
+<% if authorized?(note) %>
+  <div>Name: <%= note.note_with_type %></div>
+  <div>Author: <%= note.user_id %></div>
+  <div>Category: <%= note.category.name %></div>
+  <div>Body: <%= note.body %></div>
+<% else %>
+  <span></span>
+<% end %>
+>>>>>>> b3a9bf3e110ed3d2f75ea628112fc61dbbdc98a8
