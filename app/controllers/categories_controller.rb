@@ -11,11 +11,13 @@ class CategoriesController < ApplicationController
     categories = Category.where(parent_category_id: params.fetch(:id))
     notes = Note.where(category_id: params.fetch(:id))
     photos = Photo.where(category_id: params.fetch(:id))
-    render locals: { categories: categories, notes: notes, photos: photos }
+
     if category
       render locals: {
-        category: category
-      }
+        category: category,
+        categories: categories,
+        notes: notes,
+        photos: photos }
     else
       redirect_to categories_path
     end
