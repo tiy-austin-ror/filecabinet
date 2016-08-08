@@ -1,19 +1,17 @@
-<% if current_user && current_user.admin %>
-  <h3>Uploaded by <%= user.name %>:</h3>
-  <% user.photos.each do |photo| %>
-    <h5><%= link_to photo.name, photo %></h5>
-    <div>Category: <%= photo.category.name %></div>
-    <div>Last Updated: <%= photo.updated_at %></div>
-    <div>Created: <%= photo.created_at %></div>
-    <div><%= image_tag photo.upload.url(:medium) %></div>
-  <% end %>
-  <% user.notes.each do |note| %>
-    <h5><%= link_to note.name, note %></h5>
-    <div>Category: <%= note.category.name %></div>
-    <div>Last Updated:<%= note.updated_at %></div>
-    <div>Created: <%= note.created_at %></div>
-    <div>Type: <%= note.file_type %></div>
-  <% end %>
-<% else %>
-  <h6> You are not authorized to see this content </h6>
+<h3>Uploaded by <%= user.name %>:</h3>
+
+<% user.photos.each do |photo| %>
+  <h5><%= link_to photo.name, photo %></h5>
+  <div>Category: <%= photo.category.name %></div>
+  <div>Last Updated: <%= photo.updated_at %></div>
+  <div>Created: <%= photo.created_at %></div>
+  <div><%= image_tag photo.upload.url(:medium) %></div>
+<% end %>
+
+<% user.notes.each do |note| %>
+  <h5><%= link_to note.name, note %></h5>
+  <div>Category: <%= note.category.name %></div>
+  <div>Last Updated:<%= note.updated_at %></div>
+  <div>Created: <%= note.created_at %></div>
+  <div>Type: <%= note.file_type %></div>
 <% end %>
