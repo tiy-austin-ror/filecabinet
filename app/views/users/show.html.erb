@@ -1,0 +1,21 @@
+<h3>Uploaded by <%= user.name %>:</h3>
+
+<% user.photos.each do |photo| %>
+  <% if user.authorized?(photo) %>
+    <h5><%= link_to photo.name, photo %></h5>
+    <p>Category: <%= photo.category.name %></p>
+    <p>Last Updated: <%= photo.updated_at %></p>
+    <p>Created: <%= photo.created_at %></p>
+    <p><%= image_tag photo.upload.url(:medium) %></p>
+  <% end %>
+<% end %>
+
+<% user.notes.each do |note| %>
+  <% if user.authorized?(note) %>
+    <h5><%= link_to note.name, note %></h5>
+    <p>Category: <%= note.category.name %></p>
+    <p>Last Updated:<%= note.updated_at %></p>
+    <p>Created: <%= note.created_at %></p>
+    <p>Type: <%= note.file_type %></p>
+  <% end %>
+<% end %>
