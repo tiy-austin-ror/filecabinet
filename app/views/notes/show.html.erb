@@ -1,3 +1,16 @@
+
+<div class="row">
+  <div class="card file-card col m8 offset-m2">
+      <div class="card-content white-text">
+        <h3 class="card-title">Note:</h3>
+      <div>Name: <%= note.note_with_type %></div>
+      <div>Author: <%= note.user_id %></div>
+      <div>Category: <%= note.category.name %></div>
+      <div>Body: <%= note.body %></div>
+    </div>
+  </div>
+</div>
+
 <h3>Note:</h3>
 <% if authorized?(note) %>
   <div>Name: <%= note.note_with_type %></div>

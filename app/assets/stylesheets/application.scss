@@ -15,12 +15,13 @@
  */
  @import "materialize/components/color";
  $primary-color: #40798C;
- $secondary-color: #1F363D;
+ $secondary-color: #EF767A;
  @import "materialize";
 
  .main-header {
-   header-title {
+   .header-title {
      margin-top: 10px;
+     font-family: cursive;
    }
    .search-box{
      margin: 20px;
@@ -29,4 +30,8 @@
      margin: auto;
     width: 50%;
    }
+ }
+
+ .file-card {
+   background-color: #FFA5A5;
  }

@@ -2,10 +2,33 @@
 
 <div>
   <%= form_for(photo) do |f| %>
-    <div>
+    <div class="field">
       <label for="name">Name: </label>
       <%= f.text_area :name, placeholder: "white-board_2016-08-04", class: 'form-field' %>
     </div>
+
+
+    <div class="field">
+      <label for="body">Body: </label>
+      <%= f.text_area :body, placeholder: "picture from last meeting's white board", class: 'form-field' %>
+    </div>
+
+    <div class="field">
+      <label for="file_type">File Extension: </label>
+      <%= f.select :file_type, options_from_collection_for_select(["gif", "jpg", "png"], :file_type) %>
+    </div>
+
+    <div class="field">
+      <label for="category_id">Category: </label>
+      <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
+    </div>
+
+    <div class="field">
+      <label for="user_id">Author: </label>
+      <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
+    </div>
+
+    <div class="actions">
 
     <div>
       <label for="desc">Description: </label>
