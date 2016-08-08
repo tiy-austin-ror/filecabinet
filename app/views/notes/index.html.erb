@@ -4,8 +4,8 @@
       Note <%= i + 1 %>
     </h3>
     <div>Name: <%= note.note_with_type %></div>
-    <div>Author: <%= note.user_id %></div>
-    <div>Category: <%= note.category.name %></div>
+    <div>Author: <%= link_to note.user.name, note.user %></div>
+    <div>Category: <%= link_to note.category.name, note.category %></div>
     <div>Body: <%= note.body %></div>
   <% else %>
     <span></span>
