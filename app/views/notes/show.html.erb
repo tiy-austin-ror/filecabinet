@@ -1,8 +1,8 @@
 <h3>Note:</h3>
 <% if authorized_show?(note) %>
   <div>Name: <%= note.note_with_type %></div>
-  <div>Author: <%= note.user_id %></div>
-  <div>Category: <%= note.category.name %></div>
+  <div>Author: <%= link_to note.user.name, note.user %></div>
+  <div>Category: <%= link_to note.category.name, note.category %></div>
   <div>Body: <%= note.body %></div>
     <% if authorized_edit?(note) %>
     <%= link_to "Edit Note", edit_note_path(note), class: "btn" %>
