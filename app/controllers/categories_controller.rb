@@ -1,11 +1,11 @@
 class CategoriesController < ApplicationController
   def index
     if params[:query]
-      categories = Category.where('name LIKE ?', "%#{params[:query].downcase}%")
+      categories = Category.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
 
-      notes = Note.where('name LIKE ?', "%#{params[:query].downcase}%")
+      notes = Note.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
 
-      photos = Photo.where('name LIKE ?', "%#{params[:query].downcase}%")
+      photos = Photo.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
     else
       categories = Category.all.where(parent_category_id: nil)
     end
