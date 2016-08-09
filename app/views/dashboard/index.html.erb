@@ -6,3 +6,18 @@
     <%= link_to "Create a Note", new_note_path, class: "btn" %>
   </div>
 </div>
+
+<% note.each do |note| %>
+
+<div class="row">
+  <div class="card file-card col m8 offset-m2">
+    <div class="card-content white-text">
+      <h3 class="card-title">Category:</h3>
+      <p><%= note.name %></p>
+    </div>
+  </div>
+</div>
+
+  <p><%= link_to note.name, note %></p>
+
+<% end %>
