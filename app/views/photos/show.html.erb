@@ -29,4 +29,6 @@
 <% end %>
 
 <p>Users with Permission: </p>
-<%= permission.user_id %> 
+<% photo.users_with_access.uniq.each do |u| %>
+  <p><%= u.name.capitalize %></p>
+<% end %>

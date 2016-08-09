@@ -1,6 +1,10 @@
 class Note < ApplicationRecord
   belongs_to :user
   belongs_to :category
+
+  has_many :permissions, as: :permission
+  has_many :users_with_access, through: :permissions, source: :user
+
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
   accepts_nested_attributes_for :tags

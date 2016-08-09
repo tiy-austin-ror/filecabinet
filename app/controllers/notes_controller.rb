@@ -80,6 +80,6 @@ class NotesController < ApplicationController
   end
 
   def has_permission?(note)
-    note.user_id == current_user.id || current_user.admin?
+    note.user_id == current_user.id || current_user.admin? || note.users_with_access.include?(current_user)
   end
 end
