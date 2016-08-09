@@ -1,6 +1,5 @@
 Feature: As a User, In order to view the contents of a category, I would like to traverse to that category
 
-
 Background: An Admin Logs In
   Given I have an existing test environment
     When I visit "/sign_in"
@@ -46,3 +45,16 @@ Scenario: Existing User goes to Category Show(1.1)
   And I click "Child Category1"
   Then I should see "Current Path: Categories >> Parent Category1 >> Child Category1"
   Then I should see "Photo 3"
+
+Scenario: Existing User goes to Category Show(1.1) and back to Category Show (1)
+  And I visit "/categories"
+  And I click "Parent Category1"
+  And I click "Child Category1"
+  And I click "Parent Category1"
+  Then I should see "Current Path: Categories >> Parent Category1"
+  And I should see "Child Category1"
+  And I should see "Child Category2"
+  And I should see "Note 1"
+  And I should see "Note 2"
+  And I should see "Photo 1"
+  And I should see "Photo 2"
