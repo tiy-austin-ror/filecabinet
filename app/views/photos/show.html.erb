@@ -1,4 +1,4 @@
-<h3>Note:</h3>
+<h3>Photo:</h3>
 <% if authorized_show?(photo) %>
   <div>Name: <%= photo.name %></div>
   <div>Author: <%= link_to photo.user.name, photo.user %></div>
@@ -29,4 +29,4 @@
 <% end %>
 
 <p>Users with Permission: </p>
-<%= permission.user_id %> <%#may need to see how to do user.name, was getting nil class error
+<%= permission.user_id %> 

@@ -5,8 +5,7 @@ class PermissionsController < ApplicationController
 
   def create
     permission = Permission.new(permission_params)
-    if permission.save
-    else
+    unless permission.save
       flash[:alert] = permission.errors.full_messages[0]
     end
     redirect_to :back

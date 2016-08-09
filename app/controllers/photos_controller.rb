@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
     photo = Photo.find(params[:id])
     if has_permission?(photo)
       if photo
-        render locals: { photo: photo }
+        render locals: { photo: photo, permission: Permission.new }
       else
         render html: 'Photo not found', status: 404
       end
@@ -32,7 +32,6 @@ class PhotosController < ApplicationController
       end
       redirect_to photo
     else
-       flash[:alert] = photo.errors.full_messages[0]
       render :new, locals: { photo: photo }
     end
   end
@@ -82,6 +81,6 @@ class PhotosController < ApplicationController
   end
 
   def has_permission?(photo)
-    note.permission.photo.user_id == current_user.id || current_user.admin?
+    photo.user_id == current_user.id || current_user.admin?
   end
 end
