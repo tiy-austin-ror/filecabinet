@@ -1,6 +1,10 @@
 class PhotosController < ApplicationController
   def index
-    photos = Photo.all
+    if params[:query]
+      photos = Photo.where('name LIKE ?', "%#{params[:query].downcase}%")
+    else
+      photos = Photo.all
+    end
     render locals: { photos: photos }
   end
 

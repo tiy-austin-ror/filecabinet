@@ -2,19 +2,20 @@ class CategoriesController < ApplicationController
   def index
     if params[:query]
       categories = Category.where('name LIKE ?', "%#{params[:query].downcase}%")
+
+      notes = Note.where('name LIKE ?', "%#{params[:query].downcase}%")
+
+      photos = Photo.where('name LIKE ?', "%#{params[:query].downcase}%")
     else
       categories = Category.all.where(parent_category_id: nil)
     end
-    render locals: { categories: categories }
+    render locals: { categories: categories, notes: notes, photos: photos }
   end
 
   def show
     category = Category.find(params.fetch(:id))
-
     if category
-      render locals: {
-        category: category
-        }
+      render locals: { category: category }
     else
       redirect_to categories_path
     end

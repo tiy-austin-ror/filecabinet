@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   resources :notes
   resources :categories
 
-  post 'search' => 'categories#search', as: 'search'
+  post :search, controller: 'search', as: 'search'
   root 'dashboard#index', as: 'root'
 end
