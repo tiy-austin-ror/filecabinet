@@ -29,15 +29,8 @@ class NotesController < ApplicationController
   def create
     note = current_user.notes.build(note_params)
     if note.save
-<<<<<<< HEAD
+
       Tagging.create_tags(note, params)
-=======
-      params["tags"]["name"].split(",").each do |tag|
-        next if tag.blank?
-        t = Tag.find_or_create_by(name: tag.strip.downcase)
-        Tagging.find_or_create_by(tag: t, taggable_type: note.class, taggable_id: note.id)
-      end
->>>>>>> 9c90dc4a642fa9f3cca24eead512759773c3e08d
       redirect_to note
     else
       flash[:alert] = "Note could not be created: #{note.errors.full_messages}"

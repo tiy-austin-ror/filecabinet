@@ -15,7 +15,7 @@ Feature: User tags photos
     And I press "Create Photo"
     Then I should see "Photo:"
     And I should see "tag1"
-<<<<<<< HEAD
+
 
   Scenario: User edits a photo
     Given I have an existing user account
@@ -34,5 +34,3 @@ Feature: User tags photos
     Then I should see "Photo:"
     And I should not see "Photo could not be created"
     And I should see "tag1"
-=======
->>>>>>> 9c90dc4a642fa9f3cca24eead512759773c3e08d
