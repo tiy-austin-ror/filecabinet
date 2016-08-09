@@ -12,7 +12,7 @@ class PermissionsController < ApplicationController
   end
 
   def destroy
-    if permission.user_id.include? current_user.id
+    if object.users_with_access.include?(current_user)
         permission.destroy #delete permission given by someone else
         flash[:notice] = "This user no longer has extra permissions."
         redirect_to root_path
