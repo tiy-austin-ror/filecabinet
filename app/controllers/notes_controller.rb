@@ -28,10 +28,11 @@ class NotesController < ApplicationController
       params["tags"]["name"].split(",").each do |tag|
         next if tag.blank?
         t = Tag.find_or_create_by(name: tag.strip.downcase)
-        Tagging.find_or_create_by(tag: t, note: note)
+        Tagging.find_or_create_by(tag: t, taggable_type: note.class, taggable_id: note.id)
       end
       redirect_to note
     else
+      flash[:alert] = "Note could not be created: #{note.errors.full_messages}"
       render :new, locals: { note: note }
     end
   end

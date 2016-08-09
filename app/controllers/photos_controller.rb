@@ -28,11 +28,11 @@ class PhotosController < ApplicationController
       params["tags"]["name"].split(",").each do |tag|
         next if tag.blank?
         t = Tag.find_or_create_by(name: tag.strip.downcase)
-        Tagging.find_or_create_by(tag: t, note: note)
+        Tagging.find_or_create_by(tag: t, taggable_type: photo.class, taggable_id: photo.id)
       end
       redirect_to photo
     else
-       flash[:alert] = photo.errors.full_messages[0]
+      flash[:alert] = "Photo could not be created: #{photo.errors.full_messages}"
       render :new, locals: { photo: photo }
     end
   end
