@@ -1,9 +1,11 @@
 class CategoriesController < ApplicationController
   def index
-    render locals: {
-      #the following prevents nested categories from appearing on the index page
-      categories: Category.all.where(parent_category_id: nil)
-    }
+    if params[:query]
+      categories = Category.where('name LIKE ?', "%#{params[:query].downcase}%")
+    else
+      categories = Category.all.where(parent_category_id: nil)
+    end
+    render locals: { categories: categories }
   end
 
   def show
@@ -60,6 +62,12 @@ class CategoriesController < ApplicationController
     else
       render message: "Category not found."
     end
+  end
+
+  def search # Displays a search form.
+    @q = "%#{params[:query]}%"
+    @categories = Category.where("name LIKE ?", @q)
+    render index
   end
 
   private
