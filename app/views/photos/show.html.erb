@@ -13,9 +13,12 @@
 
   <div>Tags:<br/>
     <% photo.tags.each do |tag| %>
-      <div class='chip'><%= link_to tag.name, tag %></div>
+      <div class='chip'>
+        <%= link_to tag.name, tag %>
+      </div>
     <% end %>
   </div>
+  <%= link_to "Edit", edit_photo_path, class: "waves-effect waves-light btn" %>
 <% else %>
   <span></span>
 <% end %>
