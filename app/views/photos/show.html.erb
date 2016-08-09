@@ -29,6 +29,7 @@
 <% end %>
 
 <p>Users with Permission: </p>
-<% photo.users_with_access.uniq.each do |u| %>
-  <p><%= u.name.capitalize %></p>
+<% photo.permissions.uniq.each do |perm| %>
+  <p><%= perm.user.name.capitalize %>
+     <%= link_to "Remove Access", permission_path(perm), method: :delete %></p>
 <% end %>
