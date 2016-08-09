@@ -36,10 +36,7 @@ class PhotosController < ApplicationController
       end
       redirect_to photo
     else
-<<<<<<< HEAD
-=======
       flash[:alert] = "Photo could not be created: #{photo.errors.full_messages}"
->>>>>>> 9c90dc4a642fa9f3cca24eead512759773c3e08d
       render :new, locals: { photo: photo }
     end
   end
