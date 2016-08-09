@@ -34,4 +34,15 @@
 
  .file-card {
    background-color: #FF6666;
+   &:hover {
+     box-shadow: 5px 5px 5px grey;
+   }
+ }
+
+ .link-color {
+   color: white;
+   &:hover {
+     text-decoration: underline;
+   }
+
  }

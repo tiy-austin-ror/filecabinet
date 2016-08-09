@@ -12,13 +12,12 @@
 <div class="row">
   <div class="card file-card col m8 offset-m2">
     <div class="card-content white-text">
-      <h3 class="card-title">Note:</h3>
-      <p><%= note.name %></p>
+      <h3 class="card-title">Note:
+        <span><%= link_to note.name, note, class: "link-color" %></span>
+      </h3>
     </div>
   </div>
 </div>
-
-  <p><%= link_to note.name, note %></p>
 
 <% end %>
 
@@ -27,12 +26,12 @@
 <div class="row">
   <div class="card file-card col m8 offset-m2">
     <div class="card-content white-text">
-      <h3 class="card-title">Photo:</h3>
-      <p><%= photo.name %></p>
+      <h3 class="card-title">Photo:
+      <span><%= link_to photo.name, photo, class: "link-color" %></span>
+      </h3>
     </div>
   </div>
 </div>
 
-  <p><%= link_to photo.name, photo %></p>
 
 <% end %>
