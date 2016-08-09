@@ -7,7 +7,7 @@
 <h6 class="category-path">
   <%= "Current Path: " %>
   <% if category.parent %>
-    <%= link_to "Categories", categories_path %>
+    <%= link_to "Categories", categories_path, id: "in-page" %>
       <% category.ancestors.each do |lynx| %>
       <span><%= " >> " %></span>
       <%= link_to lynx.name, category_path(lynx) %>
@@ -17,7 +17,7 @@
     <strong><%= link_to category.name, category_path(category) %></strong>
 
   <% else %>
-    <%= link_to "Categories", categories_path %>
+    <%= link_to "Categories", categories_path, id: "in-page" %>
     <span><%= " >> " %></span>
     <big><%= link_to category.name, category %></big>
   <% end %>
