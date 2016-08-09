@@ -14,8 +14,8 @@ class Tagging < ApplicationRecord
   def self.create_tags(obj, params)
     self.current_tags(params).each do |tag|
       next if tag.blank?
-      t = Tag.find_or_create_by(name: tag)
-      Tagging.find_or_create_by(tag: t, taggable_type: obj.class, taggable_id: obj.id)
+      t = Tag.find_or_create_by!(name: tag)
+      Tagging.find_or_create_by!(tag: t, taggable_type: obj.class, taggable_id: obj.id)
     end
   end
 
