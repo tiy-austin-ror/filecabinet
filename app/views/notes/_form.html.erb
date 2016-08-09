@@ -35,7 +35,7 @@
     <div>
       <label for="tags">Tags (comma-separated): </label>
       <%= fields_for :tags do |tag_fields| %>
-        <%= tag_fields.text_field :name %>
+        <%= tag_fields.text_field :name, value: note.tags.map(&:name).join(", ") %>
       <% end %>
     </div>
 

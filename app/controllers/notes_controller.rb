@@ -1,6 +1,10 @@
 class NotesController < ApplicationController
   def index
-    notes = Note.all
+    if params[:query]
+      notes = Note.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
+    else
+      notes = Note.all
+    end
     render locals: { notes: notes }
   end
 
@@ -8,7 +12,7 @@ class NotesController < ApplicationController
     note = Note.find(params[:id])
     if has_permission?(note)
       if note
-        render locals: { note: note }
+        render locals: { note: note, permission: Permission.new }
       else
         render html: 'Note not found', status: 404
       end
@@ -25,13 +29,11 @@ class NotesController < ApplicationController
   def create
     note = current_user.notes.build(note_params)
     if note.save
-      params["tags"]["name"].split(",").each do |tag|
-        next if tag.blank?
-        t = Tag.find_or_create_by(name: tag.strip.downcase)
-        Tagging.find_or_create_by(tag: t, note: note)
-      end
+
+      Tagging.create_tags(note, params)
       redirect_to note
     else
+      flash[:alert] = "Note could not be created: #{note.errors.full_messages}"
       render :new, locals: { note: note }
     end
   end
@@ -45,6 +47,7 @@ class NotesController < ApplicationController
     if has_permission?(note)
       if note
         if note.update(note_params)
+          Tagging.update_tags(note, params)
           redirect_to note
         else
           render :edit
@@ -80,6 +83,6 @@ class NotesController < ApplicationController
   end
 
   def has_permission?(note)
-    note.user_id == current_user.id || current_user.admin?
+    note.user_id == current_user.id || current_user.admin? || note.users_with_access.include?(current_user)
   end
 end
