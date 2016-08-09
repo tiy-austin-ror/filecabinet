@@ -24,9 +24,29 @@
    }
    .search-box{
      margin: 20px;
+     #search {
+       max-height: 20px;
+     }
    }
    .search-icon {
      margin: auto;
     width: 50%;
    }
+   .input-field {
+     width: 211px;
+     display: inline-flex;
+   }
  }
+.row .col.s3 {
+  width: -1%;
+}
+
+.heading {
+  text-align: center;
+}
+
+.sign-in-out-up {
+  display: inline-flex;
+  position: relative;
+  bottom: 24px;
+}
