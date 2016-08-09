@@ -1,11 +1,7 @@
 class NotesController < ApplicationController
   def index
     if params[:query]
-<<<<<<< HEAD
-      notes = Note.where('name LIKE ?', "%#{params[:query].downcase}%")
-=======
       notes = Note.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
->>>>>>> 9c90dc4a642fa9f3cca24eead512759773c3e08d
     else
       notes = Note.all
     end
