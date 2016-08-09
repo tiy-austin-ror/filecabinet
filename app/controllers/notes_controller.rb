@@ -32,6 +32,7 @@ class NotesController < ApplicationController
       end
       redirect_to note
     else
+      flash[:alert] = "Note could not be created: #{note.errors.full_messages}"
       render :new, locals: { note: note }
     end
   end

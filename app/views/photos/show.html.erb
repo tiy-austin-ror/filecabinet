@@ -5,6 +5,11 @@
   <div>Category: <%= link_to photo.category.name, photo.category %></div>
   <div>Description: <%= photo.desc %></div>
   <div><%= image_tag photo.upload.url(:medium) %></div>
+  <div>Tags:<br/>
+    <% photo.tags.each do |tag| %>
+      <div class='chip'><%= link_to tag.name, tag %></div>
+    <% end %>
+  </div>
 <% else %>
   <span></span>
 <% end %>
