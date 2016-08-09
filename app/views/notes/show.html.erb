@@ -4,6 +4,11 @@
   <div>Author: <%= link_to note.user.name, note.user %></div>
   <div>Category: <%= link_to note.category.name, note.category %></div>
   <div>Body: <%= note.body %></div>
+  <div>Tags:<br/>
+    <% note.tags.each do |tag| %>
+      <div class='chip'><%= link_to tag.name, tag %></div>
+    <% end %>
+  </div>
 <% else %>
   <span></span>
 <% end %>
