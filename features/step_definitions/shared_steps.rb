@@ -14,6 +14,11 @@ When(/^I click "([^"]*)"$/) do |link|
   click_link(link)
 end
 
+When(/^I find "([^"]*)"$/) do |id|
+  # print page.html
+  find_by_id(id)
+end
+
 When(/^I press "([^"]*)"$/) do |button|
   click_button(button)
 end

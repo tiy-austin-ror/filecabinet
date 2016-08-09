@@ -58,3 +58,13 @@ Scenario: Existing User goes to Category Show(1.1) and back to Category Show (1)
   And I should see "Note 2"
   And I should see "Photo 1"
   And I should see "Photo 2"
+
+Scenario: Existing User goes to Category Show(1.1) and back to Categories path
+  And I visit "/categories"
+  And I click "Parent Category1"
+  And I click "Child Category1"
+  And I find "in-page"
+  And I click "in-page"
+  Then I should see "Parent Category1"
+  And I should see "Parent Category2"
+  And I should see "Parent Category3"
