@@ -23,15 +23,15 @@
   <% end %>
 </h6>
 
-<% if category.children.empty? && category.notes.empty? && category.photos.empty? %>
+<% if [category.children, category.notes, category.photos].all?(&:empty?) %>
   <p> This folder is empty! </p>
 <% else %>
   <% category.children.each do |child| %>
     <div class="category-name">
-      <% if child.children.empty? && category.notes.empty? && category.photos.empty? %>
+      <% if [child.children, category.notes, category.photos].all?(&:empty?) %>
         <%= link_to child.name + " (No items)", child %>
       <% else %>
-        <%= link_to child.name + " (#{pluralize(child.children.count + child.notes.count + child.photos.count, 'item')})", child %>
+        <%= link_to child.name + " (#{item_count(child)})", child %>
       <% end %>
     </div>
   <% end %>
