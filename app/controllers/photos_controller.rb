@@ -25,11 +25,7 @@ class PhotosController < ApplicationController
   def create
     photo = current_user.photos.build(photo_params)
     if photo.save
-      params["tags"]["name"].split(",").each do |tag|
-        next if tag.blank?
-        t = Tag.find_or_create_by(name: tag.strip.downcase)
-        Tagging.find_or_create_by(tag: t, taggable_type: photo.class, taggable_id: photo.id)
-      end
+      Tagging.create_tags(photo, params)
       redirect_to photo
     else
       flash[:alert] = "Photo could not be created: #{photo.errors.full_messages}"
@@ -46,6 +42,7 @@ class PhotosController < ApplicationController
     if has_permission?(photo)
       if photo
         if photo.update(photo_params)
+          Tagging.update_tags(photo, params)
           redirect_to photo
         else
           flash[:alert] = photo.errors.full_messages[0]
