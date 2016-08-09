@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
   def index
     if params[:query]
-      photos = Photo.where('name LIKE ?', "%#{params[:query].downcase}%")
+      photos = Photo.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
     else
       photos = Photo.all
     end

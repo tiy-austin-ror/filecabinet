@@ -2,9 +2,7 @@ class CategoriesController < ApplicationController
   def index
     if params[:query]
       categories = Category.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
-
       notes = Note.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
-
       photos = Photo.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
     else
       categories = Category.all.where(parent_category_id: nil)

@@ -27,7 +27,7 @@
               <div class="search-box">
 
                 <%= form_tag search_path do %>
-                  <input id="search" type="search" class="search full-width" id="searchbar" name="query" type="text">
+                  <input id="search" type="search" class="search full-width" id="searchbar" name="query" type="text" remote=true>
                 <% end %>
 
                 <label for="search"><i class="material-icons">search</i></label>
@@ -40,7 +40,8 @@
             <div class="sign-in-out-up col s4 offset-s2">
               <% if signed_in? %>
                 Welcome <%= current_user.name %>!
-                <%= button_to "Sign Out", sign_out_path, method: :delete, class: "waves-effect waves-light btn sign-butt" %>
+                <%= link_to "Sign Out", sign_out_path, method: :delete, class: "waves-effect waves-light btn sign-butt" %>
+
               <% else %>
                   <%= link_to "Sign In", sign_in_path, class: "waves-effect waves-light btn sign-butt" %>
                   <%= link_to "Sign Up", sign_up_path, class: "waves-effect waves-light btn sign-butt" %>
