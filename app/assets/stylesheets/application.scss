@@ -18,35 +18,56 @@
  $secondary-color: #1F363D;
  @import "materialize";
 
- .main-header {
-   header-title {
-     margin-top: 10px;
-   }
-   .search-box{
-     margin: 20px;
-     #search {
-       max-height: 20px;
-     }
-   }
-   .search-icon {
-     margin: auto;
-    width: 50%;
-   }
-   .input-field {
-     width: 211px;
-     display: inline-flex;
-   }
- }
-.row .col.s3 {
-  width: -1%;
-}
+.main-header {
+  header-title {
+   margin-top: 10px;
+  }
+  .app-title {
+    min-width: 150px;
+  }
+  .search-box{
+    margin: 20px;
+    #search {
+      max-height: 20px;
+      border-radius: 5px;
+      padding-left: 2rem;
+      width: 220px;
+    }
+    .material-icons {
+      margin-left: 15px;
+      font-size: 180%;
+    position: relative;
+    top: -1px;
+    }
+  }
+    .search-icon {
+      margin: auto;
+      width: 50%;
+    }
+    .input-field {
+      width: 50%;
+      display: inline-flex;
+    }
+  }
 
-.heading {
-  text-align: center;
+.heading-block {
+  display: flex;
+  .heading {
+    text-align: center;
+    min-width: 40px;
+  }
+  .cat {
+    min-width: 70px;
+  }
 }
 
 .sign-in-out-up {
   display: inline-flex;
+  top: 10px;
   position: relative;
-  bottom: 24px;
+  .sign-butt {
+    padding: 0 15px 0 15px;
+    min-width: 90px;
+    margin: 0 2px 0 2px;
+  }
 }
