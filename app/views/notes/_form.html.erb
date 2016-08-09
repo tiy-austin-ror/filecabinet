@@ -14,7 +14,7 @@
 
     <div class="field">
       <label for="file_type">File Extension: </label>
-      <%= f.select :file_type, options_from_collection_for_select(["txt", "md"], :file_type) %>
+      <%= f.select :file_type, options_for_select(["txt", "md"]) %>
     </div>
 
     <div class="field">
@@ -26,8 +26,11 @@
     <div class="field">
 
     <div>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d2029c0a61c64cc8dd8938fad77d07b2c888de74
       <label for="user_id">Author: </label>
       <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
     </div>
@@ -36,13 +39,10 @@
     <div class="actions">
 
     <div>
-      <label for="user_id">Additional Authorized Users: </label>
-      <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
-    </div>
-
-    <div>
-      <label for="permission_type">Permission Type: </label>
-      <%= f.select :permission_id, options_from_collection_for_select(Permission.all, :permission_id, :permission_type) %>
+      <label for="tags">Tags (comma-separated): </label>
+      <%= fields_for :tags do |tag_fields| %>
+        <%= tag_fields.text_field :name %>
+      <% end %>
     </div>
 
     <div>

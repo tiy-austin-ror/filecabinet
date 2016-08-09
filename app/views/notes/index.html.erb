@@ -6,6 +6,7 @@
     <h3>
       Note <%= i + 1 %>
     </h3>
+<<<<<<< HEAD
     <div class="row">
       <div class="card blue-grey file-card col s8 offset-s2">
         <div class="card-content white-text">
@@ -20,6 +21,12 @@
       </div>
     </div>
 
+=======
+    <div>Name: <%= note.note_with_type %></div>
+    <div>Author: <%= link_to note.user.name, note.user %></div>
+    <div>Category: <%= link_to note.category.name, note.category %></div>
+    <div>Body: <%= note.body %></div>
+>>>>>>> d2029c0a61c64cc8dd8938fad77d07b2c888de74
   <% else %>
     <span></span>
   <% end %>
