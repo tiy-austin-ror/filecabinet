@@ -1,6 +1,10 @@
 class NotesController < ApplicationController
   def index
-    notes = Note.all
+    if params[:query]
+      notes = Note.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
+    else
+      notes = Note.all
+    end
     render locals: { notes: notes }
   end
 

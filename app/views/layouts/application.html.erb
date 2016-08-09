@@ -8,47 +8,9 @@
   </head>
 
   <body>
-    <header class="main-header">
-      <nav>
-        <div class="row">
-          <div class="col 3">
-            <p class="header-title"><h5>(App Name)</h5></p>
-          </div>
-          <div class="col s2">
-            <a href="/">Home</a>
-          </div>
-            <div class="col s2">
-              <%= link_to "Categories", categories_path %>
-            </div>
-              <div class="col s1 offset-s1">
-                <%= link_to "Users", users_path %>
-              </div>
-              <div class="col s3 right">
-                <div class="nav-wrapper">
-                  <form>
-                  <div class="input-field">
-                    <div class="search-box">
-                    <input id="search" type="search" required>
-                    <label for="search"><i class="material-icons">search</i></label>
-                    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </nav>
-    </header>
+    <%= render "shared/nav.html.erb" unless @disable_nav %>
     <div class="container">
-      <div>
-        <% if signed_in? %>
-          Welcome <%= current_user.name %>!
-          <%= button_to "Sign Out", sign_out_path, method: :delete, class: "waves-effect waves-light btn sign-out" %>
-        <% else %>
-          <%= link_to "Sign In", sign_in_path, class: "waves-effect waves-light btn sign-in" %>
-          <%= link_to "Sign Up", sign_up_path, class: "waves-effect waves-light btn sign-up" %>
-        <% end %>
-      </div>
+
       <div id="flash">
         <% flash.each do |key, value| %>
           <div class="flash <%= key %>"><%= value %></div>

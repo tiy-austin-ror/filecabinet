@@ -15,7 +15,12 @@ When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
 end
 
 When(/^I click "([^"]*)"$/) do |link|
-  clink_link(link)
+  click_link(link)
+end
+
+When(/^I find "([^"]*)"$/) do |id|
+  # print page.html
+  find_by_id(id)
 end
 
 When(/^I press "([^"]*)"$/) do |button|
