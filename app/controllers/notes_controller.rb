@@ -1,6 +1,10 @@
 class NotesController < ApplicationController
   def index
-    notes = Note.all
+    if params[:query]
+      notes = Note.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
+    else
+      notes = Note.all
+    end
     render locals: { notes: notes }
   end
 
@@ -25,6 +29,11 @@ class NotesController < ApplicationController
   def create
     note = current_user.notes.build(note_params)
     if note.save
+      params["tags"]["name"].split(",").each do |tag|
+        next if tag.blank?
+        t = Tag.find_or_create_by(name: tag.strip.downcase)
+        Tagging.find_or_create_by(tag: t, note: note)
+      end
       redirect_to note
     else
       render :new, locals: { note: note }

@@ -1,6 +1,10 @@
 class PhotosController < ApplicationController
   def index
-    photos = Photo.all
+    if params[:query]
+      photos = Photo.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
+    else
+      photos = Photo.all
+    end
     render locals: { photos: photos }
   end
 
@@ -25,6 +29,11 @@ class PhotosController < ApplicationController
   def create
     photo = current_user.photos.build(photo_params)
     if photo.save
+      params["tags"]["name"].split(",").each do |tag|
+        next if tag.blank?
+        t = Tag.find_or_create_by(name: tag.strip.downcase)
+        Tagging.find_or_create_by(tag: t, note: note)
+      end
       redirect_to photo
     else
        flash[:alert] = photo.errors.full_messages[0]

@@ -1,18 +1,19 @@
 class CategoriesController < ApplicationController
   def index
-    render locals: {
-      #the following prevents nested categories from appearing on the index page
-      categories: Category.all.where(parent_category_id: nil)
-    }
+    if params[:query]
+      categories = Category.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
+      notes = Note.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
+      photos = Photo.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
+    else
+      categories = Category.all.where(parent_category_id: nil)
+    end
+    render locals: { categories: categories, notes: notes, photos: photos }
   end
 
   def show
     category = Category.find(params.fetch(:id))
-
     if category
-      render locals: {
-        category: category
-        }
+      render locals: { category: category }
     else
       redirect_to categories_path
     end
@@ -62,8 +63,14 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def search # Displays a search form.
+    @q = "%#{params[:query]}%"
+    @categories = Category.where("name LIKE ?", @q)
+    render index
+  end
+
   private
   def category_params
-    params.require(:category).permit(:name, params[:parent_category_id])
+    params.require(:category).permit(:name, :parent_category_id)
   end
 end
