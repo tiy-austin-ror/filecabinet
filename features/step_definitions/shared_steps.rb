@@ -18,6 +18,10 @@ When(/^I press "([^"]*)"$/) do |button|
   click_button(button)
 end
 
+When(/^I upload the test photo$/) do
+  attach_file("photo[upload]", Rails.root + "test/fixtures/test_photo.png")
+end
+
 Then(/^I should see "([^"]*)"$/) do |content|
   assert page.has_content?(content)
 end
