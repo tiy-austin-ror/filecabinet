@@ -10,11 +10,16 @@ Feature: User tags notes
     And I visit "/notes/new"
     And I fill in "note[name]" with "note-name"
     And I fill in "note[body]" with "note body"
+<<<<<<< HEAD
     And I fill in "tags[name]" with "tag1"
+=======
+    And I fill in "tags[name]" with "tag1, tag2"
+>>>>>>> 9c90dc4a642fa9f3cca24eead512759773c3e08d
     And I press "Create Note"
     Then I should see "Note:"
     And I should not see "Note could not be created"
     And I should see "tag1"
+<<<<<<< HEAD
 
   Scenario: User edits a note
     Given I have an existing user account
@@ -33,3 +38,5 @@ Feature: User tags notes
     Then I should see "Note:"
     And I should not see "Note could not be created"
     And I should see "tag1"
+=======
+>>>>>>> 9c90dc4a642fa9f3cca24eead512759773c3e08d
