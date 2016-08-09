@@ -17,15 +17,9 @@
     <strong><%= link_to category.name, category_path(category) %></strong>
 
   <% else %>
-<<<<<<< HEAD
     <%= link_to "Categories", categories_path %>
     <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
     <strong><%= link_to category.name, category %></strong>
-=======
-    <%= link_to "Categories", categories_path, id: "in-page" %>
-    <span><%= " >> " %></span>
-    <big><%= link_to category.name, category %></big>
->>>>>>> category-traversal-cucumber
   <% end %>
 </h6>
 
