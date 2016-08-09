@@ -1,10 +1,9 @@
 <div> <%= link_to "Create Category", new_category_path, class: "btn" %> </div>
 
-<% categories.each do |category| %>
-  <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
-    <%= link_to category.name + " (No items)", category %>
-  <% else %>
-    <p><%= link_to category.name + " (#{item_count(category)})", category %></p>
+  <% categories.each do |category| %>
+    <p><% if [category.children, category.notes, category.photos].all?(&:empty?) %></p>
+      <%= link_to category.name + " (No items)", category %>
+    <% else %>
+      <p><%= link_to category.name + " (#{item_count(category)})", category %></p>
+    <% end %>
   <% end %>
-
-<% end %>
