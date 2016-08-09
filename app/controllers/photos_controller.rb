@@ -1,6 +1,10 @@
 class PhotosController < ApplicationController
   def index
-    photos = Photo.all
+    if params[:query]
+      photos = Photo.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
+    else
+      photos = Photo.all
+    end
     render locals: { photos: photos }
   end
 
@@ -28,10 +32,14 @@ class PhotosController < ApplicationController
       params["tags"]["name"].split(",").each do |tag|
         next if tag.blank?
         t = Tag.find_or_create_by(name: tag.strip.downcase)
-        Tagging.find_or_create_by(tag: t, note: note)
+        Tagging.find_or_create_by(tag: t, taggable_type: photo.class, taggable_id: photo.id)
       end
       redirect_to photo
     else
+<<<<<<< HEAD
+=======
+      flash[:alert] = "Photo could not be created: #{photo.errors.full_messages}"
+>>>>>>> 9c90dc4a642fa9f3cca24eead512759773c3e08d
       render :new, locals: { photo: photo }
     end
   end
