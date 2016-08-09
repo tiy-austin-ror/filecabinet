@@ -1,8 +1,10 @@
 class Photo < ApplicationRecord
   belongs_to :user
   belongs_to :category
+
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
+
   accepts_nested_attributes_for :tags
 
   has_many :permissions, as: :permission

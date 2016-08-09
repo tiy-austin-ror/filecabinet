@@ -14,7 +14,6 @@ Feature: User tags photos
     And I fill in "tags[name]" with "tag1"
     And I press "Create Photo"
     Then I should see "Photo:"
-    And I debug
     And I should see "tag1"
 
 
