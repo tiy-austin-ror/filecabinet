@@ -23,12 +23,21 @@
     </div>
 
     <div>
-
       <label for="user_id">Author: </label>
       <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
     </div>
 
     <div>
+<<<<<<< HEAD
+=======
+      <label for="tags">Tags (comma-separated): </label>
+      <%= fields_for :tags do |tag_fields| %>
+        <%= tag_fields.text_field :name %>
+      <% end %>
+    </div>
+
+    <div>
+>>>>>>> d2029c0a61c64cc8dd8938fad77d07b2c888de74
       <%= f.submit %>
     </div>
   <% end %>

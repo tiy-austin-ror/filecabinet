@@ -1,13 +1,16 @@
 User.create!(name: "admin", email: "admin@example.com", password: "password", admin: true)
 User.create!(name: "user", email: "user@example.com", password: "password", admin: false)
 
-10.times do
+100.times do
   Tag.create(name: Faker::Commerce.color)
 end
 
 
 10.times do
   Category.create!(name: Faker::Company.buzzword)
+  10.times do
+    Category.create!(name: Faker::Company.buzzword, parent_category_id: rand(1..Category.count))
+  end
 end
 
 10.times do
@@ -21,8 +24,9 @@ NOTE_TYPES = ["txt", "md"]
 PHOTO_NAMES = ["White_Board_2016-08-04", "Meeting_Notes_2016-08-04", "Sprint_Review_Board_2016-08-04", "Scrum_Notes_2016-08-04"]
 PHOTO_DESCS = ["White board photo from the meeting", "Photo-notes from the board meeting", "Photo of white board from sprint review", "Photo-notes from daily scrum"]
 
-
-NOTE_NAMES.each_with_index do |name, i|
-  Note.create!(name: name, body: NOTE_BODIES[i], file_type: NOTE_TYPES.sample, category_id: 1, user_id: 1)
-  # Photo.create!(name: PHOTO_NAMES[i], desc: PHOTO_DESCS[i], category_id: 1, user_id: 1, upload: "http://imgs.xkcd.com/comics/tags.png")
+30.times do
+  NOTE_NAMES.each_with_index do |name, i|
+    Note.create!(name: name, body: NOTE_BODIES[i], file_type: NOTE_TYPES.sample, category_id: rand(1..Category.count), user_id: 1)
+    Photo.create!(name: PHOTO_NAMES[i], desc: PHOTO_DESCS[i], category_id: rand(1..Category.count), user_id: 1, upload: "http://imgs.xkcd.com/comics/tags.png")
+  end
 end
