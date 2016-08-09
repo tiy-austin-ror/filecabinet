@@ -11,7 +11,7 @@ When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
 end
 
 When(/^I click "([^"]*)"$/) do |link|
-  clink_link(link)
+  click_link(link)
 end
 
 When(/^I press "([^"]*)"$/) do |button|
