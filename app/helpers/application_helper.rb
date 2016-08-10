@@ -3,6 +3,7 @@ module ApplicationHelper
     array.each do |item|
       return true if authorized_show?(item)
     end
+    return true if array.empty?
     false
   end
 
