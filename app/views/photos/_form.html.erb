@@ -14,11 +14,6 @@
     </div>
 
     <div class="field">
-      <label for="file_type">File Extension: </label>
-      <%= f.select :file_type, options_from_collection_for_select(["gif", "jpg", "png"], :file_type) %>
-    </div>
-
-    <div class="field">
       <label for="category_id">Category: </label>
       <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
     </div>
