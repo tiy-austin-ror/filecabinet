@@ -30,7 +30,7 @@
                   <%= form_tag search_path do %>
                     <%= search_field_tag("search", params[:search]) %>
 
-                    <%= submit_tag("Search", id: "submit", class: "btn-flat sign-butt submit-butt") %>
+                    <%= submit_tag("Search", id: "submit", name: "submit", class: "btn-flat sign-butt submit-butt") %>
                   <% end %>
 
                   <label for="search"><i class="material-icons">search</i></label>
