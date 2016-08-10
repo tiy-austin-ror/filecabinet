@@ -6,8 +6,10 @@ class DashboardController < ApplicationController
       notes = Note.where("name ~* 'note: .*#{params[:query]}.*'")
       photos = Photo.where("name ~* '.*#{params[:query]}.*'")
       users = User.where("name ~* '.*#{params[:query]}.*'")
+      tags = Tag.where("name ~* '.*#{params[:query]}.*'")
+
     end
-    render locals: { categories: categories, notes: notes, photos: photos, users: users }
+    render locals: { categories: categories, notes: notes, photos: photos, users: users, tags: tags }
   end
 
 end
