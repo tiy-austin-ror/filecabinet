@@ -45,6 +45,10 @@
    &:hover {
      box-shadow: 5px 5px 5px grey;
    }
+   .card-content {
+     width: 450px;
+     word-wrap: break-word;
+   }
  }
 
  .link-color {
@@ -54,6 +58,7 @@
    }
 
  }
+
 
 .main-header {
   header-title {

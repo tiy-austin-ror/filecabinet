@@ -1,34 +1,39 @@
 
 <div class="row">
   <div class="col l6 m6">
-    <%= link_to "Create a Photo", new_photo_path, class: "btn" %>
-  </div>
-  <div class="col l6 m6">
     <%= link_to "Create a Note", new_note_path, class: "btn" %>
   </div>
-</div>
-
-<% notes.each do |note| %>
-<div class="row">
-  <div class="card file-card col 12 offset-m6">
-    <div class="card-content">
-      <h3 class="card-title">Note:
-        <span><%= link_to note.name, note, class: "link-color" %></span>
-      </h3>
-    </div>
+  <div class="col l6 m6">
+    <%= link_to "Create a Photo", new_photo_path, class: "btn" %>
   </div>
 </div>
 
-<% end %>
-
-<% photos.each do |photo| %>
 <div class="row">
-  <div class="card file-card col 12 offset-m6">
-    <div class="card-content">
-      <h3 class="card-title">Photo:
-      <span><%= link_to photo.name, photo, class: "link-color" %></span>
-      </h3>
+  <div class="row col m6">
+    <% notes.each do |note| %>
+    <div class="card file-card">
+
+      <div class="card-content">
+        <h3 class="card-title">Note:
+          <span><%= link_to note.name, note, class: "link-color" %></span>
+        </h3>
+      </div>
     </div>
+    <% end %>
+
+  </div>
+
+
+  <div class="row col m6">
+    <% photos.each do |photo| %>
+    <div class="card file-card">
+      <div class="card-content">
+        <h3 class="card-title">Photo:
+          <span><%= link_to photo.name, photo, class: "link-color" %></span>
+        </h3>
+      </div>
+    </div>
+  <% end %>
+
   </div>
 </div>
-<% end %>
