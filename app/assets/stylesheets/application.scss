@@ -15,7 +15,7 @@
  */
  @import "materialize/components/color";
  $primary-color: #40798C;
- $secondary-color: #FF6666;
+ $secondary-color: #FF4C4C;
  @import "materialize";
 
  .main-header {
@@ -33,7 +33,7 @@
  }
 
  .file-card {
-   background-color: #FF6666;
+   background-color: #FF4C4C;
    &:hover {
      box-shadow: 5px 5px 5px grey;
    }
