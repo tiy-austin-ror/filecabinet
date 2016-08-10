@@ -40,20 +40,19 @@ class TeamsController < ApplicationController
 
   def update
     team = Team.find(params[:id])
-    if current_user.admin?
-      if team
+    if team
+      if current_user && current_user.admin?
+      else
+        flash[:alert] = "You do not have permission to update teams."
+      end
         if team.update(team_params)
           redirect_to team
         else
           flash[:alert] = team.errors.full_messages[0]
-          render :edit
+          render :edit, locals: { team: team }
         end
       else
-        render html: 'Photo not found', status: 404
-      end
-    else
-      flash[:alert] = "You do not have permission to update teams."
-      redirect_to root_path
+        render html: 'Team not found', status: 404
     end
   end
 
@@ -75,6 +74,6 @@ class TeamsController < ApplicationController
 
   private
   def team_params
-    params.require(:team).permit(:user_id, :name)
+    params.require(:team).permit(:name)
   end
 end
