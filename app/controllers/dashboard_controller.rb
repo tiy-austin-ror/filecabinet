@@ -9,4 +9,5 @@ class DashboardController < ApplicationController
     end
     render locals: { categories: categories, notes: notes, photos: photos, users: users }
   end
+
 end

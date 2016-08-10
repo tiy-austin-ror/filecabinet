@@ -12,11 +12,13 @@
 
   <% unless users.empty? %>
     <% unless params[:checkuser] == '0' %>
-      <h2>Users: </h2>
-        <% users.each do |user| %>
-          <p><%= link_to user.name, user %></p>
+      <% users.each do |user| %>
+      <h2><%= "#{user.name}'s Notes: " %> </h2>
+        <% user.notes.each do |note| %>
+          <p><%= link_to note.name, note %></p>
         <% end %>
       <% end %>
+    <% end %>
   <% end %>
 
 
