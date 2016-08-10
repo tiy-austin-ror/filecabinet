@@ -2,12 +2,12 @@ class CategoriesController < ApplicationController
   def index
     if params[:query]
       categories = Category.where("name ~* '.*#{params[:query]}.*'")
-      notes = Note.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
-      photos = Photo.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
+      notes = Note.where("name ~* '.*#{params[:query]}.*'").order(:updated_at)
+      photos = Photo.where("name ~* '.*#{params[:query]}.*'").order(:updated_at)
     else
       categories = Category.all.where(parent_category_id: nil)
     end
-    render locals: { categories: categories, notes: notes, photos: photos }
+    render locals: { categories: categories.order(:updated_at), notes: notes, photos: photos }
   end
 
   def show

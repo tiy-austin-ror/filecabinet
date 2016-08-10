@@ -1,5 +1,13 @@
 <h1>Homepage</h1>
 
+<% # if select_box = category ----> category search %>
+<% # if select_box = notes ----> note search %>
+<% # if select_box = photos ----> photo search %>
+<% # if select_box = users ----> user search %>
+<% # if select_box = tags ----> tag search %>
+<% # if select_box = all ----> all search %>
+
+
 <% if categories %>
   <% categories.each do |category| %>
     <p><%= link_to category.name, category %></p>

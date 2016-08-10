@@ -10,8 +10,14 @@ class Clearance::UsersController < Clearance::BaseController
   end
 
   def index
+    if params[:query]
+      users = User.where("name ~* '.*#{params[:query]}.*'")
+
+    else
+      users = User.all
+    end
     render template: 'users/index.html.erb', locals: {
-      users: User.all.order(:name)
+      users: users.order("created_at DESC")
     }
   end
 

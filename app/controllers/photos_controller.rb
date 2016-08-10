@@ -1,11 +1,11 @@
 class PhotosController < ApplicationController
   def index
     if params[:query]
-      photos = Photo.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
+      photos = Photo.where("name ~* '.*#{params[:query]}.*'")
     else
       photos = Photo.all
     end
-    render locals: { photos: photos }
+    render locals: { photos: photos.order(:updated_at) }
   end
 
   def show
