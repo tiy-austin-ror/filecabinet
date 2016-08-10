@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_filter :disable_search
+  before_action :disable_search
 
   def index
     if params[:query]

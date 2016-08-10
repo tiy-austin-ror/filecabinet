@@ -28,6 +28,7 @@ end
 
 When(/^I click "([^"]*)"$/) do |link|
   click_link(link)
+
 end
 
 When(/^I find "([^"]*)"$/) do |id|
@@ -54,4 +55,8 @@ end
 
 Then(/^I should not see "([^"]*)"$/) do |content|
   refute page.has_content?(content)
+end
+
+When(/^I press "enter"$/) do |el|
+  el.send_keys :return
 end

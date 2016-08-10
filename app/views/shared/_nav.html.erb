@@ -44,7 +44,6 @@
 
             <div class="sign-in-out-up col s4 offset-s2">
               <% if signed_in? %>
-                <span class="welcome">Welcome <%= current_user.name %>!</span>
                 <%= link_to "Sign Out", sign_out_path, method: :delete, class: "waves-effect waves-light btn sign-butt" %>
 
               <% else %>

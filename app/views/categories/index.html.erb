@@ -1,31 +1,41 @@
 <div> <%= link_to "Create Category", new_category_path, class: "btn" %> </div>
 
 <% categories.each do |category| %>
-  <ol class="cat-index-list-cat">
-    <h5>
-      <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
-        <%= link_to category.name + " (No items)", category %>
-      <% else %>
-        <%= link_to category.name + " (#{item_count(category)})", category %>
-      <% end %>
-    </h5>
 
-    <% if category.children %>
-      <% category.children.each do |child| %>
-        <li class="cat-index-list-items"><%= "Category: " %><%= link_to child.name, child %></li>
-      <% end %>
-    <% end %>
+<ol class="cat-index-list-cat">
+  <div class="row">
+    <div class="card file-card col m8 offset-m2">
+      <div class="card-content white-text">
+        <span class="card-title">Category:
+        <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
+          <%= link_to category.name + " (No items)", category, class: "link-color" %>
+        <% else %>
+          <%= link_to category.name + " (#{item_count(category)})", category, class: "link-color" %>
+        <% end %></span>
 
-      <% if category.notes %>
-        <% category.notes.each do |note| %>
-          <li class="cat-index-list-items"><%= "Note: " %><%= link_to note.name, note %></li>
+        <% if category.children %>
+          <% category.children.each do |child| %>
+            <li class="cat-index-list-items"><%= "Category: " %><%= link_to child.name, child %></li>
+          <% end %>
         <% end %>
-      <% end %>
 
-      <% if category.photos %>
-        <% category.photos.each do |photo| %>
-          <li class="cat-index-list-items"><%= "Photo: " %><%= link_to photo.name, photo %></li>
-        <% end %>
-      <% end %>
-  </ol>
-<% end %>
+          <% if category.notes %>
+            <% category.notes.each do |note| %>
+              <li class="cat-index-list-items"><%= "Note: " %><%= link_to note.name, note %></li>
+            <% end %>
+          <% end %>
+
+          <% if category.photos %>
+            <% category.photos.each do |photo| %>
+              <li class="cat-index-list-items"><%= "Photo: " %><%= link_to photo.name, photo %></li>
+            <% end %>
+          <% end %>
+        </div>
+
+        </div>
+
+        </div>
+  <% end %>
+
+
+</ol>
