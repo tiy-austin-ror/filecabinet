@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+  before_filter :disable_search, only: [:show, :new, :create, :edit, :update, :destroy]
+
   def index
     if params[:query]
       photos = Photo.where("name ~* '.*#{params[:query]}.*'")

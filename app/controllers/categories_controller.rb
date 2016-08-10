@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_filter :disable_search, only: [:show, :new, :create, :edit, :update, :destroy]
+
   def index
     if params[:query]
       categories = Category.where("name ~* '.*#{params[:query]}.*'")
