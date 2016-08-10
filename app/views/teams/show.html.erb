@@ -1,0 +1,6 @@
+<h3><%= team.name %></h3>
+
+<h5>Team Members:</h5>
+<% team.users.each do |user| %>
+    <p><%= link_to user.name, user %></p>
+<% end %>
