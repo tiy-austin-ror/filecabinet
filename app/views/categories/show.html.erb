@@ -28,7 +28,7 @@
 <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
   <p> This folder is empty! </p>
 <% else %>
-  <% if authorized_any?((category.notes+category.photos)) %>
+  <% if authorized_any?(category.notes + category.photos) %>
 
     <% category.children.each do |child| %>
       <div class="category-name">
@@ -41,7 +41,7 @@
     <% end %>
 
     <% category.notes.each_with_index do |note, i| %>
-      <% if authorized_show?(note) %>
+      <% if has_permission?(note) %>
         <h4><%= link_to note.note_with_type, note %></h4>
         <div>Author: <%= link_to note.user.name, note.user %></div>
         <div>Category: <%= link_to note.category.name, note.category %></div>
@@ -50,7 +50,7 @@
     <% end %>
 
     <% category.photos.each_with_index do |photo, i| %>
-      <% if authorized_show?(photo) %>
+      <% if has_permission?(photo) %>
         <h4><%= link_to photo.name, photo %></h4>
         <div>Author: <%= link_to photo.user.name, photo.user %></div>
         <div>Category: <%= link_to photo.category.name, photo.category %></div>

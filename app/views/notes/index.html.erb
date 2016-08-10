@@ -1,5 +1,5 @@
 <% notes.each_with_index do |note, i| %>
-  <% if authorized_show?(note) %>
+  <% if has_permission?(note) %>
     <h3>
       Note <%= i + 1 %>
     </h3>

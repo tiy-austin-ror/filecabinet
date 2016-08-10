@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
       obj.user_id == current_user.id
     end
   end
+  helper_method :has_permission?
+
+  def authorized_any?(array)
+    return true if array.any?{ |item| has_permission?(item) }
+
+    array.empty?
+  end
+  helper_method :authorized_any?
 
   def current_permission?(obj)
     parents = (obj.category.ancestors << obj.category)
