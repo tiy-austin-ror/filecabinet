@@ -1,5 +1,6 @@
 class Team < ApplicationRecord
-  has_many :members, class_name: "User", foreign_key: "user_id"
+  belongs_to :users
+  has_many :team_members, through: :members, source: :user
 
   validates :name, presence: true
 end

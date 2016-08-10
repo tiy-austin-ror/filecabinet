@@ -7,6 +7,5 @@
   <%= f.text_field :name %>
 </div>
 
-<label for="user_id">Team Members: </label>
-<%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
+<%= f.submit class: "waves-effect waves-light btn" %>
 <% end %>

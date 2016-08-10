@@ -22,8 +22,10 @@ class TeamsController < ApplicationController
   end
 
   def create
-    team = Team.new(tag_params)
-    if current_user.admin?
+    team = Team.new(team_params)
+    if current_user && current_user.admin?
+    else
+      flash[:alert] = "You do not have permission to create teams."
       if team.save
         redirect_to team
       else
