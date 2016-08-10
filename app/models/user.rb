@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :permissions
   has_many :shared_notes, through: :permissions, source: :permission, source_type: "Note"
   has_many :shared_photos, through: :permissions, source: :permission, source_type: "Photo"
+  has_many :shared_categories, through: :permissions, source: :permission, source_type: "Category"
 
   validates :name, presence: true
   validates :email, presence: true
