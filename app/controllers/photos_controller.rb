@@ -5,20 +5,26 @@ class PhotosController < ApplicationController
     else
       photos = Photo.all
     end
-    render locals: { photos: photos }
+    perm_photos = []
+    photos.each do |photo|
+      if current_permission?(photo)
+        perm_photos << photo
+      end
+    end
+    render locals: { photos: perm_photos }
   end
 
   def show
     photo = Photo.find(params[:id])
-    if has_permission?(photo)
-      if photo
+    if photo
+      if current_permission?(photo)
         render locals: { photo: photo, permission: Permission.new }
       else
-        render html: 'Photo not found', status: 404
+        flash[:alert] = "You do not have permission to view this page."
+        redirect_to root_path
       end
     else
-      flash[:alert] = "You do not have permission to view this page."
-      redirect_to root_path
+      render html: 'Photo not found', status: 404
     end
   end
 
@@ -80,9 +86,5 @@ class PhotosController < ApplicationController
   private
   def photo_params
     params.require(:photo).permit(:user_id, :category_id, :name, :desc, :upload)
-  end
-
-  def has_permission?(photo)
-    photo.user_id == current_user.id || current_user.admin? || photo.users_with_access.include?(current_user)
   end
 end

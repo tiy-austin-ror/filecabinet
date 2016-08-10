@@ -1,5 +1,5 @@
 Given(/^I have an existing user account$/) do
-  User.create!(email: "user@example.com", name: "user", password: "password")
+  User.create!(email: "user@example.com", name: "user", password: "password", admin: true)
 end
 
 Given(/^I have an existing category$/) do

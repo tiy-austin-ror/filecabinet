@@ -1,6 +1,10 @@
 class Category < ApplicationRecord
+  belongs_to :user
   has_many :notes
   has_many :photos
+
+  has_many :permissions, as: :permission
+  has_many :users_with_access, through: :permissions, source: :user
 
   has_many :children, class_name: "Category", foreign_key: :parent_category_id
   belongs_to :parent, class_name: "Category", foreign_key: :parent_category_id, optional: true
