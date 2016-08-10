@@ -26,3 +26,16 @@ Scenario: Admin sees team show page
   Then I should see "Team1"
   And I should see "Add Member:"
   And I should see "Team Members:"
+
+Scenario: Admin adds member
+  When I visit "/teams"
+  And I click "Team1"
+  And I press "Create Member"
+  Then I should see "Remove Access"
+
+Scenario: Admin removes member
+  When I visit "/teams"
+  And I click "Team1"
+  And I press "Create Member"
+  And I click "Remove Access"
+  Then I should see "This user is no longer a member of this team."
