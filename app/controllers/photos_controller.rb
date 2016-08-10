@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
     else
       photos = Photo.all
     end
-    render locals: { photos: photos.order(:updated_at) }
+    render locals: { photos: photos }
   end
 
   def show

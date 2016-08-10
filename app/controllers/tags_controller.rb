@@ -1,6 +1,10 @@
 class TagsController < ApplicationController
   def index
-    tags = Tag.all
+    if params[:query]
+      tags = Tag.where("name ~* '.*#{params[:query]}.*'")
+    else
+      tags = Tag.all
+    end
     render locals: { tags: tags }
   end
 

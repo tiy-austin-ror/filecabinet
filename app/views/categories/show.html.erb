@@ -29,9 +29,9 @@
   <% category.children.each do |child| %>
     <div class="category-name">
       <% if [child.children, child.notes, child.photos].all?(&:empty?) %>
-        <%= link_to child.name + " (No items)", child %>
+        <%= "Category: "%><%= link_to child.name + " (No items)", child %>
       <% else %>
-        <%= link_to child.name + " (#{item_count(child)})", child %>
+        <%= "Category: "%><%= link_to child.name + " (#{item_count(child)})", child %>
       <% end %>
     </div>
   <% end %>

@@ -25,31 +25,7 @@
             <div class="input-field col s4 offset-s2">
 
               <div class="search-block">
-                <div class="search-box">
-
-                  <%= form_tag search_path do %>
-                    <input id="search" type="search" class="search full-width" placeholder="Search" name="query" value="">
-                  <% end %>
-
-
-                  <label for="search" remote=true><i class="material-icons">search</i></label>
-                  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-                </div>
-
-                <div class="checkboxes">
-                  <%= check_box_tag(:checkuser) %>
-                  <%= label_tag(:checkuser, "user", data: {remote: true}) %>
-
-                  <%= check_box_tag(:checkcat) %>
-                  <%= label_tag(:checkcat, "category", data: {remote: true}) %>
-
-                  <%= check_box_tag(:checkname) %>
-                  <%= label_tag(:checkname, "name", data: {remote: true}) %>
-
-                  <%= check_box_tag(:checktag) %>
-                  <%= label_tag(:checktag, "tag", data: {remote: true}) %>
-                </div>
-
+                <%= render "shared/search.html.erb" unless @disable_search %>
               </div>
             </div>
 

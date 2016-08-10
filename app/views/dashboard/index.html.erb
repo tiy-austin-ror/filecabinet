@@ -1,12 +1,5 @@
 <h1>Homepage</h1>
 
-<% # if select_box = category ----> category search %>
-<% # if select_box = notes ----> note search %>
-<% # if select_box = photos ----> photo search %>
-<% # if select_box = users ----> user search %>
-<% # if select_box = tags ----> tag search %>
-<% # if select_box = all ----> all search %>
-
 
 <% if users || categories || tags || notes || photos %>
 
@@ -33,16 +26,13 @@
   <div class="check-block">
     <% if params[:checkcat] == '1' %>
       <% categories.each do |category| %>
-        <% unless category.notes.empty? %>
-          <h5><%= "Photos in "%><%= link_to category.name, category %></h5>
+        <% unless [category.notes, category.photos].all?(&:empty?) %>
+          <h5><%= link_to category.name, category %></h5>
           <% category.notes.each do |note| %>
-            <p class="note-show"><%= link_to note.name, note %></p>
+            <p class="note-show"><%= "Notes: "%><%= link_to note.name, note %></p>
           <% end %>
-        <% end %>
-        <% unless category.photos.empty? %>
-          <h5><%= "Photos in "%><%= link_to category.name, category %></h5>
           <% category.photos.each do |photo| %>
-            <p class="photo-show"><%= link_to photo.name, photo %></p>
+            <p class="photo-show"><%= "Photo: "%><%= link_to photo.name, photo %></p>
           <% end %>
         <% end %>
       <% end %>
