@@ -28,28 +28,39 @@
 <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
   <p> This folder is empty! </p>
 <% else %>
-  <% category.children.each do |child| %>
-    <div class="category-name">
-      <% if [child.children, child.notes, child.photos].all?(&:empty?) %>
-        <%= "Category: "%><%= link_to child.name + " (No items)", child %>
-      <% else %>
-        <%= "Category: "%><%= link_to child.name + " (#{item_count(child)})", child %>
+
+  <% if authorized_any?(category.notes + category.photos) %>
+
+    <% category.children.each do |child| %>
+      <div class="category-name">
+        <% if [child.children, child.notes, child.photos].all?(&:empty?) %>
+          <%= link_to child.name + " (No items)", child %>
+        <% else %>
+          <%= link_to child.name + " (#{item_count(child)})", child %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% category.notes.each_with_index do |note, i| %>
+      <% if has_permission?(note) %>
+        <h4><%= link_to note.note_with_type, note %></h4>
+        <div>Author: <%= link_to note.user.name, note.user %></div>
+        <div>Category: <%= link_to note.category.name, note.category %></div>
+        <div>Body: <%= note.body %></div>
       <% end %>
-    </div>
-  <% end %>
+    <% end %>
 
-  <% category.notes.each_with_index do |note, i| %>
-    <h4><%= link_to note.note_with_type, note %></h4>
-    <div>Author: <%= link_to note.user.name, note.user %></div>
-    <div>Category: <%= link_to note.category.name, note.category %></div>
-    <div>Body: <%= note.body %></div>
-  <% end %>
+    <% category.photos.each_with_index do |photo, i| %>
+      <% if has_permission?(photo) %>
+        <h4><%= link_to photo.name, photo %></h4>
+        <div>Author: <%= link_to photo.user.name, photo.user %></div>
+        <div>Category: <%= link_to photo.category.name, photo.category %></div>
+        <div>Description: <%= photo.desc %></div>
+        <div><%= image_tag photo.upload.url(:medium) %></div>
+      <% end %>
+    <% end %>
 
-  <% category.photos.each_with_index do |photo, i| %>
-    <h4><%= link_to photo.name, photo %></h4>
-    <div>Author: <%= link_to photo.user.name, photo.user %></div>
-    <div>Category: <%= link_to photo.category.name, photo.category %></div>
-    <div>Description: <%= photo.desc %></div>
-    <div><%= image_tag photo.upload.url(:medium) %></div>
+  <% else %>
+    <p>You do not have permission to see anything in this category.</p>
   <% end %>
 <% end %>

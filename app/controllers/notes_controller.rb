@@ -7,20 +7,20 @@ class NotesController < ApplicationController
     else
       notes = Note.all
     end
-    render locals: { notes: notes.order(:updated_at) }
+    render locals: { notes: notes.select { |note| current_permission?(note) }.order(:updated_at) }
   end
 
   def show
     note = Note.find(params[:id])
-    if has_permission?(note)
-      if note
+    if note
+      if current_permission?(note)
         render locals: { note: note, permission: Permission.new }
       else
-        render html: 'Note not found', status: 404
+        flash[:alert] = "You do not have permission to view this page."
+        redirect_to root_path
       end
     else
-      flash[:alert] = "You do not have permission to view this page."
-      redirect_to root_path
+      render html: 'Note not found', status: 404
     end
   end
 
@@ -82,9 +82,5 @@ class NotesController < ApplicationController
   private
   def note_params
     params.require(:note).permit(:user_id, :category_id, :name, :body, :file_type)
-  end
-
-  def has_permission?(note)
-    note.user_id == current_user.id || current_user.admin? || note.users_with_access.include?(current_user)
   end
 end

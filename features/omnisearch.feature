@@ -8,7 +8,7 @@ Backgound: An Admin Logs In
     And I press "Submit"
 
 Scenario: An admin clicks "user" and searches "admin"
-  When I click "user"
+  When I check "checkuser"
   And I fill in "search" with "admin"
   And I press enter
   Then I should see "admin"
