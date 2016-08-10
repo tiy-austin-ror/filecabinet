@@ -3,23 +3,21 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def has_permission?(obj)
-    if obj.respond_to?(:user_id)
-      obj.user_id == current_user.id || current_user.admin? || obj.users_with_access.include?(current_user)
-    else
-      current_user.admin? || obj.users_with_access.include?(current_user)
+    if current_user.admin? || obj.users_with_access.include?(current_user)
+      return true
+    elsif obj.respond_to?(:user_id)
+      obj.user_id == current_user.id
     end
   end
 
   def current_permission?(obj)
-    parents = [obj.category.ancestors, obj.category].flatten
-    parents.each do |parent|
-      if has_permission?(parent)
-        return true
-      end
-    end
+    parents = (obj.category.ancestors << obj.category)
+    return true if category_permission?(parents)
 
-    if has_permission?(photo)
-      return true
-    end
+    has_permission?(obj)
+  end
+
+  def category_permission?(categories)
+    categories.any? { |c| has_permission?(c) }
   end
 end

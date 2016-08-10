@@ -5,13 +5,7 @@ class NotesController < ApplicationController
     else
       notes = Note.all
     end
-    perm_notes = []
-    notes.each do |note|
-      if current_permission?(note)
-        perm_notes << note
-      end
-    end
-    render locals: { notes: perm_notes }
+    render locals: { notes: notes.select { |note| current_permission?(note) } }
   end
 
   def show

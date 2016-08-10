@@ -5,13 +5,7 @@ class PhotosController < ApplicationController
     else
       photos = Photo.all
     end
-    perm_photos = []
-    photos.each do |photo|
-      if current_permission?(photo)
-        perm_photos << photo
-      end
-    end
-    render locals: { photos: perm_photos }
+    render locals: { photos: photos.select{ |photo| current_permission?(photo) } }
   end
 
   def show
