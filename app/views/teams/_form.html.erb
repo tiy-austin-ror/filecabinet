@@ -1,9 +1,12 @@
 <div><h3><%= form_title %></h3></div>
 
+<%= form_for(team) do |f| %>
+
 <div class="text-field">
-  <%= form.label :name %>
-  <%= form.text_field :name %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 </div>
 
 <label for="user_id">Team Members: </label>
 <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
+<% end %>
