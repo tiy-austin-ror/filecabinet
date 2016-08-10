@@ -1,5 +1,16 @@
-<h3><%= team.name %></h3>
+<h3><%= team.name.capitalize %></h3>
 
-<h5>Team Members:</h5>
-  <% team.users %>
-    
+  <%= form_for(member) do |f| %>
+    <label for="user_id">Add Member: </label>
+    <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
+    <%= f.hidden_field :team_id, value: team.id %>
+    <div>
+      <%= f.submit class: "waves-effect waves-light btn" %>
+    </div>
+  <% end %>
+
+  <p>Team Members: </p>
+  <% team.members.uniq.each do |tm| %>
+    <p><%= tm.user.name.capitalize %>
+       <%= link_to "Remove Access", member_path(tm), method: :delete %></p>
+  <% end %>

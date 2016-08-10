@@ -1,8 +1,6 @@
 class Team < ApplicationRecord
-  belongs_to :users, optional: true
-
-  has_many :members, as: :member
-  has_many :team_members, through: :members, source: :user
+  has_many :members
+  has_many :users, through: :members
 
   validates :name, presence: true
 end

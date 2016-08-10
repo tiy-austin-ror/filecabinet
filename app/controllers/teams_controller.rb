@@ -11,7 +11,7 @@ class TeamsController < ApplicationController
   def show
   team = Team.find(params[:id])
     if team
-      render locals: { team: team }
+      render locals: { team: team, member: Member.new }
     else
       render html: 'Team not found', status: 404
     end
@@ -68,7 +68,6 @@ class TeamsController < ApplicationController
       end
     else
       flash[:alert] = "You do not have permission to delete teams."
-      redirect_to root_path
     end
   end
 
