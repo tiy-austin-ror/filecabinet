@@ -16,10 +16,12 @@ class Clearance::UsersController < Clearance::BaseController
   end
 
   def show
-    User.find(params.fetch(:id))
-    render template: 'users/show.html.erb', locals: {
-      user: User.find(params.fetch(:id))
-    }
+    user = User.find(params.fetch(:id))
+    if signed_in?
+      render template: 'users/show.html.erb', locals: { user: user }
+    else
+      redirect_to sign_in_path
+    end
   end
 
   def new

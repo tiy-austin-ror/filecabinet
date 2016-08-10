@@ -1,0 +1,55 @@
+
+
+<div>
+  <%= link_to "Create Category", new_category_path(parent_category_id: params[:id]), class: "btn" %>
+</div>
+
+<h3> <%= category.name.capitalize %> </h3>
+
+<h6 class="category-path">
+  <%= "Current Path: " %>
+  <% if category.parent %>
+    <%= link_to "Categories", categories_path, id: "in-page" %>
+      <% category.ancestors.each do |lynx| %>
+      <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
+      <%= link_to lynx.name, category_path(lynx) %>
+    <% end %>
+
+    <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
+    <strong><%= link_to category.name, category_path(category) %></strong>
+
+  <% else %>
+    <%= link_to "Categories", categories_path %>
+    <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
+    <strong><%= link_to category.name, category %></strong>
+  <% end %>
+</h6>
+
+<% if [category.children, category.notes, category.photos].all?(&:empty?) %>
+  <p> This folder is empty! </p>
+<% else %>
+  <% category.children.each do |child| %>
+    <div class="category-name">
+      <% if [child.children, child.notes, child.photos].all?(&:empty?) %>
+        <%= link_to child.name + " (No items)", child %>
+      <% else %>
+        <%= link_to child.name + " (#{item_count(child)})", child %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% category.notes.each_with_index do |note, i| %>
+    <h4><%= link_to note.note_with_type, note %></h4>
+    <div>Author: <%= link_to note.user.name, note.user %></div>
+    <div>Category: <%= link_to note.category.name, note.category %></div>
+    <div>Body: <%= note.body %></div>
+  <% end %>
+
+  <% category.photos.each_with_index do |photo, i| %>
+    <h4><%= link_to photo.name, photo %></h4>
+    <div>Author: <%= link_to photo.user.name, photo.user %></div>
+    <div>Category: <%= link_to photo.category.name, photo.category %></div>
+    <div>Description: <%= photo.desc %></div>
+    <div><%= image_tag photo.upload.url(:medium) %></div>
+  <% end %>
+<% end %>

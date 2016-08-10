@@ -1,15 +1,24 @@
 class PhotosController < ApplicationController
   def index
-    photos = Photo.all
+    if params[:query]
+      photos = Photo.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
+    else
+      photos = Photo.all
+    end
     render locals: { photos: photos }
   end
 
   def show
     photo = Photo.find(params[:id])
-    if photo
-      render locals: { photo: photo }
+    if has_permission?(photo)
+      if photo
+        render locals: { photo: photo, permission: Permission.new }
+      else
+        render html: 'Photo not found', status: 404
+      end
     else
-      render html: 'Photo not found', status: 404
+      flash[:alert] = "You do not have permission to view this page."
+      redirect_to root_path
     end
   end
 
@@ -18,10 +27,12 @@ class PhotosController < ApplicationController
   end
 
   def create
-    photo = Photo.new(photo_params)
+    photo = current_user.photos.build(photo_params)
     if photo.save
+      Tagging.create_tags(photo, params)
       redirect_to photo
     else
+      flash[:alert] = "Photo could not be created: #{photo.errors.full_messages}"
       render :new, locals: { photo: photo }
     end
   end
@@ -32,30 +43,46 @@ class PhotosController < ApplicationController
 
   def update
     photo = Photo.find(params[:id])
-    if photo
-      if photo.update(photo_params)
-        redirect_to photo
+    if has_permission?(photo)
+      if photo
+        if photo.update(photo_params)
+          Tagging.update_tags(photo, params)
+          redirect_to photo
+        else
+          flash[:alert] = photo.errors.full_messages[0]
+          render :edit
+        end
       else
-        render :edit
+        render html: 'Photo not found', status: 404
       end
     else
-      render html: 'Photo not found', status: 404
+      flash[:alert] = "You do not have permission to view this page."
+      redirect_to root_path
     end
   end
 
   def destroy
     photo = Photo.find(params[:id])
-    if photo
-      photo.destroy
-      flash[:notice] = "Photo deleted"
-      redirect_to photos
+    if has_permission?(photo)
+      if photo
+        photo.destroy
+        flash[:notice] = "Photo deleted"
+        redirect_to photos
+      else
+        flash[:alert] = photo.errors
+      end
     else
-      flash[:alert] = photo.errors
+      flash[:alert] = "You do not have permission to delete this photo."
+      redirect_to root_path
     end
   end
 
   private
   def photo_params
-    params.require(:photo).permit(:user_id, :category_id, :name, :body, :file_type)
+    params.require(:photo).permit(:user_id, :category_id, :name, :desc, :upload)
+  end
+
+  def has_permission?(photo)
+    photo.user_id == current_user.id || current_user.admin? || photo.users_with_access.include?(current_user)
   end
 end

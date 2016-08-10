@@ -15,12 +15,13 @@
  */
  @import "materialize/components/color";
  $primary-color: #40798C;
- $secondary-color: #1F363D;
+ $secondary-color: #FF4C4C;
  @import "materialize";
 
  .main-header {
-   header-title {
+   .header-title {
      margin-top: 10px;
+     font-family: cursive;
    }
    .search-box{
      margin: 20px;
@@ -30,3 +31,72 @@
     width: 50%;
    }
  }
+
+ .file-card {
+   background-color: #FF4C4C;
+   &:hover {
+     box-shadow: 5px 5px 5px grey;
+   }
+ }
+
+ .link-color {
+   color: white;
+   &:hover {
+     text-decoration: underline;
+   }
+
+ }
+
+.main-header {
+  header-title {
+   margin-top: 10px;
+  }
+  .app-title {
+    min-width: 150px;
+  }
+  .search-box{
+    margin: 20px;
+    #search {
+      max-height: 20px;
+      border-radius: 5px;
+      padding-left: 2rem;
+      width: 220px;
+    }
+    .material-icons {
+      margin-left: 15px;
+      font-size: 180%;
+    position: relative;
+    top: -1px;
+    }
+  }
+    .search-icon {
+      margin: auto;
+      width: 50%;
+    }
+    .input-field {
+      width: 50%;
+      display: inline-flex;
+    }
+  }
+
+.heading-block {
+  display: flex;
+  .heading {
+    text-align: center;
+    min-width: 40px;
+  }
+  .cat {
+    min-width: 70px;
+  }
+}
+
+.sign-in-out-up {
+  display: inline-flex;
+  top: 10px;
+  position: relative;
+  .sign-butt {
+    padding: 0 15px 0 15px;
+    min-width: 110px;
+    margin: 0 2px 0 2px;
+  }
+}
