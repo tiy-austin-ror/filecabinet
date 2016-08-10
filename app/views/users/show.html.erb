@@ -1,4 +1,6 @@
 <h3>Uploaded by <%= link_to user.name, user %>:</h3>
+<p><%= user.name.capitalize %> has uploaded <%= user.note_count %> notes and <%= user.photo_count %> photos in the last week<p>
+<p><%= user.name.capitalize %> has uploaded <%= user.notes.count %> total notes and <%= user.photos.count %> total photos<p>
 
 <% user.photos.each do |photo| %>
   <% if authorized_show?(photo) %>

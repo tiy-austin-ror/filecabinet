@@ -3,7 +3,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def has_permission?(obj)
-    obj.user_id == current_user.id || current_user.admin? || obj.users_with_access.include?(current_user)
+    if obj.respond_to?(:user_id)
+      obj.user_id == current_user.id || current_user.admin? || obj.users_with_access.include?(current_user)
+    else
+      current_user.admin? || obj.users_with_access.include?(current_user)
+    end
   end
 
   def current_permission?(obj)

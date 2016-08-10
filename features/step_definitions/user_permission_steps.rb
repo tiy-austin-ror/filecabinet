@@ -15,7 +15,7 @@ When(/^there is an existing photo$/) do
 end
 
 When(/^there is an existing category$/) do
-  Category.create!(name: "Category", user: User.first)
+  Category.create!(name: "Category")
 end
 
 Given(/^another user account exists$/) do

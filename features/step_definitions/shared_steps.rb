@@ -2,8 +2,12 @@ Given(/^I have an existing user account$/) do
   @___user = User.create!(email: "user@example.com", name: "user", password: "password", admin: true)
 end
 
+Given(/^I have an existing admin account$/) do
+  User.create!(email: "admin@example.com", name: "admin", password: "password", admin: true)
+end
+
 Given(/^I have an existing category$/) do
-  Category.create!(name: "category-name", user: User.first)
+  Category.create!(name: "category-name")
 end
 
 Given(/^I have an existing photo$/) do
