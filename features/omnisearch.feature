@@ -8,7 +8,8 @@ Backgound: An Admin Logs In
     And I press "Submit"
 
 Scenario: An admin clicks "user" and searches "admin"
-  When I check "checkuser"
+  When I visit "/"
+  When I check "#checkbox-user"
   And I fill in "search" with "admin"
-  And I press enter
+  And I press enter in "#search"
   Then I should see "admin"

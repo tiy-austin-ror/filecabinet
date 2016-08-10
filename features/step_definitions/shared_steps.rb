@@ -1,5 +1,5 @@
 Given(/^I have an existing user account$/) do
-  @___user = User.create!(email: "user@example.com", name: "user", password: "password", admin: true)
+  User.create!(email: "user@example.com", name: "user", password: "password", admin: false)
 end
 
 Given(/^I have an existing admin account$/) do
@@ -11,11 +11,11 @@ Given(/^I have an existing category$/) do
 end
 
 Given(/^I have an existing photo$/) do
-  Photo.create!(name: "photo", desc: "description", category: Category.first, user: @___user, upload: "http://imgs.xkcd.com/comics/tags.png")
+  Photo.create!(name: "photo", desc: "description", category: Category.first, user: User.first, upload: "http://imgs.xkcd.com/comics/tags.png")
 end
 
 Given(/^I have an existing note$/) do
-  Note.create!(name: "note", body: "body", file_type: "txt", category: Category.first, user: @___user)
+  Note.create!(name: "note", body: "body", file_type: "txt", category: Category.first, user: User.first)
 end
 
 When(/^I visit "([^"]*)"$/) do |path|
@@ -57,9 +57,10 @@ Then(/^I should not see "([^"]*)"$/) do |content|
   refute page.has_content?(content)
 end
 
-When(/^I press "enter"$/) do |el|
-  el.send_keys :return
+When(/^I press enter in "([^"]*)"$/) do |el|
+  page.find(el).send_keys :return
 end
 
 When(/^I check "([^"]*)"$/) do |checkbox|
-page.find :id, "#{checkbox}"
+  page.find(checkbox)
+end
