@@ -25,21 +25,23 @@
   .app-title {
     min-width: 150px;
   }
-  .search-box{
+  .search-box {
     margin: 20px;
+    height: 20px;
+    margin-bottom: 0;
     #search {
       max-height: 20px;
       border-radius: 5px;
       padding-left: 2rem;
       width: 220px;
+      margin: 0;
     }
     .material-icons {
       margin-left: 15px;
       font-size: 180%;
-    position: relative;
-    top: -1px;
+      position: relative;
+      top: -1px;
     }
-  }
     .search-icon {
       margin: auto;
       width: 50%;
@@ -49,6 +51,16 @@
       display: inline-flex;
     }
   }
+  .checkboxes {
+    max-height: 20px;
+    display: flex;
+    label {
+      padding-left: 25px;
+      margin-left: 5px;
+      color: lightgray;
+    }
+  }
+}
 
 .heading-block {
   display: flex;

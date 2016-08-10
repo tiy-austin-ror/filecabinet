@@ -8,20 +8,49 @@
 <% # if select_box = all ----> all search %>
 
 
-<% if categories %>
-  <% categories.each do |category| %>
-    <p><%= link_to category.name, category %></p>
-  <% end %>
-<% end %>
+<% if users || categories || notes || photos %>
 
-<% if notes %>
-  <% notes.each do |note| %>
-    <p><%= link_to note.name, note %></p>
+  <% unless users.empty? %>
+    <% unless params[:checkuser] == '0' %>
+      <h2>Users: </h2>
+        <% users.each do |user| %>
+          <p><%= link_to user.name, user %></p>
+        <% end %>
+      <% end %>
   <% end %>
-<% end %>
 
-<% if photos %>
-  <% photos.each do |photo| %>
-    <p><%= link_to photo.name, photo %></p>
+
+  <% unless categories.empty? %>
+    <% unless params[:checkcat] == '0' %>
+      <h2>Categories: </h2>
+      <% categories.each do |category| %>
+        <p>
+          <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
+            <%= link_to category.name + " (No items)", category %>
+          <% else %>
+            <%= link_to category.name + " (#{item_count(category)})", category %>
+          </p>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% unless notes.empty? %>
+    <% unless params[:checknote] == '0' %>
+      <h2>Notes: </h2>
+      <% notes.each do |note| %>
+        <p><%= link_to note.name, note %></p>
+      <% end %>
+    <% end %>
+  <% end %>
+
+
+  <% unless photos.empty? %>
+    <% unless params[:checkphoto] == '0' %>
+      <h2>Photos: </h2>
+      <% photos.each do |photo| %>
+        <p><%= link_to photo.name, photo %></p>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>
