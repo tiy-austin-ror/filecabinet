@@ -57,6 +57,7 @@ gem 'faker'
 gem 'kaminari'
 gem "clearance"
 gem "paperclip", "~> 5.0.0"
+gem 'aws-sdk', '>= 2.0.34'
 group :production do
   gem 'rails_12factor'
 end
