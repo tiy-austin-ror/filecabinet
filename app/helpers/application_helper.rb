@@ -1,6 +1,6 @@
 module ApplicationHelper
   def authorized_show?(object)
-    object.user_id == current_user.id || current_user.admin?
+    object.user_id == current_user.id || current_user.admin? || object.users_with_access.include?(current_user)
   end
 
   def authorized_edit?(object)
