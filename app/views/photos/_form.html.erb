@@ -22,6 +22,15 @@
       <%= f.file_field :upload %>
     </div>
 
+    <% if params[:action] == 'edit' %>
+      <% photo.tags.each do |tag| %>
+        <div class='chip'>
+          <%= link_to tag.name, tag %>
+          <i class="tiny close material-icons">close</i>
+        </div>
+      <% end %>
+    <% end %>
+
     <div>
       <label for="tags">Tags (comma-separated): </label>
       <%= fields_for :tags do |tag_fields| %>

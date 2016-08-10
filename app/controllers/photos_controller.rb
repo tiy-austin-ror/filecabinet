@@ -12,7 +12,7 @@ class PhotosController < ApplicationController
     photo = Photo.find(params[:id])
     if has_permission?(photo)
       if photo
-        render locals: { photo: photo }
+        render locals: { photo: photo, permission: Permission.new }
       else
         render html: 'Photo not found', status: 404
       end
@@ -29,14 +29,10 @@ class PhotosController < ApplicationController
   def create
     photo = current_user.photos.build(photo_params)
     if photo.save
-      params["tags"]["name"].split(",").each do |tag|
-        next if tag.blank?
-        t = Tag.find_or_create_by(name: tag.strip.downcase)
-        Tagging.find_or_create_by(tag: t, note: note)
-      end
+      Tagging.create_tags(photo, params)
       redirect_to photo
     else
-       flash[:alert] = photo.errors.full_messages[0]
+      flash[:alert] = "Photo could not be created: #{photo.errors.full_messages}"
       render :new, locals: { photo: photo }
     end
   end
@@ -50,6 +46,7 @@ class PhotosController < ApplicationController
     if has_permission?(photo)
       if photo
         if photo.update(photo_params)
+          Tagging.update_tags(photo, params)
           redirect_to photo
         else
           flash[:alert] = photo.errors.full_messages[0]
@@ -86,6 +83,6 @@ class PhotosController < ApplicationController
   end
 
   def has_permission?(photo)
-    photo.user_id == current_user.id || current_user.admin?
+    photo.user_id == current_user.id || current_user.admin? || photo.users_with_access.include?(current_user)
   end
 end
