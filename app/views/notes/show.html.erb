@@ -2,7 +2,7 @@
 <% if has_permission?(note) %>
 <div class="row">
   <div class="card file-card col m8 offset-m2">
-      <div class="card-content white-text">
+      <div class="card-content">
         <h3 class="card-title">Note:</h3>
         <div>Name: <%= note.note_with_type %></div>
         <div>Author: <%= link_to note.user.name, note.user %></div>
