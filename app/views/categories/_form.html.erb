@@ -6,6 +6,8 @@
 
   <%= f.hidden_field :parent_category_id, value: params[:parent_category_id] %>
 
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
   <div>
     <%= f.submit class: "btn"%>
   </div>

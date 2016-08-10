@@ -1,4 +1,11 @@
 module ApplicationHelper
+  def authorized_any?(array)
+    array.each do |item|
+      return true if authorized_show?(item)
+    end
+    false
+  end
+
   def authorized_show?(object)
     object.user_id == current_user.id || current_user.admin?
   end

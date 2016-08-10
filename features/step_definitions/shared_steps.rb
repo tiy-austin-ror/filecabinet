@@ -1,17 +1,17 @@
 Given(/^I have an existing user account$/) do
-  User.create!(email: "user@example.com", name: "user", password: "password", admin: true)
+  @___user = User.create!(email: "user@example.com", name: "user", password: "password", admin: true)
 end
 
 Given(/^I have an existing category$/) do
-  Category.create!(name: "category-name")
+  Category.create!(name: "category-name", user: User.first)
 end
 
 Given(/^I have an existing photo$/) do
-  Photo.create!(name: "photo", desc: "description", category: Category.first, user: User.first, upload: "http://imgs.xkcd.com/comics/tags.png")
+  Photo.create!(name: "photo", desc: "description", category: Category.first, user: @___user, upload: "http://imgs.xkcd.com/comics/tags.png")
 end
 
 Given(/^I have an existing note$/) do
-  Note.create!(name: "note", body: "body", file_type: "txt", category: Category.first, user: User.first)
+  Note.create!(name: "note", body: "body", file_type: "txt", category: Category.first, user: @___user)
 end
 
 When(/^I visit "([^"]*)"$/) do |path|
