@@ -37,6 +37,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'cucumber-rails', require: false
   gem 'capybara'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -56,6 +57,7 @@ gem 'faker'
 gem 'kaminari'
 gem "clearance"
 gem "paperclip", "~> 5.0.0"
+gem 'aws-sdk', '>= 2.0.34'
 group :production do
   gem 'rails_12factor'
 end
