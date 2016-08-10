@@ -27,7 +27,7 @@ Feature: User tags notes
     And I click "Categories"
     And I click "category-name"
     And I click "note"
-    And I click "Edit"
+    And I click "Edit Note"
     And I fill in "tags[name]" with "tag1"
     And I press "Update Note"
     Then I should see "Note:"
