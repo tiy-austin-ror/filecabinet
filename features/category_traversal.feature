@@ -30,6 +30,7 @@ Scenario: Existing User Goes to Category show(2)
   And I visit "/categories"
   And I click "Parent Category2"
   Then I should see "Current Path: Categories"
+  And I should see "Parent Category2"
   And I should see "Child Category3"
 
 Scenario: Existing User goes to Category Show(3)

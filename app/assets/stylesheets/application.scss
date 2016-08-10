@@ -15,8 +15,16 @@
  */
  @import "materialize/components/color";
  $primary-color: #40798C;
- $secondary-color: #FF4C4C;
+ $secondary-color: #7D2629;
+ $delete-button-color: #D91C12;
  @import "materialize";
+
+ .btn {
+    background-color: $primary-color;
+    &:hover {
+      background-color: lighten($primary-color, 10%);
+    }
+ }
 
  .main-header {
    .header-title {
@@ -33,7 +41,7 @@
  }
 
  .file-card {
-   background-color: #FF4C4C;
+   border: solid 0.1em #734846;
    &:hover {
      box-shadow: 5px 5px 5px grey;
    }
@@ -52,7 +60,7 @@
  }
 
  .link-color {
-   color: white;
+   color: $primary-color;
    &:hover {
      text-decoration: underline;
    }

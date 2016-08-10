@@ -28,7 +28,7 @@ Feature: User tags photos
     And I click "Categories"
     And I click "category-name"
     And I click "photo"
-    And I click "Edit"
+    And I click "Edit Photo"
     And I fill in "tags[name]" with "tag1"
     And I press "Update Photo"
     Then I should see "Photo:"
