@@ -3,6 +3,11 @@
   <% teams.each do |team| %>
     <p>
       <%= link_to team.name.capitalize, team %>
+      <% if team.members.count.zero? %>
+        <%= " (No members)" %>
+      <% else %>
+        (<%= pluralize(team.members.count, 'member') %>)
+      <% end %>
     </p>
   <% end %>
 </ol>

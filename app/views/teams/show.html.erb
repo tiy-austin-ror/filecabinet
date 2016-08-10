@@ -10,7 +10,7 @@
   <% end %>
 
   <p>Team Members: </p>
-  <% team.members.uniq.each do |tm| %>
+  <% team.members.each do |tm| %>
     <p><%= tm.user.name.capitalize %>
        <%= link_to "Remove Access", member_path(tm), method: :delete %></p>
   <% end %>
