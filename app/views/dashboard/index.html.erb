@@ -13,25 +13,29 @@
   <% unless users.empty? %>
     <% unless params[:checkuser] == '0' %>
       <% users.each do |user| %>
-      <h2><%= "#{user.name}'s Notes: " %> </h2>
+        <h2><%= "#{user.name}'s Notes: " %> </h2>
         <% user.notes.each do |note| %>
           <p><%= link_to note.name, note %></p>
+        <% end %>
+      <% end %>
+      <% users.each do |user| %>
+        <h2><%= "#{user.name}'s Photos: " %> </h2>
+        <% user.photos.each do |photo| %>
+          <p><%= link_to photo.name, photo %></p>
         <% end %>
       <% end %>
     <% end %>
   <% end %>
 
-
   <% unless categories.empty? %>
     <% unless params[:checkcat] == '0' %>
-      <h2>Categories: </h2>
       <% categories.each do |category| %>
-        <p>
-          <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
-            <%= link_to category.name + " (No items)", category %>
-          <% else %>
-            <%= link_to category.name + " (#{item_count(category)})", category %>
-          </p>
+        <h2><%= "Notes in #{category.name}: " %> </h2>
+        <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
+          <%= link_to category.name + " (No items)", category %>
+        <% else %>
+          <%= link_to category.name + " (#{item_count(category)})", category %>
+        </p>
         <% end %>
       <% end %>
     <% end %>
