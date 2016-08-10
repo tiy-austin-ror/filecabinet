@@ -1,11 +1,11 @@
 class DashboardController < ApplicationController
   def index
-    if params[:query]
-      categories = Category.where("name ~* '.*#{params[:query]}.*'")
-      notes = Note.where("name ~* '.*#{params[:query]}.*'").order(:updated_at)
-      photos = Photo.where("name ~* '.*#{params[:query]}.*'").order(:updated_at)
-      users = User.where("name ~* '.*#{params[:query]}.*'").order("created_at DESC")
-      tags = Tag.where("name ~* '.*#{params[:query]}.*'")
+    if params[:search]
+      categories = Category.where("name ~* '.*#{params[:search]}.*'")
+      notes = Note.where("name ~* '.*#{params[:search]}.*'").order(:updated_at)
+      photos = Photo.where("name ~* '.*#{params[:search]}.*'").order(:updated_at)
+      users = User.where("name ~* '.*#{params[:search]}.*'").order("created_at DESC")
+      tags = Tag.where("name ~* '.*#{params[:search]}.*'")
     else
       categories = []
       notes = Note.where(user: current_user)

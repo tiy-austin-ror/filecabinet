@@ -7,9 +7,11 @@ Backgound: An Admin Logs In
     And I fill in "Password" with "password"
     And I press "Submit"
 
+@javascript
 Scenario: An admin clicks "user" and searches "admin"
   When I visit "/"
-  When I check "#checkbox-user"
+  When I check "#checkuser"
   And I fill in "search" with "admin"
   And I press enter in "#search"
+  And I debug
   Then I should see "admin"

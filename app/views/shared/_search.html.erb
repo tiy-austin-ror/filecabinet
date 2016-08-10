@@ -1,14 +1,13 @@
-
 <div class="checkboxes">
-  <%= check_box_tag(:checkuser) %>
-  <%= label_tag(:checkuser, "user", data: {remote: true}, id: "checkbox-user" ) %>
+  <%= check_box_tag(:checkuser, '1', params[:checkuser]) %>
+  <%= label_tag(:checkuser, "user") %>
 
-  <%= check_box_tag(:checkcat) %>
-  <%= label_tag(:checkcat, "category", data: {remote: true} ) %>
+  <%= check_box_tag(:checkcat, '1', params[:checkcat]) %>
+  <%= label_tag(:checkcat, "category") %>
 
-  <%= check_box_tag(:checkname) %>
-  <%= label_tag(:checkname, "name", data: {remote: true} ) %>
+  <%= check_box_tag(:checkname, '1', params[:checkname]) %>
+  <%= label_tag(:checkname, "name") %>
 
-  <%= check_box_tag(:checktag) %>
-  <%= label_tag(:checktag, "tag", data: {remote: true} ) %>
+  <%= check_box_tag(:checktag, '1', params[:checktag]) %>
+  <%= label_tag(:checktag, "tag") %>
 </div>

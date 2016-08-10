@@ -28,7 +28,6 @@ end
 
 When(/^I click "([^"]*)"$/) do |link|
   click_link(link)
-
 end
 
 When(/^I find "([^"]*)"$/) do |id|
@@ -42,6 +41,7 @@ end
 
 When(/^I debug$/) do
   puts page.html
+  save_and_open_page
   binding.pry
 end
 
@@ -58,9 +58,9 @@ Then(/^I should not see "([^"]*)"$/) do |content|
 end
 
 When(/^I press enter in "([^"]*)"$/) do |el|
-  page.find(el).send_keys :return
+  page.find(el).send_keys :enter
 end
 
 When(/^I check "([^"]*)"$/) do |checkbox|
-  page.find(checkbox)
+  page.find(checkbox).click
 end
