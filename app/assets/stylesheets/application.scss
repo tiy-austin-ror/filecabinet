@@ -56,7 +56,6 @@
    &:hover {
      text-decoration: underline;
    }
-
  }
 
 .main-header {
@@ -74,7 +73,6 @@
     #search {
       max-height: 20px;
       border-radius: 5px;
-      padding-left: 2rem;
       width: 220px;
       margin: 0;
       border: 1px solid #5A5A5A;
@@ -141,10 +139,9 @@
 
 .cat-index-list-cat, .dash-list-block {
   padding: 0px;
-}
-
-.cat-index-list-items, .dash-list-item {
-  margin-left: 40px;
+  .cat-index-list-items, .dash-list-item {
+    margin-left: 40px;
+  }
 }
 
 .sign-butt {
