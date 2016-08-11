@@ -1,5 +1,6 @@
-List of Users:
-<ol class="user-index">
+<%= link_to "Teams", teams_path, class: "waves-effect waves-light btn" %></a>
+
+<ol>
   <% users.each do |user| %>
     <p>
       <%= link_to user.name, user %>
