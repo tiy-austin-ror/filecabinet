@@ -134,15 +134,14 @@
   }
 }
 
-
 //######### Dashboard ############//
 
 
 //######### Note/Photo Show ############//
 
 .file-card-show {
-  border: solid 0.1em #734846;
-  height: auto;
+  border-bottom: solid 0.1em #DED4D3;
+  border-right: solid 0.1em #DED4D3;
   &:hover {
     box-shadow: 5px 5px 5px grey;
   }
@@ -157,7 +156,6 @@
       }
     }
     .note-title {
-      height: 45px;
       font-size: 40px;
     }
     .time {

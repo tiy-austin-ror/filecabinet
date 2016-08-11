@@ -24,9 +24,7 @@
       <div class="card-content-show">
         <h2 class="card-title-show note-title"><span class="waves-effect"><i class="material-icons note-photo-icon">description</i></span><%= note.note_with_type %></h2>
         <h6 class="card-name-cat-show">
-          <div>
-            <small class="time"><%= "created #{distance_of_time_in_words(Time.now, note.created_at)} ago by "%> <%= link_to note.user.name, note.user %></small>
-          </div>
+          <sup class="time"><%= "created #{distance_of_time_in_words(Time.now, note.created_at)} ago by "%> <%= link_to note.user.name, note.user %></sup>
         </h6>
         <h5><%= note.body %></h5>
         <div>
@@ -43,28 +41,27 @@
           <% end %>
         </div>
       </div>
+      <%= form_for(permission) do |f| %>
+        <label for="user_id">Users with Additional Access: </label>
+        <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
+
+        <%= f.check_box(:full_access, {}, true, false) %>
+        <label for="permission_full_access">Full Access? </label>
+
+        <%= f.hidden_field :permission_id, value: note.id %>
+        <%= f.hidden_field :permission_type, value: note.class %>
+
+        <div>
+          <%= f.submit class: "waves-effect waves-light btn" %>
+        </div>
+      <% end %>
+
+      <p>Users with Permission: </p>
+      <% note.users_with_access.uniq.each do |u| %>
+        <p><%= u.name.capitalize %></p>
+      <% end %>
     </div>
   </div>
 <% else %>
   <span></span>
-<% end %>
-
-<%= form_for(permission) do |f| %>
-  <label for="user_id">Users with Additional Access: </label>
-  <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
-
-  <%= f.check_box(:full_access, {}, true, false) %>
-  <label for="permission_full_access">Full Access? </label>
-
-  <%= f.hidden_field :permission_id, value: note.id %>
-  <%= f.hidden_field :permission_type, value: note.class %>
-
-  <div>
-    <%= f.submit class: "waves-effect waves-light btn" %>
-  </div>
-<% end %>
-
-<p>Users with Permission: </p>
-<% note.users_with_access.uniq.each do |u| %>
-  <p><%= u.name.capitalize %></p>
 <% end %>
