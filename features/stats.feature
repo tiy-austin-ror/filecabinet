@@ -15,6 +15,6 @@ Background: An Admin Logs In
 Scenario: Admin sees user stats
   When I visit "/users"
   And I click "admin"
-  Then I should see "has uploaded"
-  And I should see "photos in the last week"
-  And I should see "total photos"
+  Then I should see "Uploads"
+  And I should see "Last week"
+  And I should see "All time"

@@ -1,28 +1,32 @@
 <header class="main-header">
   <nav>
     <div class="row">
-      <div class="col s2 app-title">
-        <p class="header-title"><h5>(App Name)</h5></p>
+      <div class="col s1 app-title">
+        <p class="header-title"><h5>Teamshare</h5></p>
       </div>
 
       <div class="col s3 push-1 heading-block">
-        <div class="col s4 heading">
+        <div class="col s3 heading">
           <%= link_to "Home", root_path %>
         </div>
 
-        <div class="col s4 heading cat">
-          <%= link_to "Categories", categories_path, id: "in-nav" %>
+        <div class="col s3 heading">
+          <%= link_to "Users", users_path %>
         </div>
 
-        <div class="col s4 heading">
-          <%= link_to "Users", users_path %>
+        <div class="col s3 heading">
+          Teams
+        </div>
+
+        <div class="col s3 heading cat">
+          <%= link_to "Categories", categories_path, id: "in-nav" %>
         </div>
       </div>
 
       <div class="col s6">
         <div class="nav-wrapper">
           <form>
-            <div class="input-field col s4 offset-s2">
+            <div class="input-field col s4">
 
               <div class="search-box">
 
@@ -37,14 +41,18 @@
 
             </div>
 
-            <div class="sign-in-out-up col s4 offset-s2">
+            <div class="sign-in-out-up col s6 offset-s2">
               <% if signed_in? %>
-                Welcome <%= current_user.name %>!
-                <%= link_to "Sign Out", sign_out_path, method: :delete, class: "waves-effect waves-light btn sign-butt" %>
-
+                <div class="col s6 offset-s6 heading">
+                  <%= link_to "Sign Out", sign_out_path, method: :delete %>
+                </div>
               <% else %>
-                <%= link_to "Sign In", sign_in_path, class: "waves-effect waves-light btn sign-butt" %>
-                <%= link_to "Sign Up", sign_up_path, class: "waves-effect waves-light btn sign-butt" %>
+                <div class="col s6 heading">
+                  <%= link_to "Sign In", sign_in_path %>
+                </div>
+                <div class="col s6 heading">
+                  <%= link_to "Sign Up", sign_up_path %>
+                </div>
               <% end %>
             </div>
           </form>

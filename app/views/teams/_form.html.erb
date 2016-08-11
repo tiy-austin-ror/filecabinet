@@ -1,0 +1,11 @@
+<div><h3><%= form_title %></h3></div>
+
+<%= form_for(team) do |f| %>
+
+<div class="text-field">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+
+<%= f.submit class: "waves-effect waves-light btn" %>
+<% end %>
