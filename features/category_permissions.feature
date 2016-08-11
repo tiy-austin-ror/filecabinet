@@ -10,6 +10,7 @@ Background: A User Logs In
   And I fill in "Email" with "user2@example.com"
   And I fill in "Password" with "password"
   And I press "Submit"
+  Then I should see "Create Note"
 
 Scenario: User sees the proper notification in a category they have no permission to see
   When I visit "/categories"

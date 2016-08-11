@@ -12,8 +12,7 @@ Feature: User tags notes
     And I fill in "note[body]" with "note body"
     And I fill in "tags[name]" with "tag1"
     And I press "Create Note"
-    Then I should see "Note:"
-    And I should not see "Note could not be created"
+    Then I should not see "Note could not be created"
     And I should see "tag1"
 
   Scenario: User edits a note
@@ -27,9 +26,8 @@ Feature: User tags notes
     And I click "Categories"
     And I click "category-name"
     And I click "note"
-    And I click "Edit Note"
+    And I click "Edit"
     And I fill in "tags[name]" with "tag1"
     And I press "Update Note"
-    Then I should see "Note:"
-    And I should not see "Note could not be created"
+    Then I should not see "Note could not be created"
     And I should see "tag1"

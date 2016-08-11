@@ -1,40 +1,66 @@
-<h3>Photo:</h3>
+<h5 class="category-path">
+  <i class="material-icons">folder</i>
+  <% if photo.category.parent %>
+    <%= link_to "Categories", categories_path, id: "in-page" %>
+      <% photo.category.ancestors.each do |lynx| %>
+      <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
+      <%= link_to lynx.name, category_path(lynx) %>
+    <% end %>
 
-<div>Name: <%= photo.name %></div>
-<div>Author: <%= link_to photo.user.name, photo.user %></div>
-<div>Category: <%= link_to photo.category.name, photo.category %></div>
-<div>Description: <%= photo.desc %></div>
-<div><%= image_tag photo.upload.url(:medium) %></div>
-<div>Tags:<br/>
-  <% photo.tags.each do |tag| %>
-    <div class='chip'>
-      <%= link_to tag.name, tag %>
-    </div>
+    <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
+    <strong><%= link_to photo.category.name, category_path(photo.category) %></strong>
+
+  <% else %>
+    <%= link_to "Categories", categories_path %>
+    <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
+    <strong><%= link_to photo.category.name, category_path %></strong>
   <% end %>
-</div>
-<% if authorized_edit?(photo) %>
-  <%= link_to "Edit Photo", edit_photo_path(photo), class: "btn" %>
-  <%= link_to "Delete Photo", photo_path(photo), method: :destroy, data: { confirm: 'Are you sure you want to delete this photo?'}, class: "btn" %>
-<% end %>
+</h5>
 
+<div class="row">
+  <div class="card file-card-show col m12">
+    <div class="card-content-show">
+      <h2 class="card-title-show note-title"><span class="waves-effect"><i class="material-icons note-photo-icon">image</i></span><%= photo.name %></h2>
+      <h6 class="card-name-cat">
+        <div>
+          <sup class="time"><%= "created #{distance_of_time_in_words(Time.now, photo.created_at)} ago by "%> <%= link_to photo.user.name, photo.user %></sup>
+        </div>
+      </h6>
+      <div>Description: <%= photo.desc %></div>
+      <div><%= image_tag photo.upload.url(:medium) %></div>
+      <div>
+        <% photo.tags.each do |tag| %>
+          <div class='chip'>
+            <%= link_to tag.name, tag %>
+          </div>
+        <% end %>
+      </div>
+      <div class="edit-delete">
+        <% if authorized_edit?(photo) %>
+          <%= link_to "Edit", edit_photo_path(photo), class: "btn edit-del" %>
+          <%= link_to "Delete", note_path(photo), method: :destroy, data: { confirm: 'Are you sure you want to delete this photo?'}, class: "btn edit-del del" %>
+        <% end %>
+      </div>
+    </div>
+    <%= form_for(permission) do |f| %>
+      <label for="user_id">Users with Additional Access: </label>
+      <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
 
-<%= form_for(permission) do |f| %>
-  <label for="user_id">Users with Additional Access: </label>
-  <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
+      <%= f.check_box(:full_access, {}, true, false) %>
+      <label for="permission_full_access">Full Access? </label>
 
-  <%= f.check_box(:full_access, {}, true, false) %>
-  <label for="permission_full_access">Full Access? </label>
+      <%= f.hidden_field :permission_id, value: photo.id %>
+      <%= f.hidden_field :permission_type, value: photo.class %>
 
-  <%= f.hidden_field :permission_id, value: photo.id %>
-  <%= f.hidden_field :permission_type, value: photo.class %>
+      <div>
+        <%= f.submit class: "waves-effect waves-light btn" %>
+      </div>
+    <% end %>
 
-  <div>
-    <%= f.submit class: "waves-effect waves-light btn" %>
+    <p>Users with Permission: </p>
+    <% photo.permissions.uniq.each do |perm| %>
+      <p><%= perm.user.name.capitalize %>
+         <%= link_to "Remove Access", permission_path(perm), method: :delete %></p>
+    <% end %>
   </div>
-<% end %>
-
-<p>Users with Permission: </p>
-<% photo.permissions.uniq.each do |perm| %>
-  <p><%= perm.user.name.capitalize %>
-     <%= link_to "Remove Access", permission_path(perm), method: :delete %></p>
-<% end %>
+</div>
