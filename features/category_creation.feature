@@ -6,7 +6,7 @@ Background: An Admin Logs In and Goes to Category Index
     And I fill in "Email" with "admin@example.com"
     And I fill in "Password" with "password"
     And I press "Submit"
-    Then I should see "Welcome admin!"
+    Then I should see "Create Note"
     And I visit "/categories"
 
 Scenario: Existing Admin Sees Category Creation Page
