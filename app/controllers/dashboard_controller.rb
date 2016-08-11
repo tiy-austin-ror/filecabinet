@@ -1,5 +1,4 @@
 class DashboardController < ApplicationController
-  before_action :require_login
   def index
     categories = []
     notes = Note.where(user: current_user)

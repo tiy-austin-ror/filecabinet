@@ -10,9 +10,13 @@ class Clearance::UsersController < Clearance::BaseController
   end
 
   def index
-    render template: 'users/index.html.erb', locals: {
-      users: User.all.order(:name)
-    }
+    if signed_in?
+      render template: 'users/index.html.erb', locals: {
+        users: User.all.order(:name)
+      }
+    else
+      redirect_to sign_in_path
+    end
   end
 
   def show
