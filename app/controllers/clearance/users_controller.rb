@@ -18,7 +18,7 @@ class Clearance::UsersController < Clearance::BaseController
         users = User.all
       end
       render template: 'users/index.html.erb', locals: {
-        users: User.order(:name)
+        users: users.order(:name)
       }
     else
       redirect_to sign_in_path
