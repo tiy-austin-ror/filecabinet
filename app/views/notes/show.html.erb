@@ -25,7 +25,7 @@
         <h2 class="card-title note-title"><%= note.note_with_type %></h2>
         <h6 class="card-name-cat">
           <div>
-            <sup class="time"><%= "created #{distance_of_time_in_words(Time.now, note.created_at)} by "%> <%= link_to note.user.name, note.user %></sup>
+            <sup class="time"><%= "created #{distance_of_time_in_words(Time.now, note.created_at)} ago by "%> <%= link_to note.user.name, note.user %></sup>
           </div>
         </h6>
         <div>Body: <%= note.body %></div>
