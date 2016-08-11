@@ -1,4 +1,4 @@
-class Clearance::UsersController < Clearance::BaseController
+class Clearance::UsersController < Clearance::BaseController  
   if respond_to?(:before_action)
     before_action :redirect_signed_in_users, only: [:create, :new]
     skip_before_action :require_login, only: [:create, :new], raise: false
@@ -10,9 +10,13 @@ class Clearance::UsersController < Clearance::BaseController
   end
 
   def index
-    render template: 'users/index.html.erb', locals: {
-      users: User.all.order(:name)
-    }
+    if signed_in?
+      render template: 'users/index.html.erb', locals: {
+        users: User.all.order(:name)
+      }
+    else
+      redirect_to sign_in_path
+    end
   end
 
   def show
