@@ -22,11 +22,10 @@ class MembersController < ApplicationController
       if member
         member.destroy
         flash[:notice] = "This user is no longer a member of this team."
-        redirect_to :back
       else
         flash[:alert] = member.errors
-        redirect_to :back
       end
+      redirect_to :back
     else
       flash[:alert] = "You do not have permission to remove members."
     end
@@ -34,6 +33,7 @@ class MembersController < ApplicationController
 end
 
 private
+
 def member_params
   params.require(:member).permit(:user_id, :team_id)
 end
