@@ -17,11 +17,11 @@
   <% end %>
 </h5>
 
+<h3> <%= category.name.capitalize %> </h3>
+
 <div>
   <%= link_to "Create Category", new_category_path(parent_category_id: params[:id]), class: "btn" %>
 </div>
-
-<h3> <%= category.name.capitalize %> </h3>
 
 <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
   <p> This folder is empty! </p>

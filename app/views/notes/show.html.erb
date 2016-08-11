@@ -1,5 +1,5 @@
 
-<h6 class="category-path">
+<h5 class="category-path">
   <i class="material-icons">folder</i>
   <% if note.category.parent %>
     <%= link_to "Categories", categories_path, id: "in-page" %>
@@ -16,12 +16,11 @@
     <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
     <strong><%= link_to note.category.name, category_path %></strong>
   <% end %>
-</h6>
+</h5>
 
-<h3>Note:</h3>
 <% if has_permission?(note) %>
 <div class="row">
-  <div class="card file-card col m8 offset-m2">
+  <div class="card file-card col m12">
       <div class="card-content">
         <h2 class="card-title note-title"><%= note.note_with_type %></h2>
         <h6 class="card-name-cat">

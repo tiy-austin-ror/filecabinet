@@ -1,4 +1,4 @@
-<h6 class="category-path">
+<h5 class="category-path">
   <i class="material-icons">folder</i>
   <% if photo.category.parent %>
     <%= link_to "Categories", categories_path, id: "in-page" %>
@@ -15,7 +15,7 @@
     <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
     <strong><%= link_to photo.category.name, category_path %></strong>
   <% end %>
-</h6>
+</h5>
 
 <h3>Photo:</h3>
 
