@@ -1,7 +1,5 @@
 <% if params[:search] %>
   <%= render "dashboard/search.html.erb", categories: categories, notes: notes, photos: photos, users: users, tags: tags %>
-<% elsif current_user.admin? %>
-  <%= render "dashboard/admin.html.erb", categories: categories, notes: notes, photos: photos, users: users, tags: tags %>
 <% else %>
-  <%= render "dashboard/user.html.erb", categories: categories, notes: notes, photos: photos, users: users, tags: tags %>
+  <%= render "dashboard/default.html.erb", categories: categories, notes: notes, photos: photos, users: users, tags: tags %>
 <% end %>
