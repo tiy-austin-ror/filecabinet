@@ -2,8 +2,8 @@ class TagsController < ApplicationController
   before_action :disable_search
 
   def index
-    if params[:query]
-      tags = Tag.where("name ~* '.*#{params[:query]}.*'")
+    if params[:search]
+      tags = Tag.where("name ~* '.*#{params[:search]}.*'")
     else
       tags = Tag.all
     end

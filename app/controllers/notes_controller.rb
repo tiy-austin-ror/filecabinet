@@ -2,8 +2,8 @@ class NotesController < ApplicationController
   before_action :disable_search
 
   def index
-    if params[:query]
-      notes = Note.where("name ~* '.*#{params[:query]}.*'")
+    if params[:search]
+      notes = Note.where("name ~* '.*#{params[:search]}.*'")
     else
       notes = Note.all
     end

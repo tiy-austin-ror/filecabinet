@@ -2,8 +2,8 @@ class PhotosController < ApplicationController
   before_action :disable_search
 
   def index
-    if params[:query]
-      photos = Photo.where("name ~* '.*#{params[:query]}.*'")
+    if params[:search]
+      photos = Photo.where("name ~* '.*#{params[:search]}.*'")
     else
       photos = Photo.all
     end
