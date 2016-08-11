@@ -6,9 +6,9 @@ Background: A User logs in
     And I fill in "Email" with "user@example.com"
     And I fill in "Password" with "password"
     And I press "Submit"
-    Then I should see "Create Note"
+    Then I should see "Create a Note"
 
 Scenario: User sees photos, notes, creates on dashboard
   And I should see "photo"
   And I should see "note"
-  And I should see "Create Photo"
+  And I should see "Create a Photo"
