@@ -7,7 +7,7 @@ class PhotosController < ApplicationController
     else
       photos = Photo.all
     end
-    render locals: { photos: photos.select{ |photo| current_permission?(photo) } }
+    render locals: { photos: photos.select{ |photo| current_permission?(photo) }.order(:updated_at) }
   end
 
   def show
