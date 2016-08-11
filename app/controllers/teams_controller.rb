@@ -26,11 +26,11 @@ class TeamsController < ApplicationController
     if current_user && current_user.admin?
     else
       flash[:alert] = "You do not have permission to create teams."
-      if team.save
-        redirect_to team
-      else
-        render :new, locals: { team: team }
-      end
+    end
+    if team.save
+      redirect_to team
+    else
+      render :new, locals: { team: team }
     end
   end
 
