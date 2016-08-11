@@ -44,19 +44,19 @@
   margin-top: 10px;
 }
 
- .file-card {
-   border: solid 0.1em #734846;
-   &:hover {
-     box-shadow: 5px 5px 5px grey;
-   }
- }
+.file-card {
+  border: solid 0.1em #734846;
+  &:hover {
+    box-shadow: 5px 5px 5px grey;
+  }
+}
 
- .link-color {
-   color: $primary-color;
-   &:hover {
-     text-decoration: underline;
-   }
- }
+.link-color {
+  color: $primary-color;
+  &:hover {
+    text-decoration: underline;
+  }
+}
 
 .main-header {
   header-title {
@@ -75,6 +75,7 @@
       border-radius: 5px;
       width: 220px;
       margin: 0;
+      padding-left: 2rem;
       border: 1px solid #5A5A5A;
       background: #5096AD;
     }
