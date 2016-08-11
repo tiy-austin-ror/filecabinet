@@ -1,4 +1,4 @@
-class TagsController < ApplicationController  
+class TagsController < ApplicationController
   def index
     tags = Tag.all
     render locals: { tags: tags }
