@@ -1,6 +1,4 @@
-class TagsController < ApplicationController
-  before_action :require_login
-  
+class TagsController < ApplicationController  
   def index
     tags = Tag.all
     render locals: { tags: tags }

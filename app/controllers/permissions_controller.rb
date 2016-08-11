@@ -1,6 +1,4 @@
 class PermissionsController < ApplicationController
-  before_action :require_login
-
   def new
     render locals: { permission: Permission.new }
   end

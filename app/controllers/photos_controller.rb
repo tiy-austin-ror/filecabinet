@@ -1,6 +1,4 @@
-class PhotosController < ApplicationController
-  before_action :require_login
-  
+class PhotosController < ApplicationController  
   def index
     if params[:query]
       photos = Photo.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")

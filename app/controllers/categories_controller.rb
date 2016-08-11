@@ -1,6 +1,4 @@
 class CategoriesController < ApplicationController
-  before_action :require_login
-
   def index
     if params[:query]
       categories = Category.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")

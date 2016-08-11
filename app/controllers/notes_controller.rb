@@ -1,6 +1,4 @@
 class NotesController < ApplicationController
-  before_action :require_login
-
   def index
     if params[:query]
       notes = Note.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
