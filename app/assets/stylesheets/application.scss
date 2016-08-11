@@ -95,9 +95,9 @@
 
 //######### Dashboard ############//
 
-.file-card-index {
-  border: solid 0.1em #734846;
-  height: auto;
+.file-card {
+  border-bottom: solid 0.1em #DED4D3;
+  border-right: solid 0.1em #DED4D3;
   &:hover {
     box-shadow: 5px 5px 5px grey;
   }
@@ -108,12 +108,32 @@
       margin: 0;
       font-size: 2rem;
     }
-    .material-icons {
-      font-size: 1.5rem;
-      vertical-align: middle;
-    }
+  }
+  .material-icons {
+    font-size: 2rem;
+    vertical-align: sub;
   }
 }
+
+@media (max-width: 800px) {
+  .dash-notes {
+    display: table;
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dash-notes {
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 540px) {
+  .dash-notes {
+    max-width: 200px;
+  }
+}
+
 
 //######### Dashboard ############//
 
