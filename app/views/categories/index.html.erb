@@ -1,6 +1,11 @@
-<div> <%= link_to "Create Category", new_category_path, class: "btn" %> </div>
+
+<div class="row create-butts">
+ <%= link_to "Create Category", new_category_path, class: "btn" %>
+</div>
 
 <% categories.each do |category| %>
+
+<ol class="cat-index-list-cat">
   <div class="row">
     <div class="card file-card col m8 m2">
       <div class="card-content">
@@ -10,19 +15,30 @@
         <% else %>
           <%= link_to category.name + " (#{item_count(category)})", category, class: "link-color" %>
         <% end %></span>
-      </div>
-    </div>
-  </div>
-<% end %>
 
-<% if notes %>
-  <% notes.each do |note| %>
-    <p><%= link_to note.name, note %></p>
-  <% end %>
-<% end %>
+        <% if category.children %>
+          <% category.children.each do |child| %>
+            <li class="cat-index-list-items"><%= "Category: " %><%= link_to child.name, child %></li>
+          <% end %>
+        <% end %>
 
-<% if photos %>
-  <% photos.each do |photo| %>
-    <p><%= link_to photo.name, photo %></p>
+          <% if category.notes %>
+            <% category.notes.each do |note| %>
+              <li class="cat-index-list-items"><%= "Note: " %><%= link_to note.name, note %></li>
+            <% end %>
+          <% end %>
+
+          <% if category.photos %>
+            <% category.photos.each do |photo| %>
+              <li class="cat-index-list-items"><%= "Photo: " %><%= link_to photo.name, photo %></li>
+            <% end %>
+          <% end %>
+        </div>
+
+        </div>
+
+        </div>
   <% end %>
-<% end %>
+
+
+</ol>

@@ -1,6 +1,12 @@
 class TagsController < ApplicationController
+  before_action :disable_search
+
   def index
-    tags = Tag.all
+    if params[:search]
+      tags = Tag.search(params[:search])
+    else
+      tags = Tag.all
+    end
     render locals: { tags: tags }
   end
 

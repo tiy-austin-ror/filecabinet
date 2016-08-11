@@ -28,6 +28,7 @@
 <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
   <p> This folder is empty! </p>
 <% else %>
+
   <% if authorized_any?(category.notes + category.photos) %>
 
   <div class="row col m12">

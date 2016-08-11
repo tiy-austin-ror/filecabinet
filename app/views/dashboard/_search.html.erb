@@ -1,0 +1,57 @@
+<h3> Search Results: </h3>
+
+<% if [params[:checkuser], params[:checkcat], params[:checkname]].none? %>
+  <% (params[:checkuser] = params[:checkcat] = params[:checkname] = '1') %>
+<% end %>
+
+<div class="check-block">
+  <% if params[:checkuser] == '1' %>
+    <% users.each do |user| %>
+      <h5><span class="waves-effect"><i class="material-icons">person</i></span>
+      <%= link_to "#{user.name}", user %> </h5>
+      <ol class="dash-list-block"><h5><%= "Notes"%></h5>
+      <% user.notes.each do |note| %>
+        <li class="note-show dash-list-item"><%= link_to note.name, note %></li>
+      <% end %></ol>
+      <ol class="dash-list-block"><h5><%= "Photos"%></h5>
+      <% user.photos.each do |photo| %>
+        <li class="photo-show dash-list-item"><%= link_to photo.name, photo %></li>
+      <% end %>
+    <% end %></ol>
+  <% end %>
+</div>
+
+<div class="check-block">
+  <% if params[:checkcat] == '1' %>
+    <% categories.each do |category| %>
+      <% unless [category.notes, category.photos].all?(&:empty?) %>
+        <ol class="dash-list-block"><h5><span class="waves-effect"><i class="material-icons">folder</i></span><%= link_to category.name, category %></h5>
+        <% category.notes.each do |note| %>
+          <li class="note-show dash-list-item"><%= "Note: "%><%= link_to note.name, note %></li>
+        <% end %>
+        <% category.photos.each do |photo| %>
+          <li class="photo-show dash-list-item"><%= "Photo: "%><%= link_to photo.name, photo %></li>
+        <% end %>
+      <% end %>
+    <% end %></ol>
+  <% end %>
+</div>
+
+<div class="check-block">
+  <% if params[:checkname] == '1' %>
+    <% unless notes.empty? %>
+      <ol class="dash-list-block"><h5><span class="waves-effect"><i class="material-icons">description</i></span><%= "Notes" %></h5>
+      <% notes.each do |note| %>
+        <li class="note-show dash-list-item"><%= link_to note.name, note %></li>
+      <% end %>
+    <% end %></ol>
+    <% unless photos.empty? %>
+      <ol class="dash-list-block"><h5><span class="waves-effect"><i class="material-icons">image</i></span><%= "Photos" %></h5>
+      <% photos.each do |photo| %>
+        <li class="photo-show dash-list-item"><%= link_to photo.name, photo %></li>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+</div>

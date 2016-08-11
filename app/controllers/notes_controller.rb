@@ -1,11 +1,13 @@
 class NotesController < ApplicationController
+  before_action :disable_search
+
   def index
-    if params[:query]
-      notes = Note.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%")
+    if params[:search]
+      notes = Note.search(params[:search])
     else
       notes = Note.all
     end
-    render locals: { notes: notes.select { |note| current_permission?(note) } }
+    render locals: { notes: notes.select { |note| current_permission?(note) }.order(:updated_at) }
   end
 
   def show
