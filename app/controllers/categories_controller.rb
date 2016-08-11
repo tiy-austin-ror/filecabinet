@@ -63,12 +63,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def search # Displays a search form.
-    @q = "%#{params[:search]}%"
-    @categories = Category.where("name LIKE ?", @q)
-    render index
-  end
-
   private
   def category_params
     params.require(:category).permit(:name, :parent_category_id, :user_id)
