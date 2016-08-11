@@ -1,10 +1,13 @@
 User.create!(name: "admin", email: "admin@example.com", password: "password", admin: true)
 User.create!(name: "user", email: "user@example.com", password: "password", admin: false)
 
+5.times do
+  Team.create!(name: Faker::Company.profession)
+end
+
 20.times do
   Tag.create(name: Faker::Commerce.color)
 end
-
 
 5.times do
   Category.create!(name: Faker::Company.buzzword)

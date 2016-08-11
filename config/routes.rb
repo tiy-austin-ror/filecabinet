@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :teams
   get    '/sign_in'     => 'clearance/sessions#new',     as: 'sign_in'
   delete '/sign_out'    => 'clearance/sessions#destroy', as: 'sign_out'
   get    '/sign_up'     => 'clearance/users#new',        as: 'sign_up'
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   resources :notes
   resources :categories
   resources :permissions
+  resources :members
 
   post :search, controller: 'search', as: 'search'
   root 'dashboard#index', as: 'root'
