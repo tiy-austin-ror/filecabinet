@@ -12,6 +12,7 @@ Background: A User Logs In
   And I fill in "Email" with "user@example.com"
   And I fill in "Password" with "password"
   And I press "Submit"
+  Then I should see "Create Note"
 
 Scenario: User sees a note they have permission to see
   When I visit "/notes/1"

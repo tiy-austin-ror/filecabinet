@@ -11,6 +11,7 @@ Background: An Admin Logs In
   And I fill in "Email" with "admin@example.com"
   And I fill in "Password" with "password"
   And I press "Submit"
+  Then I should see "Create Note"
 
 Scenario: Admin sees user stats
   When I visit "/users"
