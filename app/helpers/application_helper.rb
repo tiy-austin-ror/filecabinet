@@ -6,6 +6,6 @@ module ApplicationHelper
   end
 
   def no_permission_users(object)
-    User.all - (object.users_with_access << object.user)
+    User.all - (object.users_with_access | [object.user])
   end
 end
