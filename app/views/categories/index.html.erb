@@ -9,7 +9,8 @@
   <div class="row">
     <div class="card file-card col m8 offset-m2">
       <div class="card-content">
-        <span class="card-title">Category:
+        <span class="card-title">
+          <i class="material-icons">folder</i>
         <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
           <%= link_to category.name + " (No items)", category, class: "link-color" %>
         <% else %>

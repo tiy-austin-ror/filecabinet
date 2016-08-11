@@ -1,3 +1,22 @@
+<h6 class="category-path">
+  <i class="material-icons">folder</i>
+  <% if photo.category.parent %>
+    <%= link_to "Categories", categories_path, id: "in-page" %>
+      <% photo.category.ancestors.each do |lynx| %>
+      <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
+      <%= link_to lynx.name, category_path(lynx) %>
+    <% end %>
+
+    <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
+    <strong><%= link_to photo.category.name, category_path(photo.category) %></strong>
+
+  <% else %>
+    <%= link_to "Categories", categories_path %>
+    <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
+    <strong><%= link_to photo.category.name, category %></strong>
+  <% end %>
+</h6>
+
 <h3>Photo:</h3>
 
 <div>Name: <%= photo.name %></div>

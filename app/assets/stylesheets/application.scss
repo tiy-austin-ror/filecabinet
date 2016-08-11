@@ -49,6 +49,19 @@
   &:hover {
     box-shadow: 5px 5px 5px grey;
   }
+  .card-content {
+    .card-title {
+      margin: 0;
+      font-size: 2rem;
+      .cat-desc a {
+        position: relative;
+        bottom: 10px;
+      }
+    }
+    .material-icons {
+      font-size: 1.5rem;
+    }
+  }
 }
 
 .link-color {

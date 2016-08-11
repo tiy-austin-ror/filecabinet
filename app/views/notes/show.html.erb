@@ -1,12 +1,34 @@
+
+<h6 class="category-path">
+  <i class="material-icons">folder</i>
+  <% if note.category.parent %>
+    <%= link_to "Categories", categories_path, id: "in-page" %>
+      <% note.category.ancestors.each do |lynx| %>
+      <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
+      <%= link_to lynx.name, category_path(lynx) %>
+    <% end %>
+
+    <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
+    <strong><%= link_to note.category.name, category_path(note.category) %></strong>
+
+  <% else %>
+    <%= link_to "Categories", categories_path %>
+    <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
+    <strong><%= link_to note.category.name, category %></strong>
+  <% end %>
+</h6>
+
 <h3>Note:</h3>
 <% if has_permission?(note) %>
 <div class="row">
   <div class="card file-card col m8 offset-m2">
       <div class="card-content">
-        <h3 class="card-title">Note:</h3>
-        <div>Name: <%= note.note_with_type %></div>
-        <div>Author: <%= link_to note.user.name, note.user %></div>
-        <div>Category: <%= link_to note.category.name, note.category %></div>
+        <h2 class="card-title note-title"><%= note.note_with_type %></h2>
+        <h6 class="card-name-cat">
+          <div>
+            <sup class="time"><%= "created #{distance_of_time_in_words(Time.now, note.created_at)} by "%> <%= link_to note.user.name, note.user %></sup>
+          </div>
+        </h6>
         <div>Body: <%= note.body %></div>
         <div>Tags:<br/>
           <% note.tags.each do |tag| %>
