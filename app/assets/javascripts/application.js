@@ -16,6 +16,9 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).ready(function() {
-    $('select').material_select();
-});
+var ready = function() {
+  $('select').material_select();
+};
+
+$(document).ready(ready);
+$(document).on("turbolinks:load", ready)
