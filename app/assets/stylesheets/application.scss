@@ -43,12 +43,19 @@
 .create-butts {
   margin-top: 10px;
 }
-
 .file-card {
-  border: solid 0.1em #734846;
-  &:hover {
-    box-shadow: 5px 5px 5px grey;
-  }
+ border: solid 0.1em #734846;
+ height: auto;
+ &:hover {
+   box-shadow: 5px 5px 5px grey;
+ }
+ .card-content {
+   padding: 10px;
+   width: 450px;
+   word-wrap: break-word;
+
+
+ }
 }
 
 .link-color {
@@ -57,6 +64,7 @@
     text-decoration: underline;
   }
 }
+
 
 .main-header {
   header-title {

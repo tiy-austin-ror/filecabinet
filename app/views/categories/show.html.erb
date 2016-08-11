@@ -31,8 +31,9 @@
 
   <% if authorized_any?(category.notes + category.photos) %>
 
+  <div class="row col m12">
     <% category.children.each do |child| %>
-      <div class="category-name">
+      <div class="category-name col m3">
         <% if [child.children, child.notes, child.photos].all?(&:empty?) %>
           <%= link_to child.name + " (No items)", child %>
         <% else %>
@@ -40,23 +41,33 @@
         <% end %>
       </div>
     <% end %>
+  </div>
+
 
     <% category.notes.each_with_index do |note, i| %>
       <% if has_permission?(note) %>
-        <h4><%= link_to note.note_with_type, note %></h4>
+      <div class="card file-card">
+        <div class="card-content">
+        <h4 class="card-title"><%= link_to note.note_with_type, note %></h4>
         <div>Author: <%= link_to note.user.name, note.user %></div>
         <div>Category: <%= link_to note.category.name, note.category %></div>
         <div>Body: <%= note.body %></div>
+      </div>
+    </div>
       <% end %>
     <% end %>
 
     <% category.photos.each_with_index do |photo, i| %>
       <% if has_permission?(photo) %>
-        <h4><%= link_to photo.name, photo %></h4>
+      <div class="card file-card">
+        <div class="card-content">
+        <h4 class="card-title"><%= link_to photo.name, photo %></h4>
         <div>Author: <%= link_to photo.user.name, photo.user %></div>
         <div>Category: <%= link_to photo.category.name, photo.category %></div>
         <div>Description: <%= photo.desc %></div>
         <div><%= image_tag photo.upload.url(:medium) %></div>
+      </div>
+    </div>
       <% end %>
     <% end %>
 

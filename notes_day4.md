@@ -1,14 +1,9 @@
-fix bug - have to click permission to see dropdown
-users show page should show all notes user has access to
-
 Get rid of welcome user! user flash message instead on login
 
 Remove Title on sign in page
 forgot pw is a button instead of a link
 
 Redirect to sign in when not signed in
-
-Create permission should be styled button
 
 Delete Note: on note show page, do Note Name itself, author smaller under note, category on right side, body in slightly larger text
 

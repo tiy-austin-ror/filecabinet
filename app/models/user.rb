@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :notes
   has_many :photos
+  has_many :teams
 
   has_many :permissions
   has_many :shared_notes, through: :permissions, source: :permission, source_type: "Note"
