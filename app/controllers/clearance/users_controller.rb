@@ -12,7 +12,7 @@ class Clearance::UsersController < Clearance::BaseController
 
   def index
     if params[:search]
-      users = User.where("name ~* '.*#{params[:query]}.*'")
+      users = User.where("name ~* '.*#{params[:search]}.*'")
     else
       users = User.all
     end
