@@ -27,7 +27,15 @@
   }
 }
 
-.create-butts {
+.sml-btn {
+  padding: 0;
+  padding-bottom: 33px;
+  width: 10%;
+  min-width: 70px;
+  height: 30px;
+}
+
+.create-btn {
   margin-top: 10px;
 }
 
@@ -84,22 +92,54 @@
   }
 }
 
-.file-card {
+
+//######### Dashboard ############//
+
+.file-card-index {
   border: solid 0.1em #734846;
   height: auto;
   &:hover {
     box-shadow: 5px 5px 5px grey;
   }
-  .card-content {
+  .card-content-index {
     padding: 10px;
     word-wrap: break-word;
-    .card-title {
+    .card-title-index {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .material-icons {
+      font-size: 1.5rem;
+      vertical-align: middle;
+    }
+  }
+}
+
+//######### Dashboard ############//
+
+
+//######### Note/Photo Show ############//
+
+.file-card-show {
+  border: solid 0.1em #734846;
+  height: auto;
+  &:hover {
+    box-shadow: 5px 5px 5px grey;
+  }
+  .card-content-show {
+    padding: 10px;
+    word-wrap: break-word;
+    .card-title-show {
       margin: 0;
       font-size: 2rem;
       .cat-desc a {
         position: relative;
         bottom: 10px;
       }
+    }
+    .note-title {
+      height: 45px;
+      font-size: 40px;
     }
     .time {
       padding-left: 2px;
@@ -109,9 +149,9 @@
       font-size: 1.5rem;
       vertical-align: middle;
     }
-    .note-title {
-      height: 45px;
-      font-size: 40px;
+    .note-photo-icon {
+      font-size: smaller;
+      vertical-align: baseline;
     }
   }
   .edit-delete {
@@ -128,6 +168,8 @@
     }
   }
 }
+
+//######### Show ############//
 
 .link-color {
   color: $primary-color;

@@ -20,10 +20,10 @@
 
 <% if has_permission?(note) %>
 <div class="row">
-  <div class="card file-card col m12">
-      <div class="card-content">
-        <h2 class="card-title note-title"><%= note.note_with_type %></h2>
-        <h6 class="card-name-cat">
+  <div class="card file-card-show col m12">
+      <div class="card-content-show">
+        <h2 class="card-title-show note-title">          <span class="waves-effect"><i class="material-icons note-photo-icon">description</i></span><%= note.note_with_type %></h2>
+        <h6 class="card-name-cat-show">
           <div>
             <sup class="time"><%= "created #{distance_of_time_in_words(Time.now, note.created_at)} ago by "%> <%= link_to note.user.name, note.user %></sup>
           </div>

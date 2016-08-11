@@ -1,5 +1,5 @@
 
-<div class="row create-butts">
+<div class="row create-btn">
   <div class="col l6">
     <%= link_to "Create Photo", new_photo_path, class: "btn" %>
   </div>
@@ -8,12 +8,12 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row col m12">
   <div class="row col m6">
     <% notes.each do |note| %>
-    <div class="card file-card col">
-      <div class="card-content">
-        <h3 class="card-title">
+    <div class="card file-card-index col">
+      <div class="card-content-index">
+        <h3 class="card-title-index">
           <span class="waves-effect"><i class="material-icons">description</i><%= link_to "    " + note.name, note, class: "link-color" %></span>
         </h3>
       </div>
