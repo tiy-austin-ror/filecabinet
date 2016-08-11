@@ -9,15 +9,12 @@
         <div class="col s3 heading">
           <%= link_to "Home", root_path %>
         </div>
-
         <div class="col s3 heading">
           <%= link_to "Users", users_path %>
         </div>
-
         <div class="col s3 heading">
           <%= link_to "Teams", teams_path %>
         </div>
-
         <div class="col s3 heading cat">
           <%= link_to "Categories", categories_path, id: "in-nav" %>
         </div>
@@ -26,22 +23,20 @@
       <div class="col s6">
         <div class="nav-wrapper">
           <form>
-            <div class="input-field col s4">
-
-              <div class="search-box">
-
-                <%= form_tag search_path do %>
-                  <input id="search" type="search" class="search full-width" id="searchbar" name="query" type="text" remote=true>
-                <% end %>
-
-                <label for="search"><i class="material-icons">search</i></label>
-                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <div class="input-field col s4 offset-s1">
+              <div class="search-block">
+                <div class="search-box">
+                  <%= form_tag search_path do %>
+                    <%= search_field_tag("search", params[:search]) %>
+                    <%= submit_tag("Search", id: "submit", name: "submit", class: "btn-flat sign-butt submit-butt") %>
+                  <% end %>
+                  <label for="search"><i class="material-icons">search</i></label>
+                </div>
+                <%= render "shared/search.html.erb" unless @disable_search %>
+                </div>
               </div>
-
-
             </div>
-
-            <div class="sign-in-out-up col s6 offset-s2">
+            <div class="sign-in-out-up col s3 offset-s4">
               <% if signed_in? %>
                 <div class="col s6 offset-s6 heading">
                   <%= link_to "Sign Out", sign_out_path, method: :delete %>
@@ -58,7 +53,6 @@
           </form>
         </div>
       </div>
-
     </div>
   </nav>
 </header>

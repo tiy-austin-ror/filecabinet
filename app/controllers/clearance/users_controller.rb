@@ -1,5 +1,6 @@
 class Clearance::UsersController < Clearance::BaseController
   if respond_to?(:before_action)
+    before_filter :disable_search
     before_action :redirect_signed_in_users, only: [:create, :new]
     skip_before_action :require_login, only: [:create, :new], raise: false
     skip_before_action :authorize, only: [:create, :new], raise: false
@@ -11,8 +12,13 @@ class Clearance::UsersController < Clearance::BaseController
 
   def index
     if signed_in?
+      if params[:search]
+        users = User.search(params[:search])
+      else
+        users = User.all
+      end
       render template: 'users/index.html.erb', locals: {
-        users: User.all.order(:name)
+        users: users.order(:name)
       }
     else
       redirect_to sign_in_path
