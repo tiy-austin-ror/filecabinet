@@ -20,26 +20,26 @@
  $background-text: #A9A9A9;
  @import "materialize";
 
- .btn {
-    background-color: $primary-color;
-    &:hover {
-      background-color: lighten($primary-color, 10%);
-    }
- }
+.btn {
+  background-color: $primary-color;
+  &:hover {
+    background-color: lighten($primary-color, 10%);
+  }
+}
 
- .main-header {
-   .header-title {
-     margin-top: 10px;
-     font-family: cursive;
-   }
-   .search-box{
-     margin: 20px;
-   }
-   .search-icon {
+.main-header {
+  .header-title {
+    margin-top: 10px;
+    font-family: cursive;
+  }
+  .search-box{
+    margin: 20px;
+  }
+  .search-icon {
     margin: auto;
     width: 50%;
-   }
- }
+  }
+}
 
 .create-butts {
   margin-top: 10px;
