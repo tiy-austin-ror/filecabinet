@@ -11,12 +11,18 @@ class Clearance::UsersController < Clearance::BaseController
   end
 
   def index
-    if params[:query]
-      users = User.where("name ~* '.*#{params[:query]}.*'")
+    if signed_in?
+      if params[:search]
+        users = User.where("name ~* '.*#{params[:search]}.*'")
+      else
+        users = User.all
+      end
+      render template: 'users/index.html.erb', locals: {
+        users: users.order(:name)
+      }
     else
-      users = User.all
+      redirect_to sign_in_path
     end
-    render template: 'users/index.html.erb', locals: { users: users.order("created_at DESC") }
   end
 
   def show

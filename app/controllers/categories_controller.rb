@@ -2,8 +2,8 @@ class CategoriesController < ApplicationController
   before_action :disable_search
 
   def index
-    if params[:query]
-      categories = Category.where("name ~* '.*#{params[:query]}.*'")
+    if params[:search]
+      categories = Category.where("name ~* '.*#{params[:search]}.*'")
     else
       categories = Category.all.where(parent_category_id: nil)
     end
@@ -61,12 +61,6 @@ class CategoriesController < ApplicationController
     else
       render message: "Category not found."
     end
-  end
-
-  def search # Displays a search form.
-    @q = "%#{params[:query]}%"
-    @categories = Category.where("name LIKE ?", @q)
-    render index
   end
 
   private
