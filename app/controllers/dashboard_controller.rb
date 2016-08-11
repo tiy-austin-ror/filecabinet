@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
       categories = Category.where("name ~* '.*#{params[:search]}.*'")
       notes = Note.where("name ~* '.*#{params[:search]}.*'").order(:updated_at)
       photos = Photo.where("name ~* '.*#{params[:search]}.*'").order(:updated_at)
-      users = User.where("name ~* '.*#{params[:search]}.*'").order("created_at DESC")
+      users = User.where("name ~* '.*#{params[:search]}.*'").order(:name)
       tags = Tag.where("name ~* '.*#{params[:search]}.*'")
     else
       categories = []
