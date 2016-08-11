@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
 
   def index
     if params[:search]
-      photos = Photo.where("name ~* '.*#{params[:search]}.*'")
+      photos = Photo.search(params[:search])
     else
       photos = Photo.all
     end

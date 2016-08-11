@@ -3,7 +3,7 @@ class NotesController < ApplicationController
 
   def index
     if params[:search]
-      notes = Note.where("name ~* '.*#{params[:search]}.*'")
+      notes = Note.search(params[:search])
     else
       notes = Note.all
     end

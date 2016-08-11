@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   def index
     if params[:search]
-      categories = Category.where("name ~* '.*#{params[:search]}.*'")
+      categories = Category.search(params[:search])
     else
       categories = Category.all.where(parent_category_id: nil)
     end

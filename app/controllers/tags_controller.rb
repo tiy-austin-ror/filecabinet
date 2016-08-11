@@ -3,7 +3,7 @@ class TagsController < ApplicationController
 
   def index
     if params[:search]
-      tags = Tag.where("name ~* '.*#{params[:search]}.*'")
+      tags = Tag.search(params[:search])
     else
       tags = Tag.all
     end
