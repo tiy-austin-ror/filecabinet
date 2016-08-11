@@ -1,6 +1,10 @@
 <h3>Tags</h3>
 
 <% tags.each do |tag| %>
-  <div>Name: <%= tag.name %></div>
+<div class="card file-card">
+  <div class="card-content">
+    <div class="card-title">Name: <%= tag.name %></div>
+  </div>
+</div>
 
 <% end %>
