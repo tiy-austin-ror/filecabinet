@@ -16,46 +16,23 @@
  @import "materialize/components/color";
  $primary-color: #40798C;
  $secondary-color: #7D2629;
- $delete-button-color: #D91C12;
+ $delete-button-color: #92130F;
+ $background-text: #A9A9A9;
  @import "materialize";
 
- .btn {
-    background-color: $primary-color;
-    &:hover {
-      background-color: lighten($primary-color, 10%);
-    }
- }
-
- .main-header {
-   .header-title {
-     margin-top: 10px;
-     font-family: cursive;
-   }
-   .search-box{
-     margin: 20px;
-   }
-   .search-icon {
-    margin: auto;
-    width: 50%;
-   }
- }
-
-.create-butts {
-  margin-top: 10px;
+.btn {
+  background-color: $primary-color;
+  &:hover {
+    background-color: lighten($primary-color, 10%);
+  }
 }
-.file-card {
- border: solid 0.1em #734846;
- height: auto;
- &:hover {
-   box-shadow: 5px 5px 5px grey;
- }
- .card-content {
-   padding: 10px;
-   width: 450px;
-   word-wrap: break-word;
 
-
- }
+.sml-btn {
+  padding: 0;
+  padding-bottom: 33px;
+  width: 10%;
+  min-width: 70px;
+  height: 30px;
 }
 .team-file-card {
  border: solid 0.1em #734846;
@@ -65,18 +42,14 @@
   }
  }
 
-.link-color {
-  color: $primary-color;
-  &:hover {
-    text-decoration: underline;
-  }
+.create-btn {
+  margin-top: 10px;
 }
 
-
 .main-header {
-  header-title {
-   margin-top: 10px;
-  }
+  .header-title {
+    margin-top: 10px;
+    }
   .app-title {
     min-width: 150px;
   }
@@ -126,15 +99,132 @@
   }
 }
 
+
+//######### Dashboard ############//
+
+.file-card {
+  border-bottom: solid 0.1em #DED4D3;
+  border-right: solid 0.1em #DED4D3;
+  &:hover {
+    box-shadow: 5px 5px 5px grey;
+  }
+  .card-content-index {
+    padding: 10px;
+    word-wrap: break-word;
+    .card-title-index {
+      margin: 0;
+      font-size: 2rem;
+    }
+  }
+  .material-icons {
+    font-size: 2rem;
+    vertical-align: sub;
+  }
+}
+
+@media (max-width: 800px) {
+  .dash-notes {
+    display: table;
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dash-notes {
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 540px) {
+  .dash-notes {
+    max-width: 200px;
+  }
+  .category-path {
+    font-size: 20px;
+  }
+}
+
+//######### Dashboard ############//
+
+
+//######### Note/Photo Show ############//
+
+.file-card-show {
+  border-bottom: solid 0.1em #DED4D3;
+  border-right: solid 0.1em #DED4D3;
+  width: 100%;
+  &:hover {
+    box-shadow: 5px 5px 5px grey;
+  }
+  .card-content-show {
+    padding: 10px;
+    .card-title-show {
+      margin: 0;
+      font-size: 2rem;
+      word-break: break-word;
+      .cat-desc a {
+        position: relative;
+        bottom: 10px;
+      }
+    }
+    .note-title {
+      font-size: 40px;
+    }
+    .time {
+      padding-left: 2px;
+      color: $background-text;
+    }
+    .material-icons {
+      font-size: 1.5rem;
+      vertical-align: middle;
+    }
+    .note-photo-icon {
+      font-size: smaller;
+      vertical-align: baseline;
+    }
+  }
+  .edit-delete {
+    text-align: right;
+    .edit-del {
+      padding: 0;
+      padding-bottom: 33px;
+      width: 10%;
+      min-width: 70px;
+      height: 30px;
+    }
+    .del {
+      background: $delete-button-color;
+    }
+  }
+}
+
+//######### Show ############//
+
+.link-color {
+  color: $primary-color;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .heading-block {
   display: flex;
   .heading {
     text-align: center;
     min-width: 40px;
+    height: 20px;
   }
   .cat {
     min-width: 70px;
   }
+}
+
+.heading-right {
+  text-align: center;
+  min-width: 40px;
+  height: 20px;
+  position: relative;
+  bottom: 10px;
 }
 
 .sign-in-out-up {

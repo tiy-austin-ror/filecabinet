@@ -1,13 +1,5 @@
-
-
-<div>
-  <%= link_to "Create Category", new_category_path(parent_category_id: params[:id]), class: "btn" %>
-</div>
-
-<h3> <%= category.name.capitalize %> </h3>
-
-<h6 class="category-path">
-  <%= "Current Path: " %>
+<h5 class="category-path">
+  <i class="material-icons">folder</i>
   <% if category.parent %>
     <%= link_to "Categories", categories_path, id: "in-page" %>
       <% category.ancestors.each do |lynx| %>
@@ -23,7 +15,13 @@
     <span class="waves-effect"><i class="material-icons">chevron_right</i></span>
     <strong><%= link_to category.name, category %></strong>
   <% end %>
-</h6>
+</h5>
+
+<h3> <%= category.name.capitalize %> </h3>
+
+<div>
+  <%= link_to "Create Category", new_category_path(parent_category_id: params[:id]), class: "btn" %>
+</div>
 
 <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
   <p> This folder is empty! </p>

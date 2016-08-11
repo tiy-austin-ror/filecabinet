@@ -1,5 +1,5 @@
 
-<div class="row create-butts">
+<div class="row create-btn">
  <%= link_to "Create Category", new_category_path, class: "btn" %>
 </div>
 
@@ -9,7 +9,8 @@
   <div class="row">
     <div class="card file-card col m8 m2">
       <div class="card-content">
-        <span class="card-title">Category:
+        <span class="card-title">
+          <i class="material-icons">folder</i>
         <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
           <%= link_to category.name + " (No items)", category, class: "link-color" %>
         <% else %>
@@ -18,7 +19,8 @@
 
         <% if category.children %>
           <% category.children.each do |child| %>
-            <li class="cat-index-list-items"><%= "Category: " %><%= link_to child.name, child %></li>
+            <li class="cat-index-list-items">  <i class="material-icons">folder</i>
+              <%= link_to child.name, child %></li>
           <% end %>
         <% end %>
 
