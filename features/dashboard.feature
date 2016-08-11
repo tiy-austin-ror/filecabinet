@@ -6,6 +6,11 @@ Background: A User logs in
     And I fill in "Email" with "user@example.com"
     And I fill in "Password" with "password"
     And I press "Submit"
+<<<<<<< HEAD
+=======
+    And I should see "Create Note"
+
+>>>>>>> 9ed94acc997e77d32c48fe4bec351ad62ba9805e
 
 Scenario: User sees photos, notes, creates on dashboard
   Then I should see "photo"

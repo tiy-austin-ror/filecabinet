@@ -20,7 +20,6 @@
  $background-text: #A9A9A9;
  @import "materialize";
 
-
 .btn {
   background-color: $primary-color;
   &:hover {
@@ -28,77 +27,14 @@
   }
 }
 
-.main-header {
-  .header-title {
-    margin-top: 10px;
-    font-family: cursive;
-  }
-  .search-box{
-    margin: 20px;
-  }
-  .search-icon {
-    margin: auto;
-    width: 50%;
-  }
-}
-
 .create-butts {
   margin-top: 10px;
 }
 
-.file-card {
-  border: solid 0.1em #734846;
-  &:hover {
-    box-shadow: 5px 5px 5px grey;
-  }
-  .card-content {
-    .card-title {
-      margin: 0;
-      font-size: 2rem;
-      .cat-desc a {
-        position: relative;
-        bottom: 10px;
-      }
-    }
-    .time {
-      padding-left: 2px;
-      color: $background-text;
-    }
-    .material-icons {
-      font-size: 1.5rem;
-      vertical-align: middle;
-    }
-    .note-title {
-      height: 45px;
-      font-size: 40px;
-    }
-  }
-  .edit-delete {
-    text-align: right;
-    .edit-del {
-      padding: 0;
-      padding-bottom: 33px;
-      width: 10%;
-      height: 30px;
-    }
-    .del {
-      background: $delete-button-color;
-    }
-  }
-}
-
-
-.link-color {
-  color: $primary-color;
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
 .main-header {
-  header-title {
-   margin-top: 10px;
-  }
+  .header-title {
+    margin-top: 10px;
+    }
   .app-title {
     min-width: 150px;
   }
@@ -145,6 +81,58 @@
       margin-left: 5px;
       color: lightgray;
     }
+  }
+}
+
+.file-card {
+  border: solid 0.1em #734846;
+  height: auto;
+  &:hover {
+    box-shadow: 5px 5px 5px grey;
+  }
+  .card-content {
+    padding: 10px;
+    word-wrap: break-word;
+    .card-title {
+      margin: 0;
+      font-size: 2rem;
+      .cat-desc a {
+        position: relative;
+        bottom: 10px;
+      }
+    }
+    .time {
+      padding-left: 2px;
+      color: $background-text;
+    }
+    .material-icons {
+      font-size: 1.5rem;
+      vertical-align: middle;
+    }
+    .note-title {
+      height: 45px;
+      font-size: 40px;
+    }
+  }
+  .edit-delete {
+    text-align: right;
+    .edit-del {
+      padding: 0;
+      padding-bottom: 33px;
+      width: 10%;
+      min-width: 70px;
+      height: 30px;
+    }
+    .del {
+      background: $delete-button-color;
+    }
+  }
+}
+
+.link-color {
+  color: $primary-color;
+  &:hover {
+    text-decoration: underline;
   }
 }
 

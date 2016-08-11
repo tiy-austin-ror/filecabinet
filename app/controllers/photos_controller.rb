@@ -3,11 +3,11 @@ class PhotosController < ApplicationController
 
   def index
     if params[:search]
-      photos = Photo.where("name ~* '.*#{params[:search]}.*'")
+      photos = Photo.search(params[:search])
     else
       photos = Photo.all
     end
-    render locals: { photos: photos.select{ |photo| current_permission?(photo) } }
+    render locals: { photos: photos.select{ |photo| current_permission?(photo) }.order(:updated_at) }
   end
 
   def show

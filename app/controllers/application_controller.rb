@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def disable_search
     @disable_search = true
   end
-  
+
   def has_permission?(obj)
     [
       current_user.admin?,
