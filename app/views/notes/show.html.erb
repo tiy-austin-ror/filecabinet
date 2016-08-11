@@ -1,6 +1,6 @@
 
 <h5 class="category-path">
-  <i class="material-icons">folder</i>
+  <i class="material-icons folder-icon">folder</i>
   <% if note.category.parent %>
     <%= link_to "Categories", categories_path, id: "in-page" %>
       <% note.category.ancestors.each do |lynx| %>
