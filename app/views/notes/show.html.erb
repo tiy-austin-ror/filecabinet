@@ -28,8 +28,8 @@
             <sup class="time"><%= "created #{distance_of_time_in_words(Time.now, note.created_at)} ago by "%> <%= link_to note.user.name, note.user %></sup>
           </div>
         </h6>
-        <div>Body: <%= note.body %></div>
-        <div>Tags:<br/>
+        <h5><%= note.body %></h5>
+        <div>
           <% note.tags.each do |tag| %>
             <div class='chip'>
               <%= link_to tag.name, tag %>

@@ -28,7 +28,7 @@
       </h6>
       <div>Description: <%= photo.desc %></div>
       <div><%= image_tag photo.upload.url(:medium) %></div>
-      <div>Tags:<br/>
+      <div>
         <% photo.tags.each do |tag| %>
           <div class='chip'>
             <%= link_to tag.name, tag %>

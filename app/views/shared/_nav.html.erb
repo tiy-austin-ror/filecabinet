@@ -38,14 +38,14 @@
             </div>
             <div class="sign-in-out-up col s3 offset-s4">
               <% if signed_in? %>
-                <div class="col s6 offset-s6 heading">
+                <div class="col s6 offset-s6 heading-right">
                   <%= link_to "Sign Out", sign_out_path, method: :delete %>
                 </div>
               <% else %>
-                <div class="col s6 heading">
+                <div class="col s6 heading-right">
                   <%= link_to "Sign In", sign_in_path %>
                 </div>
-                <div class="col s6 heading">
+                <div class="col s6 heading-right">
                   <%= link_to "Sign Up", sign_up_path %>
                 </div>
               <% end %>

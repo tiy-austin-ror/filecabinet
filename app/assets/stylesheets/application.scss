@@ -17,6 +17,7 @@
  $primary-color: #40798C;
  $secondary-color: #7D2629;
  $delete-button-color: #92130F;
+ $background-text: #A9A9A9;
  @import "materialize";
 
  .btn {
@@ -58,9 +59,17 @@
         bottom: 10px;
       }
     }
+    .time {
+      padding-left: 2px;
+      color: $background-text;
+    }
     .material-icons {
       font-size: 1.5rem;
       vertical-align: middle;
+    }
+    .note-title {
+      height: 45px;
+      font-size: 40px;
     }
   }
   .edit-delete {
@@ -143,10 +152,19 @@
   .heading {
     text-align: center;
     min-width: 40px;
+    height: 20px;
   }
   .cat {
     min-width: 70px;
   }
+}
+
+.heading-right {
+  text-align: center;
+  min-width: 40px;
+  height: 20px;
+  position: relative;
+  bottom: 10px;
 }
 
 .sign-in-out-up {
