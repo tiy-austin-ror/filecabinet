@@ -1,38 +1,5 @@
-<div class="row">
-  <div class="col l6 m6">
-    <%= link_to "Create Note", new_note_path, class: "btn" %>
-  </div>
-  <div class="col l6 m6">
-    <%= link_to "Create Photo", new_photo_path, class: "btn" %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="row col m6">
-    <% notes.each do |note| %>
-    <div class="card file-card">
-
-      <div class="card-content">
-        <h3 class="card-title">Note:
-          <span><%= link_to note.name, note, class: "link-color" %></span>
-        </h3>
-      </div>
-    </div>
-    <% end %>
-
-  </div>
-
-
-  <div class="row col m6">
-    <% photos.each do |photo| %>
-    <div class="card file-card">
-      <div class="card-content">
-        <h3 class="card-title">Photo:
-          <span><%= link_to photo.name, photo, class: "link-color" %></span>
-        </h3>
-      </div>
-    </div>
-  <% end %>
-
-  </div>
-</div>
+<% if params[:search] %>
+  <%= render "dashboard/search.html.erb", categories: categories, notes: notes, photos: photos, users: users, tags: tags %>
+<% else %>
+  <%= render "dashboard/default.html.erb", categories: categories, notes: notes, photos: photos, users: users, tags: tags %>
+<% end %>
