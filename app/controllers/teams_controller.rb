@@ -24,13 +24,13 @@ class TeamsController < ApplicationController
   def create
     team = Team.new(team_params)
     if current_user && current_user.admin?
-    else
+      if team.save
+        redirect_to team
+      else
+        render :new, locals: { team: team }
       flash[:alert] = "You do not have permission to create teams."
-    end
-    if team.save
-      redirect_to team
-    else
-      render :new, locals: { team: team }
+      end
+
     end
   end
 
