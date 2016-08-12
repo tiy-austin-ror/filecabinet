@@ -6,21 +6,29 @@
 
   <% user.photos.each do |photo| %>
     <% if has_permission?(photo) %>
-      <h5><%= link_to photo.name, photo %></h5>
-      <p>Category: <%= link_to photo.category.name, photo.category %></p>
+  <div class="card file-card">
+    <div class="card-content">
+      <h5 class="card-title"><i class="material-icons note-photo-icon">image</i><%= link_to photo.name, photo %></h5>
+      <p> <i class="material-icons folder-icon">folder</i><%= link_to photo.category.name, photo.category %></p>
       <p>Last Updated: <%= photo.updated_at %></p>
       <p>Created: <%= photo.created_at %></p>
       <p><%= image_tag photo.upload.url(:medium) %></p>
+    </div>
+  </div>
     <% end %>
   <% end %>
 
   <% user.notes.each do |note| %>
     <% if has_permission?(note) %>
-      <h5><%= link_to note.name, note %></h5>
-      <p>Category: <%= link_to note.category.name, note.category %></p>
+  <div class="card file-card">
+    <div class="card-content">
+      <h5 class="card-title"><i class="material-icons note-photo-icon">description</i><%= link_to note.name, note %></h5>
+      <p><i class="material-icons note-photo-icon">image</i> <%= link_to note.category.name, note.category %></p>
       <p>Last Updated:<%= note.updated_at %></p>
       <p>Created: <%= note.created_at %></p>
       <p>Type: <%= note.file_type %></p>
+    </div>
+  </div>
     <% end %>
   <% end %>
 <% else %>

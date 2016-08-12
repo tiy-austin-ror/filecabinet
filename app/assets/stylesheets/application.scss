@@ -38,6 +38,13 @@
   min-width: 70px;
   height: 30px;
 }
+.team-file-card {
+ border: solid 0.1em #734846;
+ height: auto;
+ &:hover {
+   box-shadow: 5px 5px 5px grey;
+  }
+ }
 
 .create-btn {
   margin-top: 10px;
