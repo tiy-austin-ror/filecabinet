@@ -1,11 +1,11 @@
 class NotesController < ApplicationController
   def index
     if params[:search]
-      notes = Note.search(params[:search])
+      search_params
     else
       notes = Note.all
+      render locals: { notes: notes.select { |note| current_permission?(note) }.order(:updated_at) }
     end
-    render locals: { notes: notes.select { |note| current_permission?(note) }.order(:updated_at) }
   end
 
   def show
@@ -15,7 +15,6 @@ class NotesController < ApplicationController
         if params[:search]
           search_params
         else
-          note = Note.find(params[:id])
           render locals: { note: note, permission: Permission.new }
         end
       else

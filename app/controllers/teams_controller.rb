@@ -4,14 +4,18 @@ class TeamsController < ApplicationController
       search_params
     else
       teams = Team.all
-      render locals: { teams: teams }
+      render locals: { teams: teams.order[:name] }
     end
   end
 
   def show
   team = Team.find(params[:id])
     if team
-      render locals: { team: team, member: Member.new }
+      if params[:search]
+        search_params
+      else
+        render locals: { team: team, member: Member.new }
+      end
     else
       render html: 'Team not found', status: 404
     end

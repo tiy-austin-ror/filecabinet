@@ -1,12 +1,11 @@
 class PhotosController < ApplicationController
-
   def index
     if params[:search]
-      photos = Photo.search(params[:search])
+      search_params
     else
       photos = Photo.all
+      render locals: { photos: photos.select{ |photo| current_permission?(photo) }.order(:updated_at) }
     end
-    render locals: { photos: photos.select{ |photo| current_permission?(photo) }.order(:updated_at) }
   end
 
   def show
@@ -16,7 +15,6 @@ class PhotosController < ApplicationController
         if params[:search]
           search_params
         else
-          photo = Photo.find(params[:id])
           render locals: { photo: photo, permission: Permission.new }
         end
       else

@@ -14,7 +14,6 @@ class CategoriesController < ApplicationController
       if params[:search]
         search_params
       else
-        category = Category.find(params.fetch(:id))
         render locals: { category: category }
       end
     else

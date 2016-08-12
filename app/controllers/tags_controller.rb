@@ -5,7 +5,7 @@ class TagsController < ApplicationController
       search_params
     else
       tags = Tag.all
-      render locals: { tags: tags }
+      render locals: { tags: tags.order[:name] }
     end
   end
 
@@ -15,7 +15,6 @@ class TagsController < ApplicationController
       if params[:search]
         search_params
       else
-        tag = Tag.find(params[:id])
         render locals: { tag: tag }
       end
     end
