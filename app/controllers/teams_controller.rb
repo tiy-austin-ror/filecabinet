@@ -1,11 +1,11 @@
 class TeamsController < ApplicationController
   def index
     if params[:search]
-      teams = Team.where("UPPER(name) LIKE UPPER(?)", "%#{params[:search]}%")
+      search_params
     else
       teams = Team.all
+      render locals: { teams: teams }
     end
-    render locals: { teams: teams }
   end
 
   def show

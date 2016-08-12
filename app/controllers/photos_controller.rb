@@ -1,5 +1,4 @@
 class PhotosController < ApplicationController
-  before_action :disable_search
 
   def index
     if params[:search]
@@ -14,7 +13,12 @@ class PhotosController < ApplicationController
     photo = Photo.find(params[:id])
     if photo
       if current_permission?(photo)
-        render locals: { photo: photo, permission: Permission.new }
+        if params[:search]
+          search_params
+        else
+          photo = Photo.find(params[:id])
+          render locals: { photo: photo, permission: Permission.new }
+        end
       else
         flash[:alert] = "You do not have permission to view this page."
         redirect_to root_path

@@ -1,6 +1,4 @@
 class NotesController < ApplicationController
-  before_action :disable_search
-
   def index
     if params[:search]
       notes = Note.search(params[:search])
@@ -14,7 +12,12 @@ class NotesController < ApplicationController
     note = Note.find(params[:id])
     if note
       if current_permission?(note)
-        render locals: { note: note, permission: Permission.new }
+        if params[:search]
+          search_params
+        else
+          note = Note.find(params[:id])
+          render locals: { note: note, permission: Permission.new }
+        end
       else
         flash[:alert] = "You do not have permission to view this page."
         redirect_to root_path

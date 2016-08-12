@@ -1,19 +1,22 @@
 class CategoriesController < ApplicationController
-  before_action :disable_search
-
   def index
     if params[:search]
-      categories = Category.search(params[:search])
+      search_params
     else
       categories = Category.all.where(parent_category_id: nil)
+      render locals: { categories: categories }
     end
-    render locals: { categories: categories }
   end
 
   def show
     category = Category.find(params.fetch(:id))
     if category
-      render locals: { category: category }
+      if params[:search]
+        search_params
+      else
+        category = Category.find(params.fetch(:id))
+        render locals: { category: category }
+      end
     else
       redirect_to categories_path
     end

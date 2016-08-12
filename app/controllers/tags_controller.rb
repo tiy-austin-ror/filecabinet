@@ -1,21 +1,23 @@
 class TagsController < ApplicationController
-  before_action :disable_search
 
   def index
     if params[:search]
-      tags = Tag.search(params[:search])
+      search_params
     else
       tags = Tag.all
+      render locals: { tags: tags }
     end
-    render locals: { tags: tags }
   end
 
   def show
     tag = Tag.find(params[:id])
     if tag
-      render locals: { tag: tag }
-    else
-      render html: 'Tag not found', status: 404
+      if params[:search]
+        search_params
+      else
+        tag = Tag.find(params[:id])
+        render locals: { tag: tag }
+      end
     end
   end
 
