@@ -8,7 +8,7 @@
     <% if has_permission?(photo) %>
   <div class="card file-card">
     <div class="card-content">
-      <h5 class="card-title"><%= link_to photo.name, photo %></h5>
+      <h5 class="card-title"><i class="material-icons note-photo-icon">image</i><%= link_to photo.name, photo %></h5>
       <p> <i class="material-icons folder-icon">folder</i><%= link_to photo.category.name, photo.category %></p>
       <p>Last Updated: <%= photo.updated_at %></p>
       <p>Created: <%= photo.created_at %></p>
