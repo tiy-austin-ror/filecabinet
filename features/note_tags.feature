@@ -23,7 +23,7 @@ Feature: User tags notes
     And I fill in "Email" with "user@example.com"
     And I fill in "Password" with "password"
     And I press "Submit"
-    And I click "Categories"
+    And I visit "/categories"
     And I click "category-name"
     And I click "note"
     And I click "Edit"
