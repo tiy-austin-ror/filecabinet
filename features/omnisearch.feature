@@ -6,6 +6,7 @@ Backgound: An Admin Logs In
     And I fill in "Email" with "admin@example.com"
     And I fill in "Password" with "password"
     And I press "Submit"
+    Then I should see "Create Note"
 
 Scenario: An admin clicks "user" and searches "admin"
   When I visit "/"

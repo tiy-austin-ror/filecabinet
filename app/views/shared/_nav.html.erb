@@ -2,55 +2,61 @@
   <nav>
     <div class="row">
       <div class="col s1 app-title">
-        <p class="header-title"><h5>Teamshare</h5></p>
+        <p class="header-title"><h5><%= link_to "Teamshare", root_path %></h5></p>
       </div>
 
       <div class="col s3 push-1 heading-block">
         <div class="col s3 heading">
-          <%= link_to "Home", root_path %>
+          <%= link_to root_path do %>
+            <i class="material-icons">home</i>
+          <% end %>
         </div>
         <div class="col s3 heading">
-          <%= link_to "Users", users_path %>
+          <%= link_to users_path do %>
+            <i class="material-icons">person</i>
+          <% end %>
         </div>
         <div class="col s3 heading">
-          <%= link_to "Teams", teams_path %>
+          <%= link_to teams_path do %>
+            <i class="material-icons">people</i>
+          <% end %>
         </div>
         <div class="col s3 heading cat">
-          <%= link_to "Categories", categories_path, id: "in-nav" %>
+          <%= link_to categories_path do %>
+            <i class="material-icons">storage</i>
+          <% end %>
+        </div>
+        <div class="col s3 heading hide-on-med-and-up">
+          <%= link_to sign_out_path do %>
+            <i class="material-icons">backspace</i>
+          <% end %>
         </div>
       </div>
 
-      <div class="col s6">
+      <div class="col m5 l7 hide-on-small-only">
         <div class="nav-wrapper">
           <form>
-            <div class="input-field col s4 offset-s1">
+            <div class="input-field col s4 hide-on-med-and-down">
               <div class="search-block">
                 <div class="search-box">
                   <%= form_tag search_path do %>
                     <%= search_field_tag("search", params[:search]) %>
                     <%= submit_tag("Search", id: "submit", name: "submit", class: "btn-flat sign-butt submit-butt") %>
                   <% end %>
-                  <label for="search"><i class="material-icons">search</i></label>
+                  <label for="search"><i class="material-icons grey-text">search</i></label>
                 </div>
                 <%= render "shared/search.html.erb" unless @disable_search %>
                 </div>
               </div>
             </div>
-            <div class="sign-in-out-up col s3 offset-s4">
-              <% if signed_in? %>
-                <div class="col s6 offset-s6 heading">
-                  <%= link_to "Sign Out", sign_out_path, method: :delete %>
-                </div>
-              <% else %>
-                <div class="col s6 heading">
-                  <%= link_to "Sign In", sign_in_path %>
-                </div>
-                <div class="col s6 heading">
-                  <%= link_to "Sign Up", sign_up_path %>
-                </div>
-              <% end %>
-            </div>
           </form>
+          <div class="sign-in-out-up col s8">
+            <% if signed_in? %>
+              <div class="col s6 heading-right">
+                <%= link_to "Sign Out", sign_out_path, method: :delete %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

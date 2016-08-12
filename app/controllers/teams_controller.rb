@@ -1,24 +1,32 @@
 class TeamsController < ApplicationController
   def index
     if params[:search]
-      teams = Team.where("UPPER(name) LIKE UPPER(?)", "%#{params[:search]}%")
+      search_params
     else
       teams = Team.all
+      render locals: { teams: teams.order(:name) }
     end
-    render locals: { teams: teams }
   end
 
   def show
-  team = Team.find(params[:id])
+    team = Team.find(params[:id])
     if team
-      render locals: { team: team, member: Member.new }
+      if params[:search]
+        search_params
+      else
+        render locals: { team: team, member: Member.new }
+      end
     else
       render html: 'Team not found', status: 404
     end
   end
 
   def new
-    render locals: { team: Team.new }
+    if params[:search]
+      search_params
+    else
+      render locals: { team: Team.new }
+    end
   end
 
   def create
@@ -26,16 +34,20 @@ class TeamsController < ApplicationController
     if current_user && current_user.admin?
     else
       flash[:alert] = "You do not have permission to create teams."
-    end
-    if team.save
-      redirect_to team
-    else
-      render :new, locals: { team: team }
+      if team.save
+        redirect_to team
+      else
+        render :new, locals: { team: team }
+      end
     end
   end
 
   def edit
-    render locals: { team: Team.find(params[:id]) }
+    if params[:search]
+      search_params
+    else
+      render locals: { team: Team.find(params[:id]) }
+    end
   end
 
   def update

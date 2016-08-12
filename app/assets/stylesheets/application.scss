@@ -16,15 +16,17 @@
  @import "materialize/components/color";
  $primary-color: #40798C;
  $secondary-color: #7D2629;
- $delete-button-color: #D91C12;
+ $delete-button-color: #92130F;
+ $background-text: #A9A9A9;
+ $card-border: #F1ECEC;
+
  @import "materialize";
 
-.red-x{
+.red-x {
   a:link {
    color: #D91C12;
-  }  
+  }
 }
-
 
  .btn {
     background-color: $primary-color;
@@ -34,53 +36,38 @@
     }
  }
 
- .main-header {
-   .header-title {
-     margin-top: 10px;
-     font-family: cursive;
-   }
-   .search-box{
-     margin: 20px;
-   }
-   .search-icon {
-    margin: auto;
-    width: 50%;
-   }
- }
-
-.create-butts {
-  margin-top: 10px;
+.colored {
+  color: $primary-color;
 }
-.file-card {
+
+.sml-btn {
+  padding: 0;
+  padding-bottom: 33px;
+  width: 10%;
+  min-width: 70px;
+  height: 30px;
+}
+.team-file-card {
  border: solid 0.1em #734846;
  height: auto;
  &:hover {
-   box-shadow: 5px 5px 5px grey;
- }
- .card-content {
-   padding: 10px;
-   width: 450px;
-   word-wrap: break-word;
-
-
- }
-}
-
-.link-color {
-  color: $primary-color;
-  &:hover {
-    text-decoration: underline;
+   box-shadow: 5px 5px 5px gray;
   }
-}
+ }
 
+.create-btn {
+  margin-top: 10px;
+}
 
 .main-header {
-  header-title {
-   margin-top: 10px;
-  }
+  .header-title {
+    margin-top: 10px;
+    }
+
   .app-title {
     min-width: 150px;
   }
+
   .search-box {
     margin: 15px;
     height: 25px;
@@ -93,29 +80,34 @@
       margin: 0;
       padding-left: 2rem;
       border: 1px solid #5A5A5A;
-      background: #5096AD;
+      background: white;
     }
+
     .submit-butt {
       position: relative;
       bottom: 5px;
       padding-left: 0rem;
       font-size: initial;
     }
+
     .material-icons {
       margin-left: 15px;
       font-size: 180%;
       position: relative;
       top: -5px;
     }
+
     .search-icon {
       margin: auto;
       width: 50%;
     }
+
     .input-field {
       width: 50%;
       display: inline-flex;
     }
   }
+
   .checkboxes {
     max-height: 20px;
     display: flex;
@@ -127,15 +119,161 @@
   }
 }
 
+
+//######### Dashboard ############//
+
+.file-card {
+  border: solid 0.1em $card-border;
+  &:hover {
+    box-shadow: 5px 5px 5px gray;
+  }
+
+  .card-content-index {
+    padding: 10px;
+    word-wrap: break-word;
+    .card-title-index {
+      margin: 0;
+      font-size: 2rem;
+    }
+  }
+
+  .material-icons {
+    font-size: 2rem;
+    vertical-align: sub;
+  }
+}
+
+@media (max-width: 800px) {
+  .dash-notes {
+    display: table;
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dash-notes {
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 540px) {
+  .dash-notes {
+    max-width: 200px;
+  }
+
+  .category-path {
+    font-size: 20px;
+  }
+}
+
+//######### Dashboard ############//
+
+
+//######### Note/Photo Show ############//
+
+.file-card-show {
+  border: solid 0.1em $card-border;
+  width: 100%;
+  &:hover {
+    box-shadow: 5px 5px 5px grey;
+  }
+
+  .card-content-show {
+    padding: 10px;
+    .card-title-show {
+      margin: 0;
+      font-size: 2rem;
+      word-break: break-word;
+      .cat-desc a {
+        position: relative;
+        bottom: 10px;
+      }
+    }
+
+    .note-title {
+      font-size: 40px;
+    }
+
+    .time {
+      padding-left: 2px;
+      color: $background-text;
+    }
+
+    .material-icons {
+      font-size: 1.5rem;
+      vertical-align: middle;
+    }
+
+    .note-photo-icon {
+      font-size: smaller;
+      vertical-align: baseline;
+    }
+  }
+
+  .edit-delete {
+    text-align: right;
+    .edit-del {
+      padding: 0;
+      padding-bottom: 33px;
+      width: 10%;
+      min-width: 70px;
+      height: 30px;
+    }
+
+    .del {
+      background: $delete-button-color;
+    }
+  }
+}
+
+.cat-index-list-items {
+  .note-photo-icon {
+    font-size: x-large;
+  }
+}
+
+.card-title {
+  margin: 0;
+  .note-photo-icon {
+    vertical-align: baseline;
+  }
+}
+
+.time {
+  color: gray;
+}
+
+.cat-show-cats {
+  margin-bottom: 0;
+}
+//######### Show ############//
+
+.link-color {
+  color: $primary-color;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .heading-block {
   display: flex;
   .heading {
     text-align: center;
     min-width: 40px;
+    height: 20px;
   }
+
   .cat {
     min-width: 70px;
   }
+}
+
+.heading-right {
+  text-align: center;
+  min-width: 40px;
+  height: 20px;
+  position: relative;
+  bottom: 10px;
 }
 
 .sign-in-out-up {

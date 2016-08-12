@@ -1,20 +1,22 @@
 class NotesController < ApplicationController
-  before_action :disable_search
-
   def index
     if params[:search]
-      notes = Note.search(params[:search])
+      search_params
     else
       notes = Note.all
+      render locals: { notes: notes.select { |note| current_permission?(note) }.order(:updated_at) }
     end
-    render locals: { notes: notes.select { |note| current_permission?(note) }.order(:updated_at) }
   end
 
   def show
     note = Note.find(params[:id])
     if note
       if current_permission?(note)
-        render locals: { note: note, permission: Permission.new }
+        if params[:search]
+          search_params
+        else
+          render locals: { note: note, permission: Permission.new }
+        end
       else
         flash[:alert] = "You do not have permission to view this page."
         redirect_to root_path
@@ -25,7 +27,11 @@ class NotesController < ApplicationController
   end
 
   def new
-    render locals: { note: Note.new }
+    if params[:search]
+      search_params
+    else
+      render locals: { note: Note.new }
+    end
   end
 
   def create
@@ -41,7 +47,11 @@ class NotesController < ApplicationController
   end
 
   def edit
-    render locals: { note: Note.find(params[:id]) }
+    if params[:search]
+      search_params
+    else
+      render locals: { note: Note.find(params[:id]) }
+    end
   end
 
   def update

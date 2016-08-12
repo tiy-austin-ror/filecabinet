@@ -1,15 +1,16 @@
 
-<div class="row create-butts">
+<div class="row create-btn">
  <%= link_to "Create Category", new_category_path, class: "btn" %>
 </div>
 
 <% categories.each do |category| %>
 
-<ol class="cat-index-list-cat">
+<div class="cat-index-list-cat">
   <div class="row">
     <div class="card file-card col m8 m2">
       <div class="card-content">
-        <span class="card-title">Category:
+        <span class="card-title">
+          <i class="material-icons">folder</i>
         <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
           <%= link_to category.name + " (No items)", category, class: "link-color" %>
         <% else %>
@@ -18,19 +19,20 @@
 
         <% if category.children %>
           <% category.children.each do |child| %>
-            <li class="cat-index-list-items"><%= "Category: " %><%= link_to child.name, child %></li>
+            <div class="cat-index-list-items"><span class="waves-effect"><i class="material-icons note-photo-icon">folder</i></span>
+              <%= link_to child.name, child %></div>
           <% end %>
         <% end %>
 
           <% if category.notes %>
             <% category.notes.each do |note| %>
-              <li class="cat-index-list-items"><%= "Note: " %><%= link_to note.name, note %></li>
+              <div class="cat-index-list-items"><span class="waves-effect"><i class="material-icons note-photo-icon">description</i></span><%= link_to note.name, note %></div>
             <% end %>
           <% end %>
 
           <% if category.photos %>
             <% category.photos.each do |photo| %>
-              <li class="cat-index-list-items"><%= "Photo: " %><%= link_to photo.name, photo %></li>
+              <div class="cat-index-list-items"><span class="waves-effect"><i class="material-icons note-photo-icon">image</i></span><%= link_to photo.name, photo %></div>
             <% end %>
           <% end %>
         </div>
@@ -39,6 +41,4 @@
 
         </div>
   <% end %>
-
-
-</ol>
+</div>

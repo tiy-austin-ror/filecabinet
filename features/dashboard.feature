@@ -8,7 +8,6 @@ Background: A User logs in
     And I press "Submit"
     And I should see "Create Note"
 
-
 Scenario: User sees photos, notes, creates on dashboard
   Then I should see "photo"
   And I should see "note"

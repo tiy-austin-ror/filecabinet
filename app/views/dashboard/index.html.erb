@@ -1,5 +1,5 @@
 <% if params[:search] %>
   <%= render "dashboard/search.html.erb", categories: categories, notes: notes, photos: photos, users: users, tags: tags %>
 <% else %>
-  <%= render "dashboard/default.html.erb", categories: categories, notes: notes, photos: photos, users: users, tags: tags %>
+  <%= render "dashboard/default.html.erb", categories: categories, notes: notes, photos: photos %>
 <% end %>

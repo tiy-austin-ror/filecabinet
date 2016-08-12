@@ -1,20 +1,22 @@
 class PhotosController < ApplicationController
-  before_action :disable_search
-
   def index
     if params[:search]
-      photos = Photo.search(params[:search])
+      search_params
     else
       photos = Photo.all
+      render locals: { photos: photos.select{ |photo| current_permission?(photo) }.order(:updated_at) }
     end
-    render locals: { photos: photos.select{ |photo| current_permission?(photo) }.order(:updated_at) }
   end
 
   def show
     photo = Photo.find(params[:id])
     if photo
       if current_permission?(photo)
-        render locals: { photo: photo, permission: Permission.new }
+        if params[:search]
+          search_params
+        else
+          render locals: { photo: photo, permission: Permission.new }
+        end
       else
         flash[:alert] = "You do not have permission to view this page."
         redirect_to root_path
@@ -25,7 +27,11 @@ class PhotosController < ApplicationController
   end
 
   def new
-    render locals: { photo: Photo.new }
+    if params[:search]
+      search_params
+    else
+      render locals: { photo: Photo.new }
+    end
   end
 
   def create
@@ -40,7 +46,11 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    render locals: { photo: Photo.find(params[:id]) }
+    if params[:search]
+      search_params
+    else
+      render locals: { photo: Photo.find(params[:id]) }
+    end
   end
 
   def update

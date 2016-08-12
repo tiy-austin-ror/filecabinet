@@ -1,9 +1,11 @@
-<%= link_to "Teams", teams_path, class: "waves-effect waves-light btn" %></a>
-
 <ol>
   <% users.each do |user| %>
+<div class="card file-card">
+  <div class="card-content">
     <p>
       <%= link_to user.name, user %>
     </p>
+  </div>
+</div>
   <% end %>
 </ol>

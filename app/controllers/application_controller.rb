@@ -34,4 +34,13 @@ class ApplicationController < ActionController::Base
   def category_permission?(categories)
     categories.any? { |c| has_permission?(c) }
   end
+
+  def search_params
+    categories = Category.search(params[:search])
+    notes = Note.search(params[:search]).order(:updated_at)
+    photos = Photo.search(params[:search]).order(:updated_at)
+    users = User.search(params[:search]).order(:name)
+    tags = Tag.search(params[:search])
+    render template: 'dashboard/index.html.erb', locals: { categories: categories, notes: notes, photos: photos, users: users, tags: tags }
+  end
 end

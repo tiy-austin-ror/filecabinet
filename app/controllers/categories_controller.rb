@@ -1,28 +1,32 @@
 class CategoriesController < ApplicationController
-  before_action :disable_search
-
   def index
     if params[:search]
-      categories = Category.search(params[:search])
+      search_params
     else
       categories = Category.all.where(parent_category_id: nil)
+      render locals: { categories: categories }
     end
-    render locals: { categories: categories }
   end
 
   def show
     category = Category.find(params.fetch(:id))
     if category
-      render locals: { category: category }
+      if params[:search]
+        search_params
+      else
+        render locals: { category: category }
+      end
     else
       redirect_to categories_path
     end
   end
 
   def new
-    render locals: {
-      category: Category.new
-    }
+    if params[:search]
+      search_params
+    else
+      render locals: { category: Category.new }
+    end
   end
 
   def create
@@ -38,9 +42,11 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    render locals: {
-      category: Category.find(params[:id])
-    }
+    if params[:search]
+      search_params
+    else
+      render locals: { category: Category.find(params[:id]) }
+    end
   end
 
   def update

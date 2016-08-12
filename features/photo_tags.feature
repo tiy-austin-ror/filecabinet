@@ -13,8 +13,7 @@ Feature: User tags photos
     And I upload the test photo
     And I fill in "tags[name]" with "tag1"
     And I press "Create Photo"
-    Then I should see "Photo:"
-    And I should see "tag1"
+    Then I should see "tag1"
 
 
   Scenario: User edits a photo
@@ -25,12 +24,11 @@ Feature: User tags photos
     And I fill in "Email" with "user@example.com"
     And I fill in "Password" with "password"
     And I press "Submit"
-    And I click "Categories"
+    And I visit "/categories"
     And I click "category-name"
     And I click "photo"
-    And I click "Edit Photo"
+    And I click "Edit"
     And I fill in "tags[name]" with "tag1"
     And I press "Update Photo"
-    Then I should see "Photo:"
-    And I should not see "Photo could not be created"
+    Then I should not see "Photo could not be created"
     And I should see "tag1"
