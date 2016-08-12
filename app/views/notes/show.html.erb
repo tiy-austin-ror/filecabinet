@@ -22,11 +22,15 @@
 <div class="row m12">
   <div class="card file-card-show col m12">
       <div class="card-content-show">
+
         <h2 class="card-title-show note-title"><span class="waves-effect"><i class="material-icons note-photo-icon">description</i></span><%= note.note_with_type %></h2>
+
         <h6 class="card-name-cat-show">
           <sup class="time"><%= "created #{distance_of_time_in_words(Time.now, note.created_at)} ago by "%> <%= link_to note.user.name, note.user %></sup>
         </h6>
+
         <h5><%= note.body %></h5>
+
         <div>
           <% note.tags.each do |tag| %>
             <div class='chip'>

@@ -19,20 +19,20 @@
 
         <% if category.children %>
           <% category.children.each do |child| %>
-            <li class="cat-index-list-items">  <i class="material-icons">folder</i>
-              <%= link_to child.name, child %></li>
+            <div class="cat-index-list-items"><span class="waves-effect"><i class="material-icons note-photo-icon">folder</i></span>
+              <%= link_to child.name, child %></div>
           <% end %>
         <% end %>
 
           <% if category.notes %>
             <% category.notes.each do |note| %>
-              <li class="cat-index-list-items"><%= "Note: " %><%= link_to note.name, note %></li>
+              <div class="cat-index-list-items"><span class="waves-effect"><i class="material-icons note-photo-icon">description</i></span><%= link_to note.name, note %></div>
             <% end %>
           <% end %>
 
           <% if category.photos %>
             <% category.photos.each do |photo| %>
-              <li class="cat-index-list-items"><%= "Photo: " %><%= link_to photo.name, photo %></li>
+              <div class="cat-index-list-items"><span class="waves-effect"><i class="material-icons note-photo-icon">image</i></span><%= link_to photo.name, photo %></div>
             <% end %>
           <% end %>
         </div>

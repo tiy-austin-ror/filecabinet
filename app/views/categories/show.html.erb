@@ -19,9 +19,13 @@
 
 <h3> <%= category.name.capitalize %> </h3>
 
-<div>
-  <%= link_to "Create Category", new_category_path(parent_category_id: params[:id]), class: "btn" %>
+<div class="row col m12 cat-show-cats">
+  <div class="row col m6">
+    <h4> Categories </h4>
+      <%= link_to "Create Category", new_category_path(parent_category_id: params[:id]), class: "btn" %>
+  </div>
 </div>
+
 
 <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
   <p> This folder is empty! </p>
@@ -32,42 +36,64 @@
   <div class="row col m12">
     <% category.children.each do |child| %>
       <div class="category-name col m3">
-        <% if [child.children, child.notes, child.photos].all?(&:empty?) %>
+        <% if [child.children, child.notes, child.photos].all?(&:empty?) %><span class="waves-effect"><i class="material-icons note-photo-icon">folder</i></span>
           <%= link_to child.name + " (No items)", child %>
         <% else %>
-          <%= link_to child.name + " (#{item_count(child)})", child %>
+          <span class="waves-effect"><i class="material-icons note-photo-icon">folder</i></span><%= link_to child.name + " (#{item_count(child)})", child %>
         <% end %>
       </div>
     <% end %>
   </div>
 
+<div class="row col m12">
+  <div class="row col m6">
+    <h4> Notes </h4>
+    <%= link_to "Create Note", new_note_path, class: "btn" %>
+    <% if category.notes.exists? %>
+      <% category.notes.each_with_index do |note, i| %>
+        <% if has_permission?(note) %>
+        <div class="card file-card">
+          <div class="card-content">
 
-    <% category.notes.each_with_index do |note, i| %>
-      <% if has_permission?(note) %>
-      <div class="card file-card">
-        <div class="card-content">
-        <h4 class="card-title"><%= link_to note.note_with_type, note %></h4>
-        <div>Author: <%= link_to note.user.name, note.user %></div>
-        <div>Category: <%= link_to note.category.name, note.category %></div>
-        <div>Body: <%= note.body %></div>
-      </div>
-    </div>
+            <h4 class="card-title"><span class="waves-effect"><i class="material-icons note-photo-icon">description</i></span><%= link_to note.note_with_type, note %></h4>
+
+            <sup class="time"><%= "created #{distance_of_time_in_words(Time.now, note.created_at)} ago by "%> <%= link_to note.user.name, note.user %> </sup>
+
+            <div><%= note.body %></div>
+          </div>
+        </div>
+        <% end %>
       <% end %>
+    <% else %>
+      <p> You have not added any Notes! </p>
     <% end %>
+  </div>
 
+  <div class="row col m6">
+    <h4> Photos </h4>
+    <%= link_to "Create Photo", new_note_path, class: "btn" %>
+    <% if category.photos.exists? %>
     <% category.photos.each_with_index do |photo, i| %>
       <% if has_permission?(photo) %>
       <div class="card file-card">
         <div class="card-content">
-        <h4 class="card-title"><%= link_to photo.name, photo %></h4>
-        <div>Author: <%= link_to photo.user.name, photo.user %></div>
-        <div>Category: <%= link_to photo.category.name, photo.category %></div>
-        <div>Description: <%= photo.desc %></div>
-        <div><%= image_tag photo.upload.url(:medium) %></div>
+
+          <h4 class="card-title"><span class="waves-effect"><i class="material-icons note-photo-icon">image</i></span><%= link_to photo.name, photo %></h4>
+
+          <sup class="time"><%= "created #{distance_of_time_in_words(Time.now, photo.created_at)} ago by "%> <%= link_to photo.user.name, photo.user %></sup>
+
+          <div><%= photo.desc %></div>
+
+          <div><%= image_tag photo.upload.url(:medium) %></div>
       </div>
     </div>
       <% end %>
     <% end %>
+    <% else %>
+      <p> You have not added any photos! </p>
+    <% end %>
+  </div>
+</div>
 
   <% else %>
     <p>You do not have permission to see anything in this category.</p>

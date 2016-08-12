@@ -18,6 +18,8 @@
  $secondary-color: #7D2629;
  $delete-button-color: #92130F;
  $background-text: #A9A9A9;
+ $card-border: #F1ECEC;
+
  @import "materialize";
 
 .btn {
@@ -103,10 +105,9 @@
 //######### Dashboard ############//
 
 .file-card {
-  border-bottom: solid 0.1em #DED4D3;
-  border-right: solid 0.1em #DED4D3;
+  border: solid 0.1em $card-border;
   &:hover {
-    box-shadow: 5px 5px 5px grey;
+    box-shadow: 5px 5px 5px gray;
   }
   .card-content-index {
     padding: 10px;
@@ -150,8 +151,7 @@
 //######### Note/Photo Show ############//
 
 .file-card-show {
-  border-bottom: solid 0.1em #DED4D3;
-  border-right: solid 0.1em #DED4D3;
+  border: solid 0.1em $card-border;
   width: 100%;
   &:hover {
     box-shadow: 5px 5px 5px grey;
@@ -198,6 +198,26 @@
   }
 }
 
+.cat-index-list-items {
+  .note-photo-icon {
+    font-size: x-large;
+  }
+}
+
+.card-title {
+  margin: 0;
+  .note-photo-icon {
+    vertical-align: baseline;
+  }
+}
+
+.time {
+  color: gray;
+}
+
+.cat-show-cats {
+  margin-bottom: 0;
+}
 //######### Show ############//
 
 .link-color {
