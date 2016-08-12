@@ -27,7 +27,11 @@ class NotesController < ApplicationController
   end
 
   def new
-    render locals: { note: Note.new }
+    if params[:search]
+      search_params
+    else
+      render locals: { note: Note.new }
+    end
   end
 
   def create
@@ -43,7 +47,11 @@ class NotesController < ApplicationController
   end
 
   def edit
-    render locals: { note: Note.find(params[:id]) }
+    if params[:search]
+      search_params
+    else
+      render locals: { note: Note.find(params[:id]) }
+    end
   end
 
   def update

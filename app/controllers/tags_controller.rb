@@ -21,7 +21,11 @@ class TagsController < ApplicationController
   end
 
   def new
-    render locals: { tag: Tag.new }
+    if params[:search]
+      search_params
+    else
+      render locals: { tag: Tag.new }
+    end
   end
 
   def create
@@ -34,7 +38,11 @@ class TagsController < ApplicationController
   end
 
   def edit
-    render locals: { tag: Tag.find(params[:id]) }
+    if params[:search]
+      search_params
+    else
+      render locals: { tag: Tag.find(params[:id]) }
+    end
   end
 
   def update

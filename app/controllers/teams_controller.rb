@@ -4,12 +4,12 @@ class TeamsController < ApplicationController
       search_params
     else
       teams = Team.all
-      render locals: { teams: teams.order[:name] }
+      render locals: { teams: teams.order(:name) }
     end
   end
 
   def show
-  team = Team.find(params[:id])
+    team = Team.find(params[:id])
     if team
       if params[:search]
         search_params
@@ -22,7 +22,11 @@ class TeamsController < ApplicationController
   end
 
   def new
-    render locals: { team: Team.new }
+    if params[:search]
+      search_params
+    else
+      render locals: { team: Team.new }
+    end
   end
 
   def create
@@ -40,7 +44,11 @@ class TeamsController < ApplicationController
   end
 
   def edit
-    render locals: { team: Team.find(params[:id]) }
+    if params[:search]
+      search_params
+    else
+      render locals: { team: Team.find(params[:id]) }
+    end
   end
 
   def update

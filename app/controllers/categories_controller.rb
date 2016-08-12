@@ -22,9 +22,11 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    render locals: {
-      category: Category.new
-    }
+    if params[:search]
+      search_params
+    else
+      render locals: { category: Category.new }
+    end
   end
 
   def create
@@ -40,9 +42,11 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    render locals: {
-      category: Category.find(params[:id])
-    }
+    if params[:search]
+      search_params
+    else
+      render locals: { category: Category.find(params[:id]) }
+    end
   end
 
   def update

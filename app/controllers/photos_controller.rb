@@ -27,7 +27,11 @@ class PhotosController < ApplicationController
   end
 
   def new
-    render locals: { photo: Photo.new }
+    if params[:search]
+      search_params
+    else
+      render locals: { photo: Photo.new }
+    end
   end
 
   def create
@@ -42,7 +46,11 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    render locals: { photo: Photo.find(params[:id]) }
+    if params[:search]
+      search_params
+    else
+      render locals: { photo: Photo.find(params[:id]) }
+    end
   end
 
   def update
