@@ -1,26 +1,31 @@
 class TagsController < ApplicationController
-  before_action :disable_search
 
   def index
     if params[:search]
-      tags = Tag.search(params[:search])
+      search_params
     else
       tags = Tag.all
+      render locals: { tags: tags.order[:name] }
     end
-    render locals: { tags: tags }
   end
 
   def show
     tag = Tag.find(params[:id])
     if tag
-      render locals: { tag: tag }
-    else
-      render html: 'Tag not found', status: 404
+      if params[:search]
+        search_params
+      else
+        render locals: { tag: tag }
+      end
     end
   end
 
   def new
-    render locals: { tag: Tag.new }
+    if params[:search]
+      search_params
+    else
+      render locals: { tag: Tag.new }
+    end
   end
 
   def create
@@ -33,7 +38,11 @@ class TagsController < ApplicationController
   end
 
   def edit
-    render locals: { tag: Tag.find(params[:id]) }
+    if params[:search]
+      search_params
+    else
+      render locals: { tag: Tag.find(params[:id]) }
+    end
   end
 
   def update

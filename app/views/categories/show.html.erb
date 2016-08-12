@@ -26,13 +26,10 @@
   </div>
 </div>
 
-
 <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
   <p> This folder is empty! </p>
 <% else %>
-
   <% if authorized_any?(category.notes + category.photos) %>
-
   <div class="row col m12">
     <% category.children.each do |child| %>
       <div class="category-name col m3">

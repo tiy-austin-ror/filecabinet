@@ -14,7 +14,7 @@ class PermissionsController < ApplicationController
   def destroy
     permission = Permission.find(params[:id])
     if has_permission?(permission.permission)
-        permission.destroy 
+        permission.destroy
         flash[:notice] = "This user no longer has extra permissions."
         redirect_to :back
     else
