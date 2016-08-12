@@ -26,11 +26,13 @@
             <i class="material-icons">storage</i>
           <% end %>
         </div>
-        <div class="col s3 heading hide-on-med-and-up">
-          <%= link_to sign_out_path do %>
-            <i class="material-icons">backspace</i>
-          <% end %>
-        </div>
+        <% if signed_in? %>
+          <div class="col s3 heading hide-on-med-and-up">
+            <%= link_to sign_out_path, method: :delete do %>
+              <i class="material-icons">backspace</i>
+            <% end %>
+          </div>
+        <% end %>
       </div>
 
       <div class="col m5 l7 hide-on-small-only">
