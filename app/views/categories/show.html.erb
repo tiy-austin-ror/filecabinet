@@ -19,9 +19,13 @@
 
 <h3> <%= category.name.capitalize %> </h3>
 
-<div>
-  <%= link_to "Create Category", new_category_path(parent_category_id: params[:id]), class: "btn" %>
+<div class="row col m12 cat-show-cats">
+  <div class="row col m6">
+    <h4> Categories </h4>
+      <%= link_to "Create Category", new_category_path(parent_category_id: params[:id]), class: "btn" %>
+  </div>
 </div>
+
 
 <% if [category.children, category.notes, category.photos].all?(&:empty?) %>
   <p> This folder is empty! </p>
