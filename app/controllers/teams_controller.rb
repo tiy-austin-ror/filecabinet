@@ -28,10 +28,10 @@ class TeamsController < ApplicationController
         redirect_to team
       else
         render :new, locals: { team: team }
+      end
+    else
         flash[:alert] = "You do not have permission to create teams."
         redirect_to teams_path
-      end
-
     end
   end
 
