@@ -24,7 +24,7 @@ Feature: User tags photos
     And I fill in "Email" with "user@example.com"
     And I fill in "Password" with "password"
     And I press "Submit"
-    And I click "Categories"
+    And I visit "/categories"
     And I click "category-name"
     And I click "photo"
     And I click "Edit"

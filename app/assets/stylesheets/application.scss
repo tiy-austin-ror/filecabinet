@@ -22,6 +22,10 @@
 
  @import "materialize";
 
+.colored{
+  color: $primary-color;
+}
+
 .btn {
   background-color: $primary-color;
   &:hover {
@@ -52,9 +56,11 @@
   .header-title {
     margin-top: 10px;
     }
+
   .app-title {
     min-width: 150px;
   }
+
   .search-box {
     margin: 15px;
     height: 25px;
@@ -67,29 +73,34 @@
       margin: 0;
       padding-left: 2rem;
       border: 1px solid #5A5A5A;
-      background: #5096AD;
+      background: white;
     }
+
     .submit-butt {
       position: relative;
       bottom: 5px;
       padding-left: 0rem;
       font-size: initial;
     }
+
     .material-icons {
       margin-left: 15px;
       font-size: 180%;
       position: relative;
       top: -5px;
     }
+
     .search-icon {
       margin: auto;
       width: 50%;
     }
+
     .input-field {
       width: 50%;
       display: inline-flex;
     }
   }
+
   .checkboxes {
     max-height: 20px;
     display: flex;
@@ -109,6 +120,7 @@
   &:hover {
     box-shadow: 5px 5px 5px gray;
   }
+
   .card-content-index {
     padding: 10px;
     word-wrap: break-word;
@@ -117,6 +129,7 @@
       font-size: 2rem;
     }
   }
+
   .material-icons {
     font-size: 2rem;
     vertical-align: sub;
@@ -140,6 +153,7 @@
   .dash-notes {
     max-width: 200px;
   }
+
   .category-path {
     font-size: 20px;
   }
@@ -156,6 +170,7 @@
   &:hover {
     box-shadow: 5px 5px 5px grey;
   }
+
   .card-content-show {
     padding: 10px;
     .card-title-show {
@@ -167,22 +182,27 @@
         bottom: 10px;
       }
     }
+
     .note-title {
       font-size: 40px;
     }
+
     .time {
       padding-left: 2px;
       color: $background-text;
     }
+
     .material-icons {
       font-size: 1.5rem;
       vertical-align: middle;
     }
+
     .note-photo-icon {
       font-size: smaller;
       vertical-align: baseline;
     }
   }
+
   .edit-delete {
     text-align: right;
     .edit-del {
@@ -192,6 +212,7 @@
       min-width: 70px;
       height: 30px;
     }
+
     .del {
       background: $delete-button-color;
     }
@@ -234,6 +255,7 @@
     min-width: 40px;
     height: 20px;
   }
+
   .cat {
     min-width: 70px;
   }
