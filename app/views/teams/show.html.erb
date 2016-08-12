@@ -8,9 +8,12 @@
       <%= f.submit class: "waves-effect waves-light btn" %>
     </div>
   <% end %>
-
-  <p>Team Members: </p>
-  <% team.members.each do |tm| %>
-    <p><%= tm.user.name.capitalize %>
+  <div class="card team-file-card">
+    <div class="card-content">
+    <p class="card-title">Team Members: </p>
+    <% team.members.each do |tm| %>
+      <p><%= tm.user.name.capitalize %>
+    </div>
+  </div>
        <%= link_to "Remove Access", member_path(tm), method: :delete %></p>
   <% end %>
