@@ -5,5 +5,7 @@ module ApplicationHelper
     permission.present? && permission.full_access?
   end
 
-
+  def no_permission_users(object)
+    User.all - (object.users_with_access | [object.user])
+  end
 end
