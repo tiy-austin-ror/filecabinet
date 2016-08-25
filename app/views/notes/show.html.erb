@@ -49,6 +49,7 @@
         <label for="user_id">Users with Additional Access: </label>
         <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name) %>
 
+
 <%= form_for(permission) do |f| %>
   <label for="user_id">Users with Additional Access: </label>
     <%= f.select :user_id, options_from_collection_for_select(no_permission_users(note), :id, :name) %>
@@ -61,10 +62,11 @@
   <div>
     <%= f.submit class: "waves-effect waves-light btn" %>
   </div>
-<% end %>
+  <% end %>
 
-<p>Users with Permission: </p>
-  <p><% note.permissions.uniq.each do |perm| %>
-  <%= perm.user.name.capitalize %>
-  <span class='red-x'><%= link_to "X", permission_path(perm), method: :delete %></span></p>
-<% end %>
+  <p>Users with Permission: </p>
+    <p><% note.permissions.uniq.each do |perm| %>
+      <%= perm.user.name.capitalize %>
+      <span class='red-x'><%= link_to "X", permission_path(perm), method: :delete %></span></p>
+    <% end %>
+  <% end %>
